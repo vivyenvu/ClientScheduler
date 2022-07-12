@@ -1,5 +1,6 @@
 package sample;
 
+import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Locale.setDefault(new Locale("fr"));
+        JDBC.openConnection();
+        //launch(args); pulls a bunch of methods that start loading your GUIs, so you want to connect to database
+        //before this launch method is called, and you want to close database after it is called
+        JDBC.closeConnection();
+
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
