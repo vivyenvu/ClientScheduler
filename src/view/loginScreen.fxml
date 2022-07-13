@@ -9,7 +9,7 @@
       <Label layoutX="185.0" layoutY="150.0" text="Password" />
       <TextField fx:id="usernameText" layoutX="260.0" layoutY="118.0" />
       <TextField fx:id="passwordText" layoutX="260.0" layoutY="148.0" />
-      <Button layoutX="275.0" layoutY="190.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Submit" />
+      <Button layoutX="309.0" layoutY="188.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Submit" />
       <Label fx:id="locationDisplay" layoutX="50.0" layoutY="225.0" text="Location: " />
       <Label fx:id="errorMessageDisplay" layoutX="50.0" layoutY="250.0" maxHeight="125.0" maxWidth="250.0" />
    </children>
