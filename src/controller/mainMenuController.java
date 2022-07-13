@@ -2,7 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 
-public class customerMainMenuController {
+public class mainMenuController {
     public void onWeekViewBtn(ActionEvent actionEvent) {
     }
 

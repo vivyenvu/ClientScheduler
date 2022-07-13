@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="1080" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainMenuController">
+    <children>
+        <Rectangle arcHeight="20.0" arcWidth="30.0" fill="TRANSPARENT" height="297.0" layoutX="390.0" layoutY="71.0" stroke="BLACK" strokeType="INSIDE" width="660.0" />
+        <Rectangle arcHeight="20.0" arcWidth="30.0" fill="TRANSPARENT" height="297.0" layoutX="34.0" layoutY="71.0" stroke="BLACK" strokeType="INSIDE" width="332.0" />
+        <Label layoutX="29.0" layoutY="21.0" text="Main Menu">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="51.0" layoutY="82.0" text="Customers">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="409.0" layoutY="82.0" text="Appointments">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <TableView fx:id="customerTable" layoutX="50.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+            </columns>
+        </TableView>
+        <TableView fx:id="allApptTable" layoutX="407.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+            </columns>
+        </TableView>
+        <RadioButton layoutX="734.0" layoutY="87.0" mnemonicParsing="false" onAction="#onWeekViewBtn" selected="true" text="Week">
+            <toggleGroup>
+                <ToggleGroup fx:id="apptViewToggle" />
+            </toggleGroup></RadioButton>
+        <RadioButton layoutX="809.0" layoutY="87.0" mnemonicParsing="false" onAction="#onMonthViewBtn" text="Month" toggleGroup="$apptViewToggle" />
+        <TableView fx:id="weekOrMonthApptTable" layoutX="732.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+            </columns>
+        </TableView>
+        <Button layoutX="186.0" layoutY="330.0" mnemonicParsing="false" onAction="#onCustomerAddBtn" text="Add" />
+        <Button layoutX="233.0" layoutY="330.0" mnemonicParsing="false" onAction="#onCustomerUpdateBtn" text="Update" />
+        <Button layoutX="298.0" layoutY="330.0" mnemonicParsing="false" onAction="#onCustomerDeleteBtn" text="Delete" />
+        <Button layoutX="868.0" layoutY="330.0" mnemonicParsing="false" onAction="#onApptAddBtn" text="Add" />
+        <Button layoutX="916.0" layoutY="330.0" mnemonicParsing="false" onAction="#onApptUpdateBtn" text="Update" />
+        <Button layoutX="980.0" layoutY="330.0" mnemonicParsing="false" onAction="#onApptDeleteBtn" text="Delete" />
+    </children>
+</AnchorPane>
