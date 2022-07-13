@@ -6,8 +6,8 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.updateCustomerController">
     <children>
-        <Button layoutX="415.0" layoutY="324.0" mnemonicParsing="false" onAction="#onClickUpdateCustomerSave" text="Save" />
-        <Button layoutX="475.0" layoutY="324.0" mnemonicParsing="false" onAction="#onClickUpdateCustomerCancel" text="Cancel" />
+        <Button layoutX="415.0" layoutY="324.0" mnemonicParsing="false" onAction="#onClickUpdateCustomerSaveBtn" text="Save" />
+        <Button layoutX="475.0" layoutY="324.0" mnemonicParsing="false" onAction="#onUpdateCustomerCancelBtn" text="Cancel" />
         <TextField fx:id="updateCustomerID" disable="true" editable="false" layoutX="120.0" layoutY="95.0" prefWidth="100.0" />
         <TextField fx:id="updateCustomerName" layoutX="120.0" layoutY="125.0" prefWidth="100.0" />
         <TextField fx:id="updateCustomerAddress" layoutX="310.0" layoutY="95.0" prefWidth="250.0" />
