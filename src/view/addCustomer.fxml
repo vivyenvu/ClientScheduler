@@ -23,7 +23,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ComboBox layoutX="310.0" layoutY="185.0" prefWidth="250.0" promptText="Selet One" />
+      <ComboBox layoutX="310.0" layoutY="185.0" prefWidth="250.0" promptText="Select One" />
       <ComboBox layoutX="310.0" layoutY="140.0" prefWidth="250.0" promptText="Select a Country" />
    </children>
 </AnchorPane>
