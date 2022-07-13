@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="1080" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerMainMenuController">
    <children>
       <Label layoutX="29.0" layoutY="21.0" text="Main Menu">
@@ -12,29 +11,41 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="86.0" layoutY="66.0" text="Customers">
+      <Label layoutX="54.0" layoutY="70.0" text="Customers">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="486.0" layoutY="66.0" text="Appointments">
+      <Label layoutX="409.0" layoutY="70.0" text="Appointments">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="60.0" layoutY="118.0" prefHeight="200.0" prefWidth="200.0">
+      <TableView layoutX="50.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <TableView layoutX="455.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0">
+      <TableView layoutX="407.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <RadioButton layoutX="714.0" layoutY="70.0" mnemonicParsing="false" text="Week" />
-      <RadioButton layoutX="838.0" layoutY="70.0" mnemonicParsing="false" text="Month" />
+      <RadioButton layoutX="734.0" layoutY="75.0" mnemonicParsing="false" text="Week" />
+      <RadioButton layoutX="809.0" layoutY="75.0" mnemonicParsing="false" text="Month" />
+      <TableView layoutX="732.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Button layoutX="186.0" layoutY="330.0" mnemonicParsing="false" text="Add" />
+      <Button layoutX="233.0" layoutY="330.0" mnemonicParsing="false" text="Update" />
+      <Button layoutX="298.0" layoutY="330.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="868.0" layoutY="330.0" mnemonicParsing="false" text="Add" />
+      <Button layoutX="916.0" layoutY="330.0" mnemonicParsing="false" text="Update" />
+      <Button layoutX="980.0" layoutY="330.0" mnemonicParsing="false" text="Delete" />
    </children>
 </AnchorPane>
