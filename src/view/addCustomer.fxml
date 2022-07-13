@@ -2,12 +2,13 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addCustomerController">
    <children>
       <Button layoutX="268.0" layoutY="267.0" mnemonicParsing="false" text="Save" />
       <Button layoutX="329.0" layoutY="267.0" mnemonicParsing="false" text="Cancel" />
-      <TextField layoutX="250.0" layoutY="95.0" />
+      <TextField disable="true" editable="false" layoutX="250.0" layoutY="95.0" />
       <TextField layoutX="250.0" layoutY="125.0" />
       <TextField layoutX="250.0" layoutY="155.0" />
       <TextField layoutX="250.0" layoutY="185.0" />
@@ -17,5 +18,10 @@
       <Label layoutX="150.0" layoutY="190.0" text="Postal Code" />
       <Label layoutX="150.0" layoutY="220.0" text="Phone number" />
       <Label layoutX="150.0" layoutY="130.0" text="Name" />
+      <Label layoutX="50.0" layoutY="40.0" text="Add Customer">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
