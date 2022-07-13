@@ -19,7 +19,23 @@ public class mainMenuController {
         stage.show();
     }
 
-    public void onCustomerUpdateBtn(ActionEvent actionEvent) {
+    public void onCustomerUpdateBtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/updateCustomer.fxml"));
+        loader.load();
+
+        /* on old project
+        modPart = (Part) mainPartTable.getSelectionModel().getSelectedItem();
+        modPartIndex = getAllParts().indexOf(modPart);
+        FIGURE OUT WHAT GLOBAL VARIABLES I NEED TO UPDATE CUSTOMER INFO ON NEXT SCREEN
+         */
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = loader.getRoot();
+        stage.setTitle("Update Customer");
+        stage.setScene(new Scene(scene));
+        stage.show();
+
     }
 
     public void onCustomerDeleteBtn(ActionEvent actionEvent) {
@@ -34,7 +50,22 @@ public class mainMenuController {
         stage.show();
     }
 
-    public void onApptUpdateBtn(ActionEvent actionEvent) {
+    public void onApptUpdateBtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/updateAppt.fxml"));
+        loader.load();
+
+        /* on old project
+        modPart = (Part) mainPartTable.getSelectionModel().getSelectedItem();
+        modPartIndex = getAllParts().indexOf(modPart);
+        FIGURE OUT WHAT GLOBAL VARIABLES I NEED TO UPDATE CUSTOMER INFO ON NEXT SCREEN
+         */
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = loader.getRoot();
+        stage.setTitle("Update Appointment");
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     public void onApptDeleteBtn(ActionEvent actionEvent) {
