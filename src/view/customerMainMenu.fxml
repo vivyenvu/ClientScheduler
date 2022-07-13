@@ -24,31 +24,34 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="50.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
+      <TableView fx:id="customerTable" layoutX="50.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <TableView layoutX="407.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
+      <TableView fx:id="allApptTable" layoutX="407.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <RadioButton layoutX="734.0" layoutY="87.0" mnemonicParsing="false" text="Week" />
-      <RadioButton layoutX="809.0" layoutY="87.0" mnemonicParsing="false" text="Month" />
-      <TableView layoutX="732.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
+      <RadioButton layoutX="734.0" layoutY="87.0" mnemonicParsing="false" onAction="#onWeekViewBtn" selected="true" text="Week">
+         <toggleGroup>
+            <ToggleGroup fx:id="apptViewToggle" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="809.0" layoutY="87.0" mnemonicParsing="false" onAction="#onMonthViewBtn" text="Month" toggleGroup="$apptViewToggle" />
+      <TableView fx:id="weekOrMonthApptTable" layoutX="732.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Button layoutX="186.0" layoutY="330.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="233.0" layoutY="330.0" mnemonicParsing="false" text="Update" />
-      <Button layoutX="298.0" layoutY="330.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="868.0" layoutY="330.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="916.0" layoutY="330.0" mnemonicParsing="false" text="Update" />
-      <Button layoutX="980.0" layoutY="330.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="186.0" layoutY="330.0" mnemonicParsing="false" onAction="#onClickCustomerAddBtn" text="Add" />
+      <Button layoutX="233.0" layoutY="330.0" mnemonicParsing="false" onAction="#onClickCustomerUpdateBtn" text="Update" />
+      <Button layoutX="298.0" layoutY="330.0" mnemonicParsing="false" onAction="#onClickCustomerDeleteBtn" text="Delete" />
+      <Button layoutX="868.0" layoutY="330.0" mnemonicParsing="false" onAction="#onClickApptAddBtn" text="Add" />
+      <Button layoutX="916.0" layoutY="330.0" mnemonicParsing="false" onAction="#onClickApptUpdateBtn" text="Update" />
+      <Button layoutX="980.0" layoutY="330.0" mnemonicParsing="false" onAction="#onClickApptDeleteBtn" text="Delete" />
    </children>
 </AnchorPane>
