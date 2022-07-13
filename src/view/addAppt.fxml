@@ -6,8 +6,8 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addApptController">
     <children>
-        <Button layoutX="415.0" layoutY="324.0" mnemonicParsing="false" onAction="#onAddCustomerSaveBtn" text="Save" />
-        <Button layoutX="475.0" layoutY="324.0" mnemonicParsing="false" onAction="#onAddCustomerDeleteBtn" text="Cancel" />
+        <Button layoutX="415.0" layoutY="324.0" mnemonicParsing="false" onAction="#onAddApptSaveBtn" text="Save" />
+        <Button layoutX="475.0" layoutY="324.0" mnemonicParsing="false" onAction="#onAddApptCancelBtn" text="Cancel" />
         <TextField fx:id="addApptID" disable="true" editable="false" layoutX="125.0" layoutY="95.0" prefWidth="170.0" />
         <TextField fx:id="addApptTitle" layoutX="125.0" layoutY="125.0" prefWidth="170.0" />
         <TextField fx:id="addApptDescription" layoutX="125.0" layoutY="155.0" prefWidth="170.0" />
