@@ -3,20 +3,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addCustomerController">
    <children>
-      <Button layoutX="248.0" layoutY="304.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="364.0" layoutY="304.0" mnemonicParsing="false" text="Cancel" />
-      <TextField layoutX="267.0" layoutY="71.0" />
-      <TextField layoutX="278.0" layoutY="116.0" />
-      <TextField layoutX="290.0" layoutY="164.0" />
-      <TextField layoutX="300.0" layoutY="213.0" />
-      <TextField layoutX="290.0" layoutY="254.0" />
-      <Label layoutX="108.0" layoutY="75.0" text="Customer ID" />
-      <Label layoutX="108.0" layoutY="108.0" text="Address" />
-      <Label layoutX="116.0" layoutY="141.0" text="Postal Code" />
-      <Label layoutX="128.0" layoutY="181.0" text="Phone number" />
-      <Label layoutX="134.0" layoutY="88.0" text="Name" />
+      <Button layoutX="268.0" layoutY="267.0" mnemonicParsing="false" text="Save" />
+      <Button layoutX="329.0" layoutY="267.0" mnemonicParsing="false" text="Cancel" />
+      <TextField layoutX="250.0" layoutY="95.0" />
+      <TextField layoutX="250.0" layoutY="125.0" />
+      <TextField layoutX="250.0" layoutY="155.0" />
+      <TextField layoutX="250.0" layoutY="185.0" />
+      <TextField layoutX="250.0" layoutY="215.0" />
+      <Label layoutX="150.0" layoutY="100.0" prefHeight="17.0" prefWidth="67.0" text="Customer ID" />
+      <Label layoutX="150.0" layoutY="160.0" text="Address" />
+      <Label layoutX="150.0" layoutY="190.0" text="Postal Code" />
+      <Label layoutX="150.0" layoutY="220.0" text="Phone number" />
+      <Label layoutX="150.0" layoutY="130.0" text="Name" />
    </children>
 </AnchorPane>
