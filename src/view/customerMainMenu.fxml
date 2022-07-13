@@ -2,21 +2,24 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="1080" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerMainMenuController">
    <children>
+      <Rectangle arcHeight="20.0" arcWidth="30.0" fill="TRANSPARENT" height="297.0" layoutX="390.0" layoutY="71.0" stroke="BLACK" strokeType="INSIDE" width="660.0" />
+      <Rectangle arcHeight="20.0" arcWidth="30.0" fill="TRANSPARENT" height="297.0" layoutX="34.0" layoutY="71.0" stroke="BLACK" strokeType="INSIDE" width="332.0" />
       <Label layoutX="29.0" layoutY="21.0" text="Main Menu">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="70.0" text="Customers">
+      <Label layoutX="51.0" layoutY="82.0" text="Customers">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="409.0" layoutY="70.0" text="Appointments">
+      <Label layoutX="409.0" layoutY="82.0" text="Appointments">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -33,8 +36,8 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <RadioButton layoutX="734.0" layoutY="75.0" mnemonicParsing="false" text="Week" />
-      <RadioButton layoutX="809.0" layoutY="75.0" mnemonicParsing="false" text="Month" />
+      <RadioButton layoutX="734.0" layoutY="87.0" mnemonicParsing="false" text="Week" />
+      <RadioButton layoutX="809.0" layoutY="87.0" mnemonicParsing="false" text="Month" />
       <TableView layoutX="732.0" layoutY="116.0" prefHeight="200.0" prefWidth="300.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
