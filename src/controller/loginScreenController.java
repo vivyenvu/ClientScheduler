@@ -1,5 +1,6 @@
 package controller;
 
+import helper.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,11 +15,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class loginScreenController {
+public class loginScreenController extends JDBC {
     public TextField usernameText;
     public TextField passwordText;
     public Label locationDisplay;
     public Label errorMessageDisplay;
+    //ObservableList<Users> allUsers = FXCollections.ObservableArrayList();
 
     public void onClickSubmit(ActionEvent actionEvent) throws IOException {
         //add validation for username and password before going to Main Menu
@@ -27,9 +29,12 @@ public class loginScreenController {
 
         try {
             String sql = "SELECT User_Name, Password FROM users";
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
+            /*rest of the code where you populate ObservableList<Users> allUsers with every
+            row from the table, and then a for loop to validate username and passwords
+            match before proceeding to the Main Menu
+             */
         }
         catch (SQLException ex){
             ex.printStackTrace();
