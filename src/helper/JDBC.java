@@ -3,7 +3,7 @@ package helper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public abstract class JDBC {
+public abstract class JDBC extends Util {
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";
     private static final String location = "//localhost/";
