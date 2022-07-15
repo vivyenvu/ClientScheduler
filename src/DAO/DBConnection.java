@@ -1,9 +1,9 @@
-package helper;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public abstract class JDBC{
+public class DBConnection {
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";
     private static final String location = "//localhost/";
@@ -19,7 +19,7 @@ public abstract class JDBC{
     public static void openConnection() {
         try {
             Class.forName(driver);
-            connection = DriverManager.getConnection(jdbUrl, userName, password);
+            connection = (Connection)DriverManager.getConnection(jdbUrl, userName, password);
             System.out.println("Connection successful");
         }
         catch (Exception e) {

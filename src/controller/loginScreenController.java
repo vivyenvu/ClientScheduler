@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.DBConnection;
 import helper.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class loginScreenController extends JDBC {
+public class loginScreenController {
     public TextField usernameText;
     public TextField passwordText;
     public Label locationDisplay;
@@ -29,7 +30,7 @@ public class loginScreenController extends JDBC {
 
         try {
             String sql = "SELECT User_Name, Password FROM users";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = DBConnection.openConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             /*rest of the code where you populate ObservableList<Users> allUsers with every
             row from the table, and then a for loop to validate username and passwords
