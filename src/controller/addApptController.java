@@ -16,7 +16,7 @@ public class addApptController {
     public void onAddApptCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1080, 400);
+        Scene scene = new Scene(root, 800, 700);
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
