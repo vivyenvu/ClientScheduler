@@ -17,12 +17,15 @@ public class Main extends Application {
         //launch(args); pulls a bunch of methods that start loading your GUIs, so you want to connect to database
         //before this launch method is called, and you want to close database after it is called
 
-        DBConnection.closeConnection();
-
         Parent root = FXMLLoader.load(getClass().getResource("/view/loginScreen.fxml"));
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
+
+        //FIGURE OUT WHEN TO CLOSE THIS CONNECTION
+        //DBConnection.closeConnection();
+
+
     }
 
 
