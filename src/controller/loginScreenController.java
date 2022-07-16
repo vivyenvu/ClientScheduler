@@ -30,8 +30,8 @@ public class loginScreenController {
 
         try {
             String sql = "SELECT User_Name, Password FROM users";
-            //PreparedStatement ps = DBConnection.openConnection().prepareStatement(sql);
-            //ResultSet rs = ps.executeQuery();
+            PreparedStatement ps = DBConnection.connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
             /*Wrong class?
             Query.makeQuery(sql);
