@@ -45,18 +45,24 @@ public class loginScreenController {
 
             while (rs.next()) {
                 String userLoaded = rs.getString("User_Name");
-
+                users.add(userLoaded);
             }
         }
         catch (SQLException ex){
             ex.printStackTrace();
         }
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
-        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 700);
-        stage.setTitle("Main Menu");
-        stage.setScene(scene);
-        stage.show();
+            if (users.contains(inputUsername)) {
+                //DELETE THIS PRINT LATER
+                System.out.println ("Username is valid");
+                Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+                Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 800, 700);
+                stage.setTitle("Main Menu");
+                stage.setScene(scene);
+                stage.show();
+            }
+        }
+
     }
 }
