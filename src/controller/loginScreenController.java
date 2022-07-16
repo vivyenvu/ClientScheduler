@@ -1,7 +1,6 @@
 package controller;
 
 import DAO.DBConnection;
-import helper.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,6 +14,9 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+//DELETE THIS IMPORT LATER
+import java.util.List;
 
 public class loginScreenController {
     public TextField usernameText;
@@ -28,19 +30,23 @@ public class loginScreenController {
         String inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
 
+        //TEMPORARY List UNTIL I SET UP MODELS
+        List<String> users = new ArrayList<>();
+
         try {
-            String sql = "SELECT User_Name, Password FROM users";
+            String sql = "SELECT User_Name FROM users"; //ALSO SELECT PASSWORD AFTER I SET UP MODELS
             PreparedStatement ps = DBConnection.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
-            /*Wrong class?
-            Query.makeQuery(sql);
-            ResultSet rs = Query.getResult(); */
 
             /*rest of the code where you populate ObservableList<Users> allUsers with every
             row from the table, and then a for loop to validate username and passwords
             match before proceeding to the Main Menu
              */
+
+            while (rs.next()) {
+                String userLoaded = rs.getString("User_Name");
+
+            }
         }
         catch (SQLException ex){
             ex.printStackTrace();
