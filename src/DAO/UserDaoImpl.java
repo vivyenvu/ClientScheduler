@@ -1,31 +1,33 @@
 package DAO;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.Users;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDaoImpl {
     //example from first DAO webinar
-    public static User getUser(String userName) throws SQLException, Exception {
+    public static Users getUser(String userName) throws SQLException, Exception {
         DBConnection.openConnection();
         String sqlStatement = "select * FROM users WHERE User_Name = ' " + userName + "'";
 
         Query.makeQuery(sqlStatement);
-        User userResult;
+        Users userResult;
         ResultSet result= Query.getResult();
         while(result.next()) {
             int userid = result.getInt("User_ID_");
             String userNameG = result.getString("User_Name");
             String password = result.getString("Password");
-            userResult = new User(userid, userName, password);
+            userResult = new Users(userid, userName, password);
             return userResult;
             }
         DBConnection.closeConnection();
         return null;
     }
-    public static ObservableList<User> getAllUsers() throws SQLException, Exception{
-        ObservableList<User> allUsers = FXCollections.observableArrayList();
+    public static ObservableList<Users> getAllUsers() throws SQLException, Exception{
+        ObservableList<Users> allUsers = FXCollections.observableArrayList();
         DBConnection.openConnection();
         String sqlStatement = "select * from users";
         Query.makeQuery(sqlStatement);
@@ -34,8 +36,8 @@ public class UserDaoImpl {
             int userid = result.getInt("User_ID");
             String userNameG = result.getString("User_Name");
             String password = result.getString("Password");
-            User userResult = new User(userid, userNameG, password);
-            allUsers.add(UserResult);
+            Users userResult = new Users(userid, userNameG, password);
+            allUsers.add(userResult);
         }
         DBConnection.closeConnection();
         return allUsers;
