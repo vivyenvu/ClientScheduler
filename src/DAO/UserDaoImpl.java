@@ -9,13 +9,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDaoImpl {
-    public static Users getUser(String userName) throws SQLException, Exception {
+    public static String getPassword(String username) throws SQLException, Exception {
         try{
             //PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
             //ResultSet rs = ps.executeQuery();
-            ResultSet rs = Query.getResult("SELECT * FROM users WHERE User_Name = ' " + userName + "'");
-
-            while(rs.next()) {
+            String password;
+            ResultSet rs = Query.getRS("SELECT * FROM users WHERE User_Name = '" + username + "'");
+            if(rs.next()) {
+                password = rs.getString("Password");
+                return password;
+            }
+            else {
+                System.out.println(rs);
+            }
+            /*while(rs.next()) {
                 int userid = rs.getInt("User_ID_");
                 String username = rs.getString("User_Name");
                 String password = rs.getString("Password");
@@ -23,7 +30,7 @@ public class UserDaoImpl {
 
                 //what happens if there's more than one user with this username?
                 return userResult;
-            }
+            }*/
         }
         catch (SQLException ex){
             ex.printStackTrace();
@@ -33,7 +40,7 @@ public class UserDaoImpl {
     public static ObservableList<Users> getAllUsers() throws SQLException, Exception{
         ObservableList<Users> allUsers = FXCollections.observableArrayList();
 
-        ResultSet result = Query.getResult("select * from users");
+        ResultSet result = Query.getRS("select * from users");
         while(result.next()){
             int userid = result.getInt("User_ID");
             String userNameG = result.getString("User_Name");

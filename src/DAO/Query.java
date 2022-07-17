@@ -11,6 +11,18 @@ public class Query {
     private static PreparedStatement ps;
     private static ResultSet rs;
 
+    //use for delete, insert, or update sql statements
+    public static PreparedStatement getPS (String sql) throws SQLException {
+        ps = DBConnection.getConnection().prepareStatement(sql);
+        return ps;
+    }
+
+    //use for select sql statements
+    public static ResultSet getRS(String sql) throws SQLException {
+        rs = getPS(sql).executeQuery();
+        return rs;
+    }
+
     /*private static String query;
     private static Statement stmt;
     private static ResultSet result;
@@ -32,17 +44,4 @@ public class Query {
     public static ResultSet getResult() {
         return result;
     }*/
-
-    //use for delete, insert, or update sql statements
-    public static PreparedStatement getPS (String sql) throws SQLException {
-        ps = DBConnection.getConnection().prepareStatement(sql);
-        return ps;
-    }
-
-    //use for select sql statements
-    public static ResultSet getResult(String sql) throws SQLException {
-        rs = getPS(sql).executeQuery();
-        return rs;
-    }
-
 }
