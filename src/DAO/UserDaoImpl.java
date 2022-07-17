@@ -33,9 +33,7 @@ public class UserDaoImpl {
     public static ObservableList<Users> getAllUsers() throws SQLException, Exception{
         ObservableList<Users> allUsers = FXCollections.observableArrayList();
 
-        String sqlStatement = "select * from users";
-        Query.makeQuery(sqlStatement);
-        ResultSet result = Query.getResult();
+        ResultSet result = Query.getResult("select * from users");
         while(result.next()){
             int userid = result.getInt("User_ID");
             String userNameG = result.getString("User_Name");
@@ -43,7 +41,6 @@ public class UserDaoImpl {
             Users userResult = new Users(userid, userNameG, password);
             allUsers.add(userResult);
         }
-        DBConnection.closeConnection();
         return allUsers;
     }
 }

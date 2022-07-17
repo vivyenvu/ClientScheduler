@@ -12,7 +12,7 @@ public class Query {
     private static Statement stmt;
     private static ResultSet result;
 
-    public static void makeQuery(String q){
+    /*public static void makeQuery(String q){
         query = q;
         try{
             stmt = DBConnection.getConnection().createStatement();
@@ -26,13 +26,16 @@ public class Query {
             ex.printStackTrace();
         }
     }
-    /*public static ResultSet getResult() {
+    public static ResultSet getResult() {
         return result;
     }*/
 
-    public static ResultSet getResult(String sql) throws SQLException {
+    public static PreparedStatement getPS (String sql) throws SQLException {
         PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
-        ResultSet result = ps.executeQuery();
+        return ps;
+    }
+    public static ResultSet getResult(String sql) throws SQLException {
+        ResultSet result = getPS(sql).executeQuery();
         return result;
     }
 }
