@@ -35,7 +35,7 @@ public class loginScreenController {
 
         try {
             String sql = "SELECT User_Name FROM users"; //ALSO SELECT PASSWORD AFTER I SET UP MODELS
-            PreparedStatement ps = DBConnection.connection.prepareStatement(sql);
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             /*rest of the code where you populate ObservableList<Users> allUsers with every
