@@ -16,18 +16,19 @@ public class DBConnection {
     private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String userName = "sqlUser";
     private static final String password = "Passw0rd!";
-    public static Connection connection;
+    private static Connection conn = null;
 
     //connecting to database
-    public static void openConnection() {
+    public static Connection openConnection() {
         try {
             Class.forName(driver);
-            connection = (Connection)DriverManager.getConnection(jdbUrl, userName, password);
+            conn = DriverManager.getConnection(jdbUrl, userName, password);
             System.out.println("Connection successful");
         }
-        catch (Exception e) {
+        catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return conn;
     }
 
     //closing that connection
