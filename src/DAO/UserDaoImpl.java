@@ -1,5 +1,8 @@
 package DAO;
 
+import javafx.collections.FXCollections;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDaoImpl {
@@ -21,7 +24,7 @@ public class UserDaoImpl {
         DBConnection.closeConnection();
         return null;
     }
-    public static ObservableList<User> getAllusers() throws SQLException, Exception{
+    public static ObservableList<User> getAllUsers() throws SQLException, Exception{
         ObservableList<User> allUsers = FXCollections.observableArrayList();
         DBConnection.openConnection();
         String sqlStatement = "select * from users";
