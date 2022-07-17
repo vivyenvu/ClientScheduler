@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 public class UserDaoImpl {
     public static Users getUser(String userName) throws SQLException, Exception {
-        Users userResult;
         try{
             String sql = "SELECT * FROM users WHERE User_Name = ' " + userName + "'";
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
@@ -20,13 +19,16 @@ public class UserDaoImpl {
                 int userid = rs.getInt("User_ID_");
                 String username = rs.getString("User_Name");
                 String password = rs.getString("Password");
-                userResult = new Users(userid, username, password);
+                Users userResult = new Users(userid, username, password);
+
+                //what happens if there's more than one user with this username?
+                return userResult;
             }
         }
         catch (SQLException ex){
             ex.printStackTrace();
         }
-        return userResult;
+        return null;
     }
     public static ObservableList<Users> getAllUsers() throws SQLException, Exception{
         ObservableList<Users> allUsers = FXCollections.observableArrayList();
