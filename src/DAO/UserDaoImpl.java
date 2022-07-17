@@ -11,9 +11,9 @@ import java.sql.SQLException;
 public class UserDaoImpl {
     public static Users getUser(String userName) throws SQLException, Exception {
         try{
-            String sql = "SELECT * FROM users WHERE User_Name = ' " + userName + "'";
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            //PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            //ResultSet rs = ps.executeQuery();
+            ResultSet rs = Query.getResult("SELECT * FROM users WHERE User_Name = ' " + userName + "'");
 
             while(rs.next()) {
                 int userid = rs.getInt("User_ID_");
@@ -32,7 +32,7 @@ public class UserDaoImpl {
     }
     public static ObservableList<Users> getAllUsers() throws SQLException, Exception{
         ObservableList<Users> allUsers = FXCollections.observableArrayList();
-        DBConnection.openConnection();
+
         String sqlStatement = "select * from users";
         Query.makeQuery(sqlStatement);
         ResultSet result = Query.getResult();

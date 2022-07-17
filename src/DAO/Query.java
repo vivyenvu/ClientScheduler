@@ -2,6 +2,7 @@ package DAO;
 
 
 //RETIRE THIS PAGE
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,7 +26,13 @@ public class Query {
             ex.printStackTrace();
         }
     }
-    public static ResultSet getResult() {
+    /*public static ResultSet getResult() {
+        return result;
+    }*/
+
+    public static ResultSet getResult(String sql) throws SQLException {
+        PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+        ResultSet result = ps.executeQuery();
         return result;
     }
 }
