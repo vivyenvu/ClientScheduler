@@ -26,7 +26,8 @@ public class DBConnection {
             System.out.println("Connection successful");
         }
         catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Error: " + e.getMessage());
+            //System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         }
         return conn;
     }
@@ -34,7 +35,7 @@ public class DBConnection {
     //closing that connection
     public static void closeConnection() {
         try{
-            connection.close();
+            conn.close();
             System.out.println("Connection closed");
         }
         catch (Exception e){
@@ -43,7 +44,7 @@ public class DBConnection {
     }
 
     public static Connection getConnection() {
-        return connection;
+        return conn;
     }
     public static void makeConnection() throws ClassNotFoundException, SQLException, Exception {
         MysqlDataSource d = new MysqlDataSource();
@@ -51,7 +52,7 @@ public class DBConnection {
         d.setPassword(password);
         d.setUrl(jdbUrl);
         d.setDatabaseName(databaseName);
-        connection = (Connection) d.getConnection();
+        conn = (Connection) d.getConnection();
         System.out.println("Connection Successful");
 
     }
