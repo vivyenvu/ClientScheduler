@@ -1,18 +1,21 @@
 package DAO;
 
-
 //RETIRE THIS PAGE
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Query {
-    private static String query;
+    private static PreparedStatement ps;
+    private static ResultSet rs;
+
+    /*private static String query;
     private static Statement stmt;
     private static ResultSet result;
 
-    /*public static void makeQuery(String q){
+    public static void makeQuery(String q){
         query = q;
         try{
             stmt = DBConnection.getConnection().createStatement();
@@ -30,12 +33,16 @@ public class Query {
         return result;
     }*/
 
+    //use for delete, insert, or update sql statements
     public static PreparedStatement getPS (String sql) throws SQLException {
-        PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+        ps = DBConnection.getConnection().prepareStatement(sql);
         return ps;
     }
+
+    //use for select sql statements
     public static ResultSet getResult(String sql) throws SQLException {
-        ResultSet result = getPS(sql).executeQuery();
-        return result;
+        rs = getPS(sql).executeQuery();
+        return rs;
     }
+
 }
