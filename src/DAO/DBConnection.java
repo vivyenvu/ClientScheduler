@@ -41,6 +41,9 @@ public class DBConnection {
         }
     }
 
+    public static Connection getConnection() {
+        return connection;
+    }
     public static void makeConnection() throws ClassNotFoundException, SQLException, Exception {
         MysqlDataSource d = new MysqlDataSource();
         d.setUser(userName);
