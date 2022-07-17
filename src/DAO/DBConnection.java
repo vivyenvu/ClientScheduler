@@ -1,7 +1,10 @@
 package DAO;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBConnection {
     private static final String protocol = "jdbc";
@@ -36,5 +39,16 @@ public class DBConnection {
         catch (Exception e){
             System.out.println("Error: " + e.getMessage());
         }
+    }
+
+    public static void makeConnection() throws ClassNotFoundException, SQLException, Exception {
+        MysqlDataSource d = new MysqlDataSource();
+        d.setUser(userName);
+        d.setPassword(password);
+        d.setUrl(jdbUrl);
+        d.setDatabaseName(databaseName);
+        connection = (Connection) d.getConnection();
+        System.out.println("Connection Successful");
+
     }
 }
