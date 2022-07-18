@@ -38,7 +38,9 @@ public class loginScreenController {
         try {
             //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
             String associatedPassword = currentUser.getPassword();
+
             System.out.println("InputPassword is "+inputPassword + " while AssociatedPassword is " +associatedPassword); //testing
+
             if (inputPassword.equals(associatedPassword)) {
                 Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
