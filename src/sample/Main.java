@@ -22,11 +22,14 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+        //ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+        ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", new Locale("fr"));
+        //if(Locale.getDefault().getLanguage().equals("fr")){
         if(Locale.getDefault().getLanguage().equals("fr")){
             System.out.println(rb.getString("Submit"));
         }
-        //Locale.setDefault(new Locale("fr"));
+
+
         DBConnection.openConnection();
         //launch(args); pulls a bunch of methods that start loading your GUIs, so you want to connect to database
         //before this launch method is called, and you want to close database after it is called
