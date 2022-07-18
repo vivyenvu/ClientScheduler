@@ -22,9 +22,12 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
-        ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", new Locale("fr"));
-        //if(Locale.getDefault().getLanguage().equals("fr")){
+        Boolean French = false;
+
+        Locale.setDefault(new Locale("fr"));
+        ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+
+        //ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", new Locale("fr"));
         if(Locale.getDefault().getLanguage().equals("fr")){
             System.out.println(rb.getString("Submit"));
         }

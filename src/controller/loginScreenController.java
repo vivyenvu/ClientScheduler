@@ -39,7 +39,7 @@ public class loginScreenController {
             //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
             String associatedPassword = currentUser.getPassword();
 
-            System.out.println("InputPassword is "+inputPassword + " while AssociatedPassword is " +associatedPassword); //testing
+            System.out.println("InputPassword is "+inputPassword + " while AssociatedPassword is " +associatedPassword); //REMOVE WHEN DONE TESTING
 
             if (inputPassword.equals(associatedPassword)) {
                 Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
