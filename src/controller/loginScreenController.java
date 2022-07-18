@@ -44,6 +44,7 @@ public class loginScreenController {
             }
             else {
                 System.out.println("InputPassword is "+inputPassword + " while AssociatedPassword is " +associatedPassword);
+                //DO I NEED A WARNING TO POP UP SOMEHWERE ELSE?
             }
         } catch (Exception e) {
             e.printStackTrace();

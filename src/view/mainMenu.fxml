@@ -7,46 +7,47 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainMenuController">
     <children>
-        <Rectangle arcHeight="20.0" arcWidth="30.0" fill="TRANSPARENT" height="297.0" layoutX="25.0" layoutY="370.0" stroke="BLACK" strokeType="INSIDE" width="750.0" />
-        <Rectangle arcHeight="20.0" arcWidth="30.0" fill="TRANSPARENT" height="297.0" layoutX="25.0" layoutY="52.0" stroke="BLACK" strokeType="INSIDE" width="750.0" />
-        <Label layoutX="29.0" layoutY="12.0" text="Main Menu">
+        <Rectangle arcHeight="20.0" arcWidth="30.0" fill="TRANSPARENT" height="297.0" layoutX="25.0" layoutY="356.0" stroke="BLACK" strokeType="INSIDE" width="750.0" />
+        <Rectangle arcHeight="20.0" arcWidth="30.0" fill="TRANSPARENT" height="297.0" layoutX="25.0" layoutY="42.0" stroke="BLACK" strokeType="INSIDE" width="750.0" />
+        <Label layoutX="29.0" layoutY="9.0" text="Main Menu">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="50.0" layoutY="64.0" text="Customers">
+        <Label layoutX="50.0" layoutY="54.0" text="Customers">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="50.0" layoutY="384.0" text="Appointments">
+        <Label layoutX="50.0" layoutY="370.0" text="Appointments">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <TableView fx:id="customerTable" layoutX="50.0" layoutY="99.0" prefHeight="200.0" prefWidth="700.0">
+        <TableView fx:id="customerTable" layoutX="50.0" layoutY="89.0" prefHeight="200.0" prefWidth="700.0">
             <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
             </columns>
         </TableView>
-        <TableView fx:id="allApptTable" layoutX="50.0" layoutY="422.0" prefHeight="200.0" prefWidth="700.0">
+        <TableView fx:id="allApptTable" layoutX="50.0" layoutY="408.0" prefHeight="200.0" prefWidth="700.0">
             <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
             </columns>
         </TableView>
-        <RadioButton layoutX="625.0" layoutY="387.0" mnemonicParsing="false" onAction="#onWeekViewBtn" text="Week">
+        <RadioButton layoutX="625.0" layoutY="373.0" mnemonicParsing="false" onAction="#onWeekViewBtn" text="Week">
             <toggleGroup>
                 <ToggleGroup fx:id="apptViewToggle" />
             </toggleGroup></RadioButton>
-        <RadioButton layoutX="690.0" layoutY="387.0" mnemonicParsing="false" onAction="#onMonthViewBtn" text="Month" toggleGroup="$apptViewToggle" />
-      <RadioButton layoutX="575.0" layoutY="387.0" mnemonicParsing="false" onAction="#onMonthViewBtn" selected="true" text="All" toggleGroup="$apptViewToggle" />
-        <Button layoutX="587.0" layoutY="311.0" mnemonicParsing="false" onAction="#onCustomerAddBtn" text="Add" />
-        <Button layoutX="634.0" layoutY="311.0" mnemonicParsing="false" onAction="#onCustomerUpdateBtn" text="Update" />
-        <Button layoutX="699.0" layoutY="311.0" mnemonicParsing="false" onAction="#onCustomerDeleteBtn" text="Delete" />
-        <Button layoutX="587.0" layoutY="631.0" mnemonicParsing="false" onAction="#onApptAddBtn" text="Add" />
-        <Button layoutX="634.0" layoutY="631.0" mnemonicParsing="false" onAction="#onApptUpdateBtn" text="Update" />
-        <Button layoutX="699.0" layoutY="631.0" mnemonicParsing="false" onAction="#onApptDeleteBtn" text="Delete" />
+        <RadioButton layoutX="690.0" layoutY="373.0" mnemonicParsing="false" onAction="#onMonthViewBtn" text="Month" toggleGroup="$apptViewToggle" />
+      <RadioButton layoutX="575.0" layoutY="373.0" mnemonicParsing="false" onAction="#onMonthViewBtn" selected="true" text="All" toggleGroup="$apptViewToggle" />
+        <Button layoutX="587.0" layoutY="301.0" mnemonicParsing="false" onAction="#onCustomerAddBtn" text="Add" />
+        <Button layoutX="634.0" layoutY="301.0" mnemonicParsing="false" onAction="#onCustomerUpdateBtn" text="Update" />
+        <Button layoutX="699.0" layoutY="301.0" mnemonicParsing="false" onAction="#onCustomerDeleteBtn" text="Delete" />
+        <Button layoutX="587.0" layoutY="617.0" mnemonicParsing="false" onAction="#onApptAddBtn" text="Add" />
+        <Button layoutX="634.0" layoutY="617.0" mnemonicParsing="false" onAction="#onApptUpdateBtn" text="Update" />
+        <Button layoutX="699.0" layoutY="617.0" mnemonicParsing="false" onAction="#onApptDeleteBtn" text="Delete" />
+      <Button layoutX="694.0" layoutY="663.0" mnemonicParsing="false" text="Reports" />
     </children>
 </AnchorPane>
