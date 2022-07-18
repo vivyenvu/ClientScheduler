@@ -32,8 +32,13 @@ public class loginScreenController {
     public void onClickSubmit(ActionEvent actionEvent) throws Exception {
         String inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
+
+        Users currentUser = UserDaoImpl.getUser(inputUsername);
+
         try {
-            String associatedPassword = UserDaoImpl.getPassword(inputUsername);
+            //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
+            String associatedPassword = currentUser.getPassword();
+            System.out.println("InputPassword is "+inputPassword + " while AssociatedPassword is " +associatedPassword); //testing
             if (inputPassword.equals(associatedPassword)) {
                 Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -42,11 +47,14 @@ public class loginScreenController {
                 stage.setScene(scene);
                 stage.show();
             }
-            else {
-                System.out.println("InputPassword is "+inputPassword + " while AssociatedPassword is " +associatedPassword);
-                //DO I NEED A WARNING TO POP UP SOMEHWERE ELSE?
+            if (!inputPassword.equals(associatedPassword)){
+                errorMessageDisplay.setText("Invalid password. \n");
             }
-        } catch (Exception e) {
+        }
+        catch (NullPointerException ex) {
+            errorMessageDisplay.setText("Invalid username. \n");
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

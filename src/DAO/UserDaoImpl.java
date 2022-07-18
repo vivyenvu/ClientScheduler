@@ -11,6 +11,7 @@ import java.sql.SQLException;
 public class UserDaoImpl {
     public static String getPassword(String username) throws SQLException, Exception {
         try{
+            //String sql = "SELECT * FROM users WHERE User_Name = '" + username + "'";
             //PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
             //ResultSet rs = ps.executeQuery();
             String password;
@@ -20,20 +21,29 @@ public class UserDaoImpl {
                 return password;
             }
             else {
-                System.out.println(rs);
+                return null;
             }
-            /*while(rs.next()) {
-                int userid = rs.getInt("User_ID_");
+        }
+        catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    public static Users getUser(String inputUsername) throws SQLException {
+        try{
+            ResultSet rs = Query.getRS("SELECT * FROM users WHERE User_Name = '" + inputUsername + "'");
+            while(rs.next()) {
+                int userid = rs.getInt("User_ID");
                 String username = rs.getString("User_Name");
                 String password = rs.getString("Password");
                 Users userResult = new Users(userid, username, password);
 
                 //what happens if there's more than one user with this username?
                 return userResult;
-            }*/
+            }
         }
         catch (SQLException ex){
-            ex.printStackTrace();
+                ex.printStackTrace();
         }
         return null;
     }
