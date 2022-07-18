@@ -30,26 +30,11 @@ public class loginScreenController {
     //ObservableList<Users> allUsers = FXCollections.ObservableArrayList();
 
     public void onClickSubmit(ActionEvent actionEvent) throws Exception {
-        //add validation for username and password before going to Main Menu
         String inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
-        //TEMPORARY List UNTIL I SET UP MODELS
-        //List<String> users = new ArrayList<>();
-
         try {
-            /*String sql = "SELECT User_Name FROM users"; //ALSO SELECT PASSWORD AFTER I SET UP MODELS
-            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);*/
-
-            //ResultSet rs = Query.getRS("SELECT User_Name FROM users");
-
-            /*rest of the code where you populate ObservableList<Users> allUsers with every
-            row from the table, and then a for loop to validate username and passwords
-            match before proceeding to the Main Menu
-             */
             String associatedPassword = UserDaoImpl.getPassword(inputUsername);
-
-            if (associatedPassword == inputPassword) {
-                System.out.println("This is the correct password");
+            if (inputPassword.equals(associatedPassword)) {
                 Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root, 800, 700);
@@ -58,29 +43,11 @@ public class loginScreenController {
                 stage.show();
             }
             else {
-                System.out.println("No match");
+                System.out.println("InputPassword is "+inputPassword + " while AssociatedPassword is " +associatedPassword);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-            /*
-            while (rs.next()) {
-                String userLoaded = rs.getString("User_Name");
-                users.add(userLoaded);
-            }
-        }
-        catch (SQLException ex){
-            ex.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (users.contains(inputUsername)) {
-                //DELETE THIS PRINT LATER
-                System.out.println ("Username is valid");
-
-            }
-        }
-*/
-    }}
+    }
+}
 
