@@ -13,7 +13,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Main extends Application {
-    private static boolean french = false;
     @Override
     public void start(Stage stage) throws Exception{
         /*Locale.setDefault(new Locale("fr"));
@@ -28,9 +27,7 @@ public class Main extends Application {
         }
 */
         Parent root = FXMLLoader.load(getClass().getResource("/view/loginScreen.fxml"));
-
         stage.setTitle("Login");
-
         stage.setScene(new Scene(root, 600, 400));
         stage.show();
     }
@@ -61,9 +58,5 @@ public class Main extends Application {
 
         launch(args);
         DBConnection.closeConnection();
-    }
-
-    public boolean isFrench(){
-        return french;
     }
 }

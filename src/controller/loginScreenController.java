@@ -32,11 +32,14 @@ public class loginScreenController implements Initializable {
     public Label locationLabel;
 
     public void onClickSubmit(ActionEvent actionEvent) throws Exception {
-        Locale.setDefault(new Locale("fr"));
-        ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+        //Locale.setDefault(new Locale("fr"));
+
+        //ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+
         String inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
         Users currentUser = UserDaoImpl.getUser(inputUsername);
+
         try {
             //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
             String associatedPassword = currentUser.getPassword();
@@ -52,21 +55,21 @@ public class loginScreenController implements Initializable {
                 stage.show();
             }
             if (!inputPassword.equals(associatedPassword)){
-                if(Locale.getDefault().getLanguage().equals("fr")){
+                /*if(Locale.getDefault().getLanguage().equals("fr")){
                     errorMessageDisplay.setText(rb.getString("InvalidPassword"));
                 }
-                else{
+                else{*/
                     errorMessageDisplay.setText("Invalid password. \n");
-                }
+                //}
             }
         }
         catch (NullPointerException ex) {
-            if(Locale.getDefault().getLanguage().equals("fr")){
+            /*if(Locale.getDefault().getLanguage().equals("fr")){
                 errorMessageDisplay.setText(rb.getString("InvalidUsername"));
             }
-            else{
+            else{*/
                 errorMessageDisplay.setText("Invalid username. \n");
-            }
+            //}
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -76,7 +79,7 @@ public class loginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            Locale.setDefault(new Locale("fr"));
+            //Locale.setDefault(new Locale("fr"));
             ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
 
             if(Locale.getDefault().getLanguage().equals("fr")){
@@ -84,14 +87,7 @@ public class loginScreenController implements Initializable {
                 passwordLabel.setText(rb.getString("Password"));
                 locationLabel.setText(rb.getString("Location"));
                 submitLabel.setText(rb.getString("Submit"));
-
-
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("This is in french");
-                alert.showAndWait();
             }
-
-
         }
         catch(MissingResourceException e){
             System.out.println("Resource bundle is missing");
