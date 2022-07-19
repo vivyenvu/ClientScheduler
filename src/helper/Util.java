@@ -28,7 +28,7 @@ public class Util {
     }
 
     public String contactIDToName(int id) throws SQLException {
-        String name =""; //remove initialization later
+        String name =""; //remove initialization later?
         ResultSet rs = Query.getRS("SELECT Contact_Name FROM contacts WHERE Contact_ID = '" + id +"'");
         while (rs.next()){
             name = rs.getString("Contact_Name");
@@ -36,9 +36,12 @@ public class Util {
         return name;
     }
 
-    public int usernameToID (String name) {
+    public int usernameToID (String name) throws SQLException {
         int id = 0;// remove later
-        //database for username and id
+        ResultSet rs = Query.getRS("SELECT User_ID FROM users WHERE User_Name = '" +name +"'");
+        while (rs.next()){
+            id = rs.getInt("User_ID");
+        }
         return id;
     }
 
