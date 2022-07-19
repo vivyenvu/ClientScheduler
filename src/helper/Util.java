@@ -27,9 +27,12 @@ public class Util {
         return contactID;
     }
 
-    public String contactIDToName(int id) {
+    public String contactIDToName(int id) throws SQLException {
         String name =""; //remove initialization later
-        //search database for id and associated name
+        ResultSet rs = Query.getRS("SELECT Contact_Name FROM contacts WHERE Contact_ID = '" + id +"'");
+        while (rs.next()){
+            name = rs.getString("Contact_Name");
+        }
         return name;
     }
 
