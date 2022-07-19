@@ -1,13 +1,13 @@
 package helper;
 
 public class Contacts {
-    private int contact_ID;
-    private String contact_name;
+    private int contactID;
+    private String contactName;
     private String email;
 
-    public Contacts (int contact_ID, String contact_name, String email){
-        this.contact_ID = contact_ID;
-        this.contact_name = contact_name;
+    public Contacts (int contactID, String contactName, String email){
+        this.contactID = contactID;
+        this.contactName = contactName;
         this.email = email;
     }
 }
