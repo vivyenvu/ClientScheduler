@@ -76,4 +76,13 @@ public class mainMenuController {
 
     public void onMonthViewBtn(ActionEvent actionEvent) {
     }
+
+    public void onClickReports(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/reports.fxml"));
+        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 600, 400);
+        stage.setTitle("Reports");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

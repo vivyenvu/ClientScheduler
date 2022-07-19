@@ -13,9 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Users;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -34,7 +32,7 @@ public class loginScreenController implements Initializable {
     public String associatedPassword;
     public Label countryDisplay;
 
-    public void onClickSubmit(ActionEvent actionEvent) throws IOException {
+    public void onClickSubmit(ActionEvent actionEvent){
         //Locale.setDefault(new Locale("fr"));
 
         ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
@@ -67,7 +65,6 @@ public class loginScreenController implements Initializable {
                 }
             }
         }
-
         catch (NullPointerException e) {
             if (isFrench) {
                 errorMessageDisplay.setText(rb.getString("InvalidUsername"));
@@ -93,7 +90,6 @@ public class loginScreenController implements Initializable {
                 usernameLabel.setText(rb.getString("Username"));
                 passwordLabel.setText(rb.getString("Password"));
                 submitLabel.setText(rb.getString("Submit"));
-
             }
         }
         catch(MissingResourceException e){

@@ -48,6 +48,6 @@
         <Button layoutX="587.0" layoutY="617.0" mnemonicParsing="false" onAction="#onApptAddBtn" text="Add" />
         <Button layoutX="634.0" layoutY="617.0" mnemonicParsing="false" onAction="#onApptUpdateBtn" text="Update" />
         <Button layoutX="699.0" layoutY="617.0" mnemonicParsing="false" onAction="#onApptDeleteBtn" text="Delete" />
-      <Button layoutX="694.0" layoutY="663.0" mnemonicParsing="false" text="Reports" />
+      <Button layoutX="694.0" layoutY="663.0" mnemonicParsing="false" onAction="#onClickReports" text="Reports" />
     </children>
 </AnchorPane>
