@@ -1,18 +1,20 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class Appointments {
     private int apptID;
     private String title;
     private String desc;
     private String location;
     private String type;
-    private String start; //CHANGE TO TYPE DATETIME
-    private String end; //CHANGE TO TYPE DATETIME
+    private LocalDateTime start;
+    private LocalDateTime end;
     private int customerIDFK;
     private int userIDFK;
     private int contactIDFK;
 
-    public Appointments (int apptID, String title, String desc, String location, String type, String start, String end,
+    public Appointments (int apptID, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end,
                          int customerIDFK, int userIDFK, int contactIDFK){
         this.apptID = apptID;
         this.title = title;
