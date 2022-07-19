@@ -3,11 +3,11 @@ package model;
 public class FirstClassDivisions {
     private int divisionID;
     private String division;
-    private int countryID;
+    private int countryIDFK;
 
-    public FirstClassDivisions (int divisionID, String division, int countryID) {
+    public FirstClassDivisions (int divisionID, String division, int countryIDFK) {
         this.divisionID = divisionID;
         this.division = division;
-        this.countryID = countryID;
+        this.countryIDFK = countryIDFK;
     }
 }
