@@ -34,7 +34,7 @@ public class loginScreenController implements Initializable {
     public void onClickSubmit(ActionEvent actionEvent) throws Exception {
         //Locale.setDefault(new Locale("fr"));
 
-        //ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+        ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
 
         String inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
@@ -44,7 +44,7 @@ public class loginScreenController implements Initializable {
             //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
             String associatedPassword = currentUser.getPassword();
 
-            System.out.println("InputPassword is "+inputPassword + " while AssociatedPassword is " +associatedPassword); //REMOVE WHEN DONE TESTING
+            System.out.println("InputPassword is " + inputPassword + " while AssociatedPassword is " + associatedPassword); //REMOVE WHEN DONE TESTING
 
             if (inputPassword.equals(associatedPassword)) {
                 Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
@@ -54,27 +54,40 @@ public class loginScreenController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-            if (!inputPassword.equals(associatedPassword)){
-                /*if(Locale.getDefault().getLanguage().equals("fr")){
-                    errorMessageDisplay.setText(rb.getString("InvalidPassword"));
+            try {
+                if (!inputPassword.equals(associatedPassword)) {
+                    try {
+                        if (Locale.getDefault().getLanguage().equals("fr")) {
+                            errorMessageDisplay.setText(rb.getString("InvalidPassword"));
+                        } else {
+                            errorMessageDisplay.setText("Invalid password. \n");
+                        }
+                    }
+                    catch (MissingResourceException e) {
+                        System.out.println("Resource bundle is missing");
+                    }
                 }
-                else{*/
-                    errorMessageDisplay.setText("Invalid password. \n");
-                //}
+            }
+            catch (NullPointerException ex) {
+                try {
+                    if (Locale.getDefault().getLanguage().equals("fr")) {
+                        errorMessageDisplay.setText(rb.getString("InvalidUsername"));
+                    } else {
+                        errorMessageDisplay.setText("Invalid username. \n");
+                    }
+                }
+                catch (MissingResourceException e) {
+                    System.out.println("Resource bundle is missing");
+                }
             }
         }
-        catch (NullPointerException ex) {
-            /*if(Locale.getDefault().getLanguage().equals("fr")){
-                errorMessageDisplay.setText(rb.getString("InvalidUsername"));
-            }
-            else{*/
-                errorMessageDisplay.setText("Invalid username. \n");
-            //}
-        }
+
         catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
