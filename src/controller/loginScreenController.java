@@ -45,11 +45,9 @@ public class loginScreenController implements Initializable {
         String inputPassword = passwordText.getText();
 
         try {
-            //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
             currentUser = UserDaoImpl.getUser(inputUsername);
             associatedPassword = currentUser.getPassword();
 
-            //associatedPassword = currentUser.getPassword();
             System.out.println("InputPassword is " + inputPassword + " while AssociatedPassword is " + associatedPassword); //REMOVE WHEN DONE TESTING
 
             if (inputPassword.equals(associatedPassword)) {
