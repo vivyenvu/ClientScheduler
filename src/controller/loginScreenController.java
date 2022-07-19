@@ -32,6 +32,8 @@ public class loginScreenController implements Initializable {
     public Label locationLabel;
 
     public void onClickSubmit(ActionEvent actionEvent) throws Exception {
+        Locale.setDefault(new Locale("fr"));
+        ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
         String inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
         Users currentUser = UserDaoImpl.getUser(inputUsername);
@@ -50,11 +52,21 @@ public class loginScreenController implements Initializable {
                 stage.show();
             }
             if (!inputPassword.equals(associatedPassword)){
-                errorMessageDisplay.setText("Invalid password. \n");
+                if(Locale.getDefault().getLanguage().equals("fr")){
+                    errorMessageDisplay.setText(rb.getString("InvalidPassword"));
+                }
+                else{
+                    errorMessageDisplay.setText("Invalid password. \n");
+                }
             }
         }
         catch (NullPointerException ex) {
-            errorMessageDisplay.setText("Invalid username. \n");
+            if(Locale.getDefault().getLanguage().equals("fr")){
+                errorMessageDisplay.setText(rb.getString("InvalidUsername"));
+            }
+            else{
+                errorMessageDisplay.setText("Invalid username. \n");
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -64,22 +76,25 @@ public class loginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            //Locale.setDefault(new Locale("fr"));
+            Locale.setDefault(new Locale("fr"));
             ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
 
-            if(!Locale.getDefault().getLanguage().equals("fr")){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("This is NOT french");
-                alert.showAndWait();
-            }
             if(Locale.getDefault().getLanguage().equals("fr")){
+                usernameLabel.setText(rb.getString("Username"));
+                passwordLabel.setText(rb.getString("Password"));
+                locationLabel.setText(rb.getString("Location"));
+                submitLabel.setText(rb.getString("Submit"));
+
+
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("This is in french");
                 alert.showAndWait();
             }
+
+
         }
         catch(MissingResourceException e){
-            System.out.println("Missing resource bundle");
+            System.out.println("Resource bundle is missing");
         }
     }
 }
