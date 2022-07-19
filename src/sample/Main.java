@@ -22,16 +22,16 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        Boolean French = false;
+        Boolean isFrench = false;
 
         Locale.setDefault(new Locale("fr"));
         ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
 
         //ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", new Locale("fr"));
         if(Locale.getDefault().getLanguage().equals("fr")){
+            isFrench = true;
             System.out.println(rb.getString("Submit"));
         }
-
 
         DBConnection.openConnection();
         //launch(args); pulls a bunch of methods that start loading your GUIs, so you want to connect to database
