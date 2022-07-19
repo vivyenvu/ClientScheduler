@@ -5,12 +5,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginScreenController">
    <children>
-      <Label layoutX="185.0" layoutY="120.0" text="Username" />
-      <Label layoutX="185.0" layoutY="150.0" text="Password" />
+      <Label fx:id="usernameLabel" layoutX="185.0" layoutY="120.0" text="Username" />
+      <Label fx:id="passwordLabel" layoutX="185.0" layoutY="150.0" text="Password" />
       <TextField fx:id="usernameText" layoutX="260.0" layoutY="118.0" />
       <TextField fx:id="passwordText" layoutX="260.0" layoutY="148.0" />
-      <Button layoutX="309.0" layoutY="188.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Submit" />
-      <Label fx:id="locationDisplay" layoutX="50.0" layoutY="225.0" text="Location: " />
+      <Button fx:id="submitLabel" layoutX="309.0" layoutY="188.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Submit" />
+      <Label fx:id="locationLabel" layoutX="50.0" layoutY="225.0" text="Location: " />
       <Label fx:id="errorMessageDisplay" layoutX="50.0" layoutY="250.0" maxHeight="125.0" maxWidth="250.0" />
    </children>
 </AnchorPane>

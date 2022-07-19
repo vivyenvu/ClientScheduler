@@ -1,40 +1,40 @@
 package controller;
 
-import DAO.DBConnection;
-import DAO.Query;
 import DAO.UserDaoImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Users;
+import sample.Main;
 
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-//DELETE THIS IMPORT LATER
-import java.util.List;
+import java.net.URL;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
-public class loginScreenController {
+public class loginScreenController implements Initializable {
+
     public TextField usernameText;
     public TextField passwordText;
-    public Label locationDisplay;
     public Label errorMessageDisplay;
     public Users currentUser;
-    //ObservableList<Users> allUsers = FXCollections.ObservableArrayList();
+    public Label usernameLabel;
+    public Label passwordLabel;
+    public Button submitLabel;
+    public Label locationLabel;
 
     public void onClickSubmit(ActionEvent actionEvent) throws Exception {
         String inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
-
         Users currentUser = UserDaoImpl.getUser(inputUsername);
-
         try {
             //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
             String associatedPassword = currentUser.getPassword();
@@ -58,6 +58,28 @@ public class loginScreenController {
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try{
+            //Locale.setDefault(new Locale("fr"));
+            ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+
+            if(!Locale.getDefault().getLanguage().equals("fr")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("This is NOT french");
+                alert.showAndWait();
+            }
+            if(Locale.getDefault().getLanguage().equals("fr")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("This is in french");
+                alert.showAndWait();
+            }
+        }
+        catch(MissingResourceException e){
+            System.out.println("Missing resource bundle");
         }
     }
 }
