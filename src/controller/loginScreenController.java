@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.UserDaoImpl;
+import helper.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -91,6 +92,7 @@ public class loginScreenController implements Initializable {
                 passwordLabel.setText(rb.getString("Password"));
                 submitLabel.setText(rb.getString("Submit"));
             }
+
         }
         catch(MissingResourceException e){
             System.out.println("Resource bundle is missing");

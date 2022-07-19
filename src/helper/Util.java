@@ -1,17 +1,25 @@
 package helper;
 
+import DAO.Query;
 import javafx.scene.control.Alert;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Util {
-    public void stringToAlert(String message) {
+    public static void stringToAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(message);
         alert.show();
     }
 
-    public int contactNameToID (String name) {
-        int contactID = 0; //remove initialization later
-        // search database for name and associated ID
+    public int contactNameToID (String name) throws SQLException {
+        int contactID = Integer.parseInt(null);
+        ResultSet rs = Query.getRS("SELECT Contact_ID FROM contacts WHERE Contact_Name = '" +name +"'");
+        while (rs.next()){
+            contactID = rs.getInt("Contact_ID");
+        }
+        stringToAlert("ContactID is " +contactID); //remove after testing
         return contactID;
     }
 
