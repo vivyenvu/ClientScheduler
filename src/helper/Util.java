@@ -45,9 +45,12 @@ public class Util {
         return id;
     }
 
-    public String userIDToName (int id) {
+    public String userIDToName (int id) throws SQLException {
         String name = ""; //remove later
-        //user ID to Name
+        ResultSet rs = Query.getRS("SELECT User_Name FROM users WHERE User_ID = '" + id +"'");
+        while (rs.next()){
+            name = rs.getString("User_Name");
+        }
         return name;
     }
 
