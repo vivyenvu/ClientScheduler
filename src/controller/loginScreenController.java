@@ -83,14 +83,18 @@ public class loginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            //Locale.setDefault(new Locale("fr"));
+            Locale.setDefault(new Locale("fr", "FR"));
             ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
 
+
+
             if(Locale.getDefault().getLanguage().equals("fr")){
+                locationLabel.setText("Location: " + Locale.getDefault().getDisplayCountry());
+                locationLabel.setText(rb.getString("Location"));
                 usernameLabel.setText(rb.getString("Username"));
                 passwordLabel.setText(rb.getString("Password"));
-                locationLabel.setText(rb.getString("Location"));
                 submitLabel.setText(rb.getString("Submit"));
+
             }
         }
         catch(MissingResourceException e){
