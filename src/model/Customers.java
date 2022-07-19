@@ -16,4 +16,52 @@ public class Customers {
         this.phone = phone;
         this.divisionIDFK = divisionIDFK;
     }
+
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public int getDivisionIDFK() {
+        return divisionIDFK;
+    }
+
+    public void setCustomerID(int id) {
+        customerID = id;
+    }
+
+    public void setCustomerName(String name) {
+        customerName = name;
+    }
+
+    public void setAddress (String inputAddress){
+        address = inputAddress;
+    }
+
+    public void setPostalCode(String pCode){
+        postalCode = pCode;
+    }
+
+    public void setPhone(String number) {
+        phone = number;
+    }
+
+    public void setDivisionIDFK(int id){
+        divisionIDFK = id;
+    }
 }
