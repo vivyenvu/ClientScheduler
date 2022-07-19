@@ -10,4 +10,26 @@ public class FirstClassDivisions {
         this.division = division;
         this.countryIDFK = countryIDFK;
     }
+
+    public int getDivisionID() {
+        return divisionID;
+    }
+
+    public String getDivision() {
+        return division;
+    }
+
+    public int getCountryIDFK(){
+        return countryIDFK;
+    }
+
+    public void setDivisionID(int id) {
+        divisionID = id;
+    }
+    public void setDivision(String div){
+        division = div;
+    }
+    public void setCountryIDFK(int id) {
+        countryIDFK = id;
+    }
 }
