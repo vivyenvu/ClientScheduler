@@ -29,18 +29,22 @@ public class loginScreenController implements Initializable {
     public Label passwordLabel;
     public Button submitLabel;
     public Label locationLabel;
+    public boolean isFrench = false;
 
     public void onClickSubmit(ActionEvent actionEvent) throws Exception {
         Locale.setDefault(new Locale("fr"));
 
         ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+        if (Locale.getDefault().getLanguage().equals("fr")) {
+            isFrench = true;
+        }
 
         String inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
-        Users currentUser = UserDaoImpl.getUser(inputUsername);
 
         try {
             //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
+            Users currentUser = UserDaoImpl.getUser(inputUsername);
             String associatedPassword = currentUser.getPassword();
 
             System.out.println("InputPassword is " + inputPassword + " while AssociatedPassword is " + associatedPassword); //REMOVE WHEN DONE TESTING
@@ -53,35 +57,25 @@ public class loginScreenController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-
-            try {
-                if (!inputPassword.equals(associatedPassword)) {
-                    try {
-                        if (Locale.getDefault().getLanguage().equals("fr")) {
-                            errorMessageDisplay.setText(rb.getString("InvalidPassword"));
-                        }
-                    }
-                    catch (MissingResourceException e) {
-                        errorMessageDisplay.setText("Invalid password. \n");
-                    }
-                }
-            }
-            catch (NullPointerException ex) {
-                try {
-                    if (Locale.getDefault().getLanguage().equals("fr")) {
-                        errorMessageDisplay.setText(rb.getString("InvalidUsername"));
-                    }
-                }
-                catch (MissingResourceException e) {
-                    errorMessageDisplay.setText("Invalid username. \n");
+            if (!inputPassword.equals(associatedPassword)) {
+                if (isFrench == true) {
+                    errorMessageDisplay.setText(rb.getString("InvalidPassword"));
+                } else {
+                    errorMessageDisplay.setText("Invalid password. \n");
                 }
             }
         }
-
-        catch (Exception e) {
+        catch (NullPointerException ex) {
+            if (isFrench == true) {
+                errorMessageDisplay.setText(rb.getString("InvalidUsername"));
+            } else {
+                errorMessageDisplay.setText("Invalid username. \n");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
