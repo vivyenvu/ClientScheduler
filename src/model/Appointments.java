@@ -1,8 +1,12 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.LocalDateTime;
 
 public class Appointments {
+    private ObservableList<Appointments> allAppointments; //DO I NEED THIS
     private int apptID;
     private String title;
     private String desc;
