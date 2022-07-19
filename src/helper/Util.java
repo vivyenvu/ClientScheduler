@@ -3,6 +3,7 @@ package helper;
 import DAO.Query;
 import javafx.scene.control.Alert;
 
+import java.rmi.registry.LocateRegistry;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -71,7 +72,12 @@ public class Util {
 
         return target;
     }
-    //function to convert System time to UTC
-    //function to convert UTC to System time
-    //function to convert UTC to Eastern time
+
+    public LocalDateTime UTCToEastern(LocalDateTime utc){
+        ZonedDateTime zonedUtc = utc.atZone(ZoneId.of("UTC"));
+        ZonedDateTime zonedEastern = zonedUtc.withZoneSameInstant(ZoneId.of("US/Eastern"));
+        LocalDateTime eastern = zonedEastern.toLocalDateTime();
+
+        return eastern;
+    }
 }
