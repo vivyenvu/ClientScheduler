@@ -1,4 +1,4 @@
-package helper;
+package model;
 
 public class Contacts {
     private int contactID;
