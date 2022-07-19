@@ -7,14 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Users;
-import sample.Main;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -59,12 +58,10 @@ public class loginScreenController implements Initializable {
                     try {
                         if (Locale.getDefault().getLanguage().equals("fr")) {
                             errorMessageDisplay.setText(rb.getString("InvalidPassword"));
-                        } else {
-                            errorMessageDisplay.setText("Invalid password. \n");
                         }
                     }
                     catch (MissingResourceException e) {
-                        System.out.println("Resource bundle is missing");
+                        errorMessageDisplay.setText("Invalid password. \n");
                     }
                 }
             }
@@ -72,12 +69,10 @@ public class loginScreenController implements Initializable {
                 try {
                     if (Locale.getDefault().getLanguage().equals("fr")) {
                         errorMessageDisplay.setText(rb.getString("InvalidUsername"));
-                    } else {
-                        errorMessageDisplay.setText("Invalid username. \n");
                     }
                 }
                 catch (MissingResourceException e) {
-                    System.out.println("Resource bundle is missing");
+                    errorMessageDisplay.setText("Invalid username. \n");
                 }
             }
         }
@@ -86,9 +81,6 @@ public class loginScreenController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
