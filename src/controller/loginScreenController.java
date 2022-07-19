@@ -48,18 +48,8 @@ public class loginScreenController implements Initializable {
             //String associatedPassword = UserDaoImpl.getPassword(inputUsername);
             currentUser = UserDaoImpl.getUser(inputUsername);
             associatedPassword = currentUser.getPassword();
-        }
-        catch (NullPointerException | SQLException ex) {
-            if (isFrench) {
-                errorMessageDisplay.setText(rb.getString("InvalidUsername"));
-            } else {
-                errorMessageDisplay.setText("Invalid username. \n");
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        //associatedPassword = currentUser.getPassword();
+
+            //associatedPassword = currentUser.getPassword();
             System.out.println("InputPassword is " + inputPassword + " while AssociatedPassword is " + associatedPassword); //REMOVE WHEN DONE TESTING
 
             if (inputPassword.equals(associatedPassword)) {
@@ -78,6 +68,18 @@ public class loginScreenController implements Initializable {
                 }
             }
         }
+
+        catch (NullPointerException e) {
+            if (isFrench) {
+                errorMessageDisplay.setText(rb.getString("InvalidUsername"));
+            } else {
+                errorMessageDisplay.setText("Invalid username. \n");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
     @Override
