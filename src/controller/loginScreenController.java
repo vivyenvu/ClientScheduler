@@ -31,7 +31,7 @@ public class loginScreenController implements Initializable {
     public Label locationLabel;
 
     public void onClickSubmit(ActionEvent actionEvent) throws Exception {
-        //Locale.setDefault(new Locale("fr"));
+        Locale.setDefault(new Locale("fr"));
 
         ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
 
