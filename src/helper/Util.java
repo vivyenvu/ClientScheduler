@@ -63,6 +63,14 @@ public class Util {
 
         return target;
     }
+
+    public LocalDateTime UTCToSystem(LocalDateTime utc){
+        ZonedDateTime zonedUtc = utc.atZone(ZoneId.of("UTC"));
+        ZonedDateTime zonedTarget = zonedUtc.withZoneSameInstant(ZoneId.systemDefault());
+        LocalDateTime target = zonedTarget.toLocalDateTime();
+
+        return target;
+    }
     //function to convert System time to UTC
     //function to convert UTC to System time
     //function to convert UTC to Eastern time
