@@ -53,6 +53,7 @@ public class loginScreenController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
+
             try {
                 if (!inputPassword.equals(associatedPassword)) {
                     try {
@@ -84,7 +85,7 @@ public class loginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            //Locale.setDefault(new Locale("fr"));
+            Locale.setDefault(new Locale("fr"));
             ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
 
             if(Locale.getDefault().getLanguage().equals("fr")){
