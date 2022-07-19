@@ -12,5 +12,6 @@
       <Button fx:id="submitLabel" layoutX="309.0" layoutY="188.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Submit" />
       <Label fx:id="locationLabel" layoutX="50.0" layoutY="225.0" text="Location: " />
       <Label fx:id="errorMessageDisplay" layoutX="50.0" layoutY="250.0" maxHeight="125.0" maxWidth="250.0" />
+      <Label fx:id="countryDisplay" layoutX="135.0" layoutY="225.0" />
    </children>
 </AnchorPane>

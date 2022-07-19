@@ -32,6 +32,7 @@ public class loginScreenController implements Initializable {
     public Label locationLabel;
     public boolean isFrench = false;
     public String associatedPassword;
+    public Label countryDisplay;
 
     public void onClickSubmit(ActionEvent actionEvent) throws IOException {
         //Locale.setDefault(new Locale("fr"));
@@ -83,13 +84,11 @@ public class loginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            Locale.setDefault(new Locale("fr", "FR"));
+            //Locale.setDefault(new Locale("fr", "FR"));
             ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
-
-
+            countryDisplay.setText(Locale.getDefault().getDisplayCountry());
 
             if(Locale.getDefault().getLanguage().equals("fr")){
-                locationLabel.setText("Location: " + Locale.getDefault().getDisplayCountry());
                 locationLabel.setText(rb.getString("Location"));
                 usernameLabel.setText(rb.getString("Username"));
                 passwordLabel.setText(rb.getString("Password"));
