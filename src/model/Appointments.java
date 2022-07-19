@@ -27,4 +27,65 @@ public class Appointments {
         this.userIDFK = userIDFK;
         this.contactIDFK = contactIDFK;
     }
+
+    public int getApptID() {
+        return apptID;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public String getDesc() {
+        return desc;
+    }
+    public String getLocation(){
+        return location;
+    }
+    public String getType(){
+        return type;
+    }
+    public LocalDateTime getStart(){
+        return start;
+    }
+    public LocalDateTime getEnd() {
+        return end;
+    }
+    public int getCustomerIDFK(){
+        return customerIDFK;
+    }
+    public int getUserIDFK(){
+        return userIDFK;
+    }
+    public int getContactIDFK(){
+        return contactIDFK;
+    }
+    public void setApptID(int id) {
+        apptID = id;
+    }
+    public void setTitle(String inputTitle){
+        title = inputTitle;
+    }
+    public void setDesc(String inputDesc){
+        desc = inputDesc;
+    }
+    public void setLocation(String inputLoc){
+        location = inputLoc;
+    }
+    public void setType(String inputType){
+        type = inputType;
+    }
+    public void setStart(LocalDateTime inputStart) {
+        start = inputStart;
+    }
+    public void setEnd(LocalDateTime inputEnd){
+        end = inputEnd;
+    }
+    public void setCustomerIDFK(int id){
+        customerIDFK = id;
+    }
+    public void setUserIDFK(int id){
+        userIDFK = id;
+    }
+    public void setContactIDFK(int id){
+        contactIDFK = id;
+    }
 }
