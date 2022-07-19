@@ -33,6 +33,26 @@ public class loginScreenController implements Initializable {
     public String associatedPassword;
     public Label countryDisplay;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try{
+            //Locale.setDefault(new Locale("fr", "FR"));
+            ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
+            countryDisplay.setText(Locale.getDefault().getDisplayCountry());
+
+            if(Locale.getDefault().getLanguage().equals("fr")){
+                locationLabel.setText(rb.getString("Location"));
+                usernameLabel.setText(rb.getString("Username"));
+                passwordLabel.setText(rb.getString("Password"));
+                submitLabel.setText(rb.getString("Submit"));
+            }
+
+        }
+        catch(MissingResourceException e){
+            System.out.println("Resource bundle is missing");
+        }
+    }
+
     public void onClickSubmit(ActionEvent actionEvent){
         //Locale.setDefault(new Locale("fr"));
 
@@ -75,27 +95,6 @@ public class loginScreenController implements Initializable {
         }
         catch (Exception e){
             e.printStackTrace();
-        }
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try{
-            //Locale.setDefault(new Locale("fr", "FR"));
-            ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
-            countryDisplay.setText(Locale.getDefault().getDisplayCountry());
-
-            if(Locale.getDefault().getLanguage().equals("fr")){
-                locationLabel.setText(rb.getString("Location"));
-                usernameLabel.setText(rb.getString("Username"));
-                passwordLabel.setText(rb.getString("Password"));
-                submitLabel.setText(rb.getString("Submit"));
-            }
-
-        }
-        catch(MissingResourceException e){
-            System.out.println("Resource bundle is missing");
         }
     }
 }

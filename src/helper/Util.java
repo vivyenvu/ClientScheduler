@@ -3,7 +3,6 @@ package helper;
 import DAO.Query;
 import javafx.scene.control.Alert;
 
-import java.rmi.registry.LocateRegistry;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;

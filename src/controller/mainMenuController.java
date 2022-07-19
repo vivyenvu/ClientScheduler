@@ -2,14 +2,24 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class mainMenuController {
+public class mainMenuController implements Initializable {
+    public TableView customerTable;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        customerTable.setItems(getAllCustomerse());
+    }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -85,4 +95,6 @@ public class mainMenuController {
         stage.setScene(scene);
         stage.show();
     }
+
+
 }
