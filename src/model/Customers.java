@@ -10,7 +10,7 @@ public class Customers {
     private String postalCode;
     private String phone;
     private int divisionIDFK;
-    private static ObservableList<Customers> allCustomers = FXCollections.observableArrayList(); //maybe I don't need this?
+    //private static ObservableList<Customers> allCustomers = FXCollections.observableArrayList(); //maybe I don't need this?
 
     public Customers(int customerID, String customerName, String address, String postalCode, String phone, int divisionIDFK) {
         this.customerID = customerID;

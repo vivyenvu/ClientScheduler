@@ -7,22 +7,36 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class mainMenuController implements Initializable {
     public TableView customerTable;
+    public TableColumn customerTableID;
+    public TableColumn customerTableName;
+    public TableColumn customerTableAddress;
+    public TableColumn customerTablePostal;
+    public TableColumn customerTablePhone;
+    public TableColumn customerTableCountry;
+    public TableColumn customerTableFirst;
+    public TableView allApptTable;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+        try {
+            customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
-        customerTable.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customerTableID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
