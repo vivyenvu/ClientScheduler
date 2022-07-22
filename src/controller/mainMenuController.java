@@ -37,6 +37,12 @@ public class mainMenuController implements Initializable {
         }
 
         customerTableID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customerTableName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerTableAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        customerTablePostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
+
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
