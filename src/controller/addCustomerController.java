@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.CustomerDaoImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +22,12 @@ public class addCustomerController {
     public ComboBox addCustomerCountry;
 
     public void onAddCustomerSaveBtn(ActionEvent actionEvent) {
+        String custName = addCustomerName.getText();
+        String custPostal = addCustomerPostal.getText();
+        String custPhone = addCustomerPhone.getText();
+        String custAddress = addCustomerAddress.getText();
+        //int custDivID = addCustomerFirstDiv.getValue(); //helper method
+        //CustomerDaoImpl.addCustomer();
     }
 
     public void onAddCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
