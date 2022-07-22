@@ -31,8 +31,8 @@
             <TableColumn fx:id="customerTableAddress" prefWidth="120.0" text="Address" />
             <TableColumn fx:id="customerTablePostal" prefWidth="71.0" text="Postal Code" />
             <TableColumn fx:id="customerTablePhone" prefWidth="93.0" text="Phone Number" />
-            <TableColumn fx:id="customerTableCountry" prefWidth="110.0" text="Country" />
-            <TableColumn fx:id="customerTableFirst" prefWidth="118.0" text="First Level Division" />
+            <TableColumn fx:id="customerTableCountry" prefWidth="118.0" text="Country" />
+            <TableColumn fx:id="customerTableFirst" prefWidth="110.0" text="First Level Division" />
             </columns>
         </TableView>
         <TableView fx:id="allApptTable" layoutX="50.0" layoutY="408.0" prefHeight="200.0" prefWidth="700.0">

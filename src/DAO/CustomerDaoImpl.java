@@ -24,4 +24,6 @@ public class CustomerDaoImpl {
         }
         return allCustomers;
     }
+
+    //public static void addCustomer()
 }

@@ -5,11 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class addCustomerController {
+    public TextField addCustomerID;
+    public TextField addCustomerName;
+    public TextField addCustomerAddress;
+    public TextField addCustomerPostal;
+    public TextField addCustomerPhone;
+    public ComboBox addCustomerFirstDiv;
+    public ComboBox addCustomerCountry;
+
     public void onAddCustomerSaveBtn(ActionEvent actionEvent) {
     }
 
