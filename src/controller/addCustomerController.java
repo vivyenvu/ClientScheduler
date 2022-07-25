@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.CountryDaoImpl;
 import DAO.CustomerDaoImpl;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,7 +51,7 @@ public class addCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            ObservableList<Countries> allCountries = CustomerDaoImpl.getAllCountries();
+            ObservableList<Countries> allCountries = CountryDaoImpl.getAllCountries();
             addCustomerCountry.setItems(allCountries);
             addCustomerCountry.setVisibleRowCount(5);
         }
