@@ -29,6 +29,20 @@ public class addCustomerController implements Initializable {
     public ComboBox addCustomerFirstDiv;
     public ComboBox addCustomerCountry;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            ObservableList<Countries> allCountries = CountryDaoImpl.getAllCountries();
+            addCustomerCountry.setItems(allCountries);
+            addCustomerCountry.setVisibleRowCount(5);
+        }
+        catch (SQLException throwables) {
+            System.out.println("Struggling to load combo box");
+            throwables.printStackTrace();
+        }
+
+    }
+
     public void onAddCustomerSaveBtn(ActionEvent actionEvent) throws SQLException {
         String custName = addCustomerName.getText();
         String custPostal = addCustomerPostal.getText();
@@ -46,18 +60,5 @@ public class addCustomerController implements Initializable {
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            ObservableList<Countries> allCountries = CountryDaoImpl.getAllCountries();
-            addCustomerCountry.setItems(allCountries);
-            addCustomerCountry.setVisibleRowCount(5);
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
     }
 }
