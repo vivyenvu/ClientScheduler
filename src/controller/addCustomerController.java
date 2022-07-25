@@ -1,19 +1,25 @@
 package controller;
 
 import DAO.CustomerDaoImpl;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Countries;
+import model.Customers;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class addCustomerController {
+public class addCustomerController implements Initializable {
     public TextField addCustomerID;
     public TextField addCustomerName;
     public TextField addCustomerAddress;
@@ -28,7 +34,7 @@ public class addCustomerController {
         String custPhone = addCustomerPhone.getText();
         String custAddress = addCustomerAddress.getText();
         //int custDivID = addCustomerFirstDiv.getValue(); //helper method
-        int custDivID = 0;
+        int custDivID = 999;
         CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID); //add customer to the database with Kinkead's webinars
     }
 
@@ -39,5 +45,18 @@ public class addCustomerController {
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            ObservableList<Countries> allCountries = CustomerDaoImpl.getAllCountries();
+            addCustomerCountry.setItems(allCountries);
+            addCustomerCountry.setVisibleRowCount(5);
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }

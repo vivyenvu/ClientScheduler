@@ -24,6 +24,6 @@
          </font>
       </Label>
       <ComboBox fx:id="addCustomerFirstDiv" layoutX="310.0" layoutY="185.0" prefWidth="250.0" promptText="Select One" />
-      <ComboBox fx:id="addCustomerCountry" layoutX="310.0" layoutY="140.0" prefWidth="250.0" promptText="Select a Country" />
+      <ComboBox fx:id="addCustomerCountry" layoutX="310.0" layoutY="140.0" onAction="#onAddCustomerCountry" prefWidth="250.0" promptText="Select a Country" />
    </children>
 </AnchorPane>
