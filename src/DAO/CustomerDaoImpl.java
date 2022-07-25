@@ -25,5 +25,7 @@ public class CustomerDaoImpl {
         return allCustomers;
     }
 
-    //public static void addCustomer()
+    public static void addCustomer(String customerName, String address, String postalCode, String phone, int divisionIDFK) {
+
+    }
 }

@@ -26,8 +26,8 @@ public class addCustomerController {
         String custPostal = addCustomerPostal.getText();
         String custPhone = addCustomerPhone.getText();
         String custAddress = addCustomerAddress.getText();
-        //int custDivID = addCustomerFirstDiv.getValue(); //helper method
-        //CustomerDaoImpl.addCustomer();
+        int custDivID = addCustomerFirstDiv.getValue(); //helper method
+        CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID); //add customer to the database with Kinkead's webinars
     }
 
     public void onAddCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
