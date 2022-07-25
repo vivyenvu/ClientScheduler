@@ -27,6 +27,6 @@ public class Countries {
 
     @Override
     public String toString(){
-        return Countries.getCountry();
+        return country;
     }
 }

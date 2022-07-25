@@ -26,7 +26,7 @@ public class addCustomerController implements Initializable {
     public TextField addCustomerPostal;
     public TextField addCustomerPhone;
     public ComboBox addCustomerFirstDiv;
-    public ComboBox addCustomerCountry;
+    public ComboBox <Countries> addCustomerCountry;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
