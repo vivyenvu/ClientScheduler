@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class addCustomerController {
     public TextField addCustomerID;
@@ -21,12 +22,13 @@ public class addCustomerController {
     public ComboBox addCustomerFirstDiv;
     public ComboBox addCustomerCountry;
 
-    public void onAddCustomerSaveBtn(ActionEvent actionEvent) {
+    public void onAddCustomerSaveBtn(ActionEvent actionEvent) throws SQLException {
         String custName = addCustomerName.getText();
         String custPostal = addCustomerPostal.getText();
         String custPhone = addCustomerPhone.getText();
         String custAddress = addCustomerAddress.getText();
-        int custDivID = addCustomerFirstDiv.getValue(); //helper method
+        //int custDivID = addCustomerFirstDiv.getValue(); //helper method
+        int custDivID = 0;
         CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID); //add customer to the database with Kinkead's webinars
     }
 
