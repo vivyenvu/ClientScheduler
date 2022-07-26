@@ -83,6 +83,8 @@ public class mainMenuController implements Initializable {
         CustomerDaoImpl.deleteCustomer(idForDeletion);
 
         customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+
+        Util.stringToAlert("Customer with ID "+idForDeletion+ " has been deleted.");
     }
 
     public void onApptAddBtn(ActionEvent actionEvent) throws IOException {
@@ -129,6 +131,4 @@ public class mainMenuController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
