@@ -88,16 +88,13 @@ public class Util {
         }
 
         ResultSet rsc = Query.getRS("SELECT Country FROM countries WHERE Country_ID = '" +countryID+"'");
-        //if (rsc.next()) {
-            //countryName = rs.getString("Country");
-            ResultSetMetaData rsmd = rsc.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            while (rsc.next()) {
-                for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
-                    String columnValue = rsc.getString(i);
-                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                }
+        ResultSetMetaData rsmd = rsc.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (rsc.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                countryName = rsc.getString(i);
+                //System.out.println(countryName);
+            }
         }
 
         return countryName;
