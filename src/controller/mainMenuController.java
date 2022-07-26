@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Customers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -73,6 +74,10 @@ public class mainMenuController implements Initializable {
     }
 
     public void onCustomerDeleteBtn(ActionEvent actionEvent) {
+        Object forDeletion = customerTable.getSelectionModel().getSelectedItem();
+        int idForDeletion = Integer.parseInt(forDeletion.toString());
+        System.out.println(idForDeletion);
+        CustomerDaoImpl.deleteCustomer(idForDeletion);
     }
 
     public void onApptAddBtn(ActionEvent actionEvent) throws IOException {

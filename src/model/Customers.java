@@ -68,4 +68,9 @@ public class Customers {
     public void setDivisionIDFK(int id){
         divisionIDFK = id;
     }
+
+    @Override
+    public String toString(){
+        return Integer.toString(getCustomerID());
+    }
 }

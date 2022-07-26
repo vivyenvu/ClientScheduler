@@ -3,7 +3,6 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customers;
-import model.Users;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,4 +46,7 @@ public class CustomerDaoImpl {
         ps.execute();
     }
 
+    public static void deleteCustomer(int id){
+
+    }
 }
