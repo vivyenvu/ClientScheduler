@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.CustomerDaoImpl;
+import helper.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,6 +45,8 @@ public class mainMenuController implements Initializable {
         customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         /*customerTableCountry.setCellValueFactory(new PropertyValueFactory<>("country"));*/
         customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
+
+        //customerTableCountry.getColumns().add(new TableColumn<String, String>("Country"));
 
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
