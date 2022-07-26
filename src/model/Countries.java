@@ -1,7 +1,7 @@
 package model;
 
 public class Countries {
-    private static String country;
+    private String country;
     private int countryID;
 
     public Countries (int countryID, String country){
@@ -13,7 +13,7 @@ public class Countries {
         return countryID;
     }
 
-    public static String getCountry() {
+    public String getCountry() {
         return country;
     }
 
@@ -27,6 +27,6 @@ public class Countries {
 
     @Override
     public String toString(){
-        return country;
+        return getCountry();
     }
 }

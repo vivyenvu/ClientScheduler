@@ -2,6 +2,7 @@ package controller;
 
 import DAO.CountryDaoImpl;
 import DAO.CustomerDaoImpl;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Countries;
+import model.FirstClassDivisions;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +38,6 @@ public class addCustomerController implements Initializable {
             addCustomerCountry.setVisibleRowCount(5);
         }
         catch (SQLException throwables) {
-            System.out.println("Struggling to load combo box");
             throwables.printStackTrace();
         }
 
@@ -62,5 +63,7 @@ public class addCustomerController implements Initializable {
     }
 
     public void onAddCustomerCountry(ActionEvent actionEvent) {
+        ObservableList<FirstClassDivisions> allDivs= FXCollections.observableArrayList();
+        Countries selectedCountry = addCustomerCountry.getSelectionModel().getSelectedItem();
     }
 }
