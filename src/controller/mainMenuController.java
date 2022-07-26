@@ -73,11 +73,11 @@ public class mainMenuController implements Initializable {
 
     }
 
-    public void onCustomerDeleteBtn(ActionEvent actionEvent) {
+    public void onCustomerDeleteBtn(ActionEvent actionEvent) throws SQLException {
         Object forDeletion = customerTable.getSelectionModel().getSelectedItem();
         int idForDeletion = Integer.parseInt(forDeletion.toString());
-        System.out.println(idForDeletion);
         CustomerDaoImpl.deleteCustomer(idForDeletion);
+        customerTable.refresh();
     }
 
     public void onApptAddBtn(ActionEvent actionEvent) throws IOException {

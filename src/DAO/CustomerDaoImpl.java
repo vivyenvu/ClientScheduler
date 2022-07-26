@@ -46,7 +46,21 @@ public class CustomerDaoImpl {
         ps.execute();
     }
 
-    public static void deleteCustomer(int id){
+    public static void deleteCustomer(int id) throws SQLException {
+    //delete from appointments THEN delete from customer table
+        try{
+            PreparedStatement psa = Query.getPS("DELETE FROM appointments WHERE Customer_ID = ?");
+            psa.setInt(1,id);
+            psa.execute();
 
+            PreparedStatement psc = Query.getPS("DELETE FROM customers WHERE Customer_ID = ?");
+            psc.setInt(1, id);
+            psc.execute();
+
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
