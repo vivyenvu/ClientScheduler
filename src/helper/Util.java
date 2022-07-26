@@ -77,6 +77,20 @@ public class Util {
         return name;
     }
 
+    public static String divIDToCountry(int id) throws SQLException {
+        String country="";
+        int countryID =0;
+        ResultSet rs = Query.getRS("SELECT Country_ID FROM first_level_divisions WHERE Division_ID = '"+id+"'");
+        while (rs.next()){
+            countryID = rs.getInt("Country_ID");
+        }
+
+        ResultSet rsc = Query.getRS("SELECT Country FROM countries WHERE Country_ID = '" +countryID+"'");
+        while (rsc.next()) {
+            country = rs.getString("Country");
+        }
+        return country;
+    }
     public LocalDateTime systemToUTC(LocalDateTime origin){
         ZonedDateTime zonedOrigin = origin.atZone(ZoneId.systemDefault());
         ZonedDateTime zonedTarget = zonedOrigin.withZoneSameInstant(ZoneId.of("UTC"));

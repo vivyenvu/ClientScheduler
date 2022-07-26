@@ -42,6 +42,7 @@ public class mainMenuController implements Initializable {
         customerTableAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         customerTablePostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        customerTableCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
         customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
 
     }

@@ -9,15 +9,17 @@ public class Customers {
     private String address;
     private String postalCode;
     private String phone;
+    private String country;
     private int divisionIDFK;
     //private static ObservableList<Customers> allCustomers = FXCollections.observableArrayList(); //maybe I don't need this?
 
-    public Customers(int customerID, String customerName, String address, String postalCode, String phone, int divisionIDFK) {
+    public Customers(int customerID, String customerName, String address, String postalCode, String phone, String country, int divisionIDFK) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
+        this.country = country;
         this.divisionIDFK = divisionIDFK;
     }
 
@@ -39,6 +41,10 @@ public class Customers {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public int getDivisionIDFK() {
@@ -63,6 +69,10 @@ public class Customers {
 
     public void setPhone(String number) {
         phone = number;
+    }
+
+    public void setCountry (String inputCountry){
+        country = inputCountry;
     }
 
     public void setDivisionIDFK(int id){
