@@ -63,10 +63,18 @@ public class mainMenuController implements Initializable {
         loader.setLocation(getClass().getResource("/view/updateCustomer.fxml"));
         loader.load();
 
+        Customers updateCustomer = (Customers) customerTable.getSelectionModel().getSelectedItem(); //this might need to be a global variable
+
+        updateCustomerController updateCustCtrl = loader.getController();
+        updateCustCtrl.sendCustomer(updateCustomer);
+
         /* on old project
         modPart = (Part) mainPartTable.getSelectionModel().getSelectedItem();
         modPartIndex = getAllParts().indexOf(modPart);
-        FIGURE OUT WHAT GLOBAL VARIABLES I NEED TO UPDATE CUSTOMER INFO ON NEXT SCREEN
+
+        modPartController modPartCtrl = loader.getController();
+        modPartCtrl.sendPart(modPartIndex, modPart);
+        FIGURE OUT WHAT GLOBAL VARIABLES I NEED TO UPDATE CUSTOMER INFO ON NEXT SCREEN- CUSTOMERID
          */
 
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

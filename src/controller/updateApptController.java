@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class updateApptController implements Initializable {
+public class updateApptController{
     public void onUpdateApptSaveBtn(ActionEvent actionEvent) {
     }
 
@@ -23,10 +23,5 @@ public class updateApptController implements Initializable {
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }
