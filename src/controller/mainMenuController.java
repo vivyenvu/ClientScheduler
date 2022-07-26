@@ -77,7 +77,8 @@ public class mainMenuController implements Initializable {
         Object forDeletion = customerTable.getSelectionModel().getSelectedItem();
         int idForDeletion = Integer.parseInt(forDeletion.toString());
         CustomerDaoImpl.deleteCustomer(idForDeletion);
-        customerTable.refresh();
+
+        customerTable.setItems(CustomerDaoImpl.getAllCustomers());
     }
 
     public void onApptAddBtn(ActionEvent actionEvent) throws IOException {
