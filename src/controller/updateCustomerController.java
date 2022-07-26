@@ -35,6 +35,7 @@ public class updateCustomerController implements Initializable {
     public ComboBox <Countries> updateCustomerCountry;
 
     public void onClickUpdateCustomerSaveBtn(ActionEvent actionEvent) throws IOException, SQLException {
+        int custID = Integer.parseInt(updateCustomerID);
         String custName = updateCustomerName.getText();
         String custPostal = updateCustomerPostal.getText();
         String custPhone = updateCustomerPhone.getText();
@@ -43,7 +44,7 @@ public class updateCustomerController implements Initializable {
 
         //REPLACE WITH UPDATE IN SQL
         int custDivID = Util.firstDivToID(custDivision);
-        CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID);
+        CustomerDaoImpl.updateCustomer(custID, custName, custAddress, custPostal, custPhone, custDivID);
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();

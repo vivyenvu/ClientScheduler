@@ -65,4 +65,27 @@ public class CustomerDaoImpl {
             e.printStackTrace();
         }
     }
+
+    public static void updateCustomer(int customerID, String customerName, String address, String postalCode, String phone, int divisionIDFK){
+        try{
+            PreparedStatement ps = Query.getPS("UPDATE customers set Customer_ID = ?, Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?");
+            ps.setInt(1,customerID);
+            ps.setString(2, customerName);
+            ps.setString(3, address);
+            ps.setString(4, postalCode);
+            ps.setString(5, phone);
+            ps.setInt(6, divisionIDFK);
+            ps.setInt(7, customerID);
+            ps.execute();
+
+            /*PreparedStatement psc = Query.getPS("DELETE FROM customers WHERE Customer_ID = ?");
+            psc.setInt(1, id);
+            psc.execute();*/
+
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
