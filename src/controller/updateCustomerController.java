@@ -50,9 +50,13 @@ public class updateCustomerController implements Initializable {
         updateCustomerAddress.setText(customer.getAddress());
         updateCustomerPostal.setText(customer.getPostalCode());
         updateCustomerPhone.setText(customer.getPhone());
-        updateCustomerCountry.getSelectionModel().select
+        //updateCustomerCountry.getSelectionModel().select();
                 //(Util.divIDToCountry(customer.getDivisionIDFK()));
         updateCustomerFirstDiv.getSelectionModel().select(customer.getDivisionIDFK());
+
+        int divID = customer.getDivisionIDFK();
+        Countries selectedCountry = new Countries (divID, Util.divIDToCountry(divID));
+        updateCustomerCountry.getSelectionModel().select(selectedCountry);
     }
 
     @Override

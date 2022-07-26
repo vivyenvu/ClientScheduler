@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import model.Countries;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -78,7 +79,7 @@ public class Util {
         return name;
     }
 
-    public static Countries divIDToCountry(int id) throws SQLException {
+    public static String divIDToCountry(int id) throws SQLException {
         String countryName = "";
         int countryID =0;
         ResultSet rs = Query.getRS("SELECT Country_ID FROM first_level_divisions WHERE Division_ID = '"+id+"'");
@@ -87,12 +88,19 @@ public class Util {
         }
 
         ResultSet rsc = Query.getRS("SELECT Country FROM countries WHERE Country_ID = '" +countryID+"'");
-        while (rsc.next()) {
-            countryName = rs.getString("Country");
+        //if (rsc.next()) {
+            //countryName = rs.getString("Country");
+            ResultSetMetaData rsmd = rsc.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (rsc.next()) {
+                for (int i = 1; i <= columnsNumber; i++) {
+                    if (i > 1) System.out.print(",  ");
+                    String columnValue = rsc.getString(i);
+                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                }
         }
 
-        Countries country = new Countries (countryID, countryName);
-        return country;
+        return countryName;
     }
     public LocalDateTime systemToUTC(LocalDateTime origin){
         ZonedDateTime zonedOrigin = origin.atZone(ZoneId.systemDefault());
