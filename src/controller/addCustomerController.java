@@ -3,6 +3,7 @@ package controller;
 import DAO.CountryDaoImpl;
 import DAO.CustomerDaoImpl;
 import DAO.Query;
+import helper.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,7 +68,7 @@ public class addCustomerController implements Initializable {
         ObservableList<FirstClassDivisions> allDivs= FXCollections.observableArrayList();
         Countries selectedCountry = addCustomerCountry.getSelectionModel().getSelectedItem(); //eg Canada
 
-        int countryID = 0; //HELPER METHOD THAT CONVERTS COUNTRY TO ID
+        int countryID = Util.countryToCountryID(selectedCountry.getCountry()); //DOES THE HELPER NEED TO BE STATIC
         Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
     }
 }

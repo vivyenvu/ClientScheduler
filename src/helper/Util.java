@@ -53,6 +53,15 @@ public class Util {
         return name;
     }
 
+    public static int countryToCountryID(String name) throws SQLException {
+        int id = 0;// remove later
+        ResultSet rs = Query.getRS("SELECT Country_ID FROM countries WHERE Country = '" +name +"'");
+        while (rs.next()){
+            id = rs.getInt("Country_ID");
+        }
+        return id;
+    }
+
     public int firstDivToID (String name) {
         int id = 0; //remove initialization
         //First division to ID
