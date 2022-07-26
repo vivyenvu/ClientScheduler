@@ -52,7 +52,7 @@ public class addCustomerController implements Initializable {
         String custAddress = addCustomerAddress.getText();
         String custDivision = (String) addCustomerFirstDiv.getValue();
         int custDivID = Util.firstDivToID(custDivision);
-        CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID); //add customer to the database with Kinkead's webinars
+        CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID);
     }
 
     public void onAddCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
