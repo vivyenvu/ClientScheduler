@@ -73,7 +73,7 @@ public class updateCustomerController implements Initializable {
         updateCustomerFirstDiv.setItems(allDivs);
 
         FirstClassDivisions selectedDiv = new FirstClassDivisions(divID, Util.firstIDtoDiv(divID), selectedCountry.getCountryID());
-        updateCustomerFirstDiv.getSelectionModel().select
+        updateCustomerFirstDiv.getSelectionModel().select(selectedDiv.getDivision());
     }
 
     @Override

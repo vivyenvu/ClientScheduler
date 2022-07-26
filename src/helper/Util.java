@@ -73,7 +73,7 @@ public class Util {
         return id;
     }
 
-    public String firstIDtoDiv (int id) throws SQLException {
+    public static String firstIDtoDiv(int id) throws SQLException {
         String name = ""; //remove later
         ResultSet rs = Query.getRS("SELECT Division FROM first_level_divisions WHERE Division_ID = '" + id +"'");
         while (rs.next()){
