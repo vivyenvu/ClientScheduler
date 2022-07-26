@@ -45,7 +45,7 @@ public class addCustomerController implements Initializable {
         }
     }
 
-    public void onAddCustomerSaveBtn(ActionEvent actionEvent) throws SQLException {
+    public void onAddCustomerSaveBtn(ActionEvent actionEvent) throws SQLException, IOException {
         String custName = addCustomerName.getText();
         String custPostal = addCustomerPostal.getText();
         String custPhone = addCustomerPhone.getText();
@@ -53,6 +53,13 @@ public class addCustomerController implements Initializable {
         String custDivision = (String) addCustomerFirstDiv.getValue();
         int custDivID = Util.firstDivToID(custDivision);
         CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 700);
+        stage.setTitle("Main Menu");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void onAddCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
