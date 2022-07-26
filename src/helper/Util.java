@@ -62,9 +62,12 @@ public class Util {
         return id;
     }
 
-    public int firstDivToID (String name) {
-        int id = 0; //remove initialization
-        //First division to ID
+    public static int firstDivToID (String name) throws SQLException {
+        int id = 0;// remove later
+        ResultSet rs = Query.getRS("SELECT Division_ID FROM first_level_divisions WHERE Division = '" +name +"'");
+        while (rs.next()){
+            id = rs.getInt("Division_ID");
+        }
         return id;
     }
 

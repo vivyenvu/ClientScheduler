@@ -43,7 +43,6 @@ public class addCustomerController implements Initializable {
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     public void onAddCustomerSaveBtn(ActionEvent actionEvent) throws SQLException {
@@ -51,8 +50,8 @@ public class addCustomerController implements Initializable {
         String custPostal = addCustomerPostal.getText();
         String custPhone = addCustomerPhone.getText();
         String custAddress = addCustomerAddress.getText();
-        //int custDivID = addCustomerFirstDiv.getValue(); //helper method
-        int custDivID = 999;
+        String custDivision = (String) addCustomerFirstDiv.getValue();
+        int custDivID = Util.firstDivToID(custDivision);
         CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID); //add customer to the database with Kinkead's webinars
     }
 
