@@ -2,6 +2,7 @@ package controller;
 
 import DAO.CountryDaoImpl;
 import DAO.CustomerDaoImpl;
+import DAO.Query;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -62,8 +63,11 @@ public class addCustomerController implements Initializable {
         stage.show();
     }
 
-    public void onAddCustomerCountry(ActionEvent actionEvent) {
+    public void onAddCustomerCountry(ActionEvent actionEvent) throws SQLException {
         ObservableList<FirstClassDivisions> allDivs= FXCollections.observableArrayList();
-        Countries selectedCountry = addCustomerCountry.getSelectionModel().getSelectedItem();
+        Countries selectedCountry = addCustomerCountry.getSelectionModel().getSelectedItem(); //eg Canada
+
+        int countryID = 0; //HELPER METHOD THAT CONVERTS COUNTRY TO ID
+        Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
     }
 }
