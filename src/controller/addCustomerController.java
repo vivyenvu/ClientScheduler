@@ -20,6 +20,7 @@ import model.FirstClassDivisions;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -65,10 +66,15 @@ public class addCustomerController implements Initializable {
     }
 
     public void onAddCustomerCountry(ActionEvent actionEvent) throws SQLException {
-        ObservableList<FirstClassDivisions> allDivs= FXCollections.observableArrayList();
+        ObservableList<String> allDivs= FXCollections.observableArrayList();
         Countries selectedCountry = addCustomerCountry.getSelectionModel().getSelectedItem(); //eg Canada
 
         int countryID = Util.countryToCountryID(selectedCountry.getCountry()); //DOES THE HELPER NEED TO BE STATIC
-        Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
+        ResultSet rs = Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
+        while (rs.next()){
+            String firstDiv = rs.getString("Division");
+            allDivs.add(firstDiv); //note: this is just adding a list of strings, not FirstDivision objects
+        }
+        addCustomerFirstDiv.setItems(allDivs);
     }
 }
