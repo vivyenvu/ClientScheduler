@@ -51,18 +51,14 @@ public class updateCustomerController implements Initializable {
         updateCustomerAddress.setText(customer.getAddress());
         updateCustomerPostal.setText(customer.getPostalCode());
         updateCustomerPhone.setText(customer.getPhone());
-        //updateCustomerCountry.getSelectionModel().select();
-                //(Util.divIDToCountry(customer.getDivisionIDFK()));
-        updateCustomerFirstDiv.getSelectionModel().select(customer.getDivisionIDFK());
 
+        //set Country combobox
         int divID = customer.getDivisionIDFK();
         Countries selectedCountry = new Countries (divID, Util.divIDToCountry(divID));
         updateCustomerCountry.getSelectionModel().select(selectedCountry);
 
-
+        //load First Division combobox based on selected country
         ObservableList<String> allDivs= FXCollections.observableArrayList();
-        //Countries selectedCountry = updateCustomerCountry.getSelectionModel().getSelectedItem(); //eg Canada
-
         int countryID = Util.countryToCountryID(selectedCountry.getCountry()); //DOES THE HELPER NEED TO BE STATIC
         ResultSet rs = Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
         while (rs.next()){
@@ -72,6 +68,7 @@ public class updateCustomerController implements Initializable {
         }
         updateCustomerFirstDiv.setItems(allDivs);
 
+        //set First Division combobox
         FirstClassDivisions selectedDiv = new FirstClassDivisions(divID, Util.firstIDtoDiv(divID), selectedCountry.getCountryID());
         updateCustomerFirstDiv.getSelectionModel().select(selectedDiv.getDivision());
     }
