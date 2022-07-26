@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Countries;
 import model.Customers;
+import model.FirstClassDivisions;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,6 +58,22 @@ public class updateCustomerController implements Initializable {
         int divID = customer.getDivisionIDFK();
         Countries selectedCountry = new Countries (divID, Util.divIDToCountry(divID));
         updateCustomerCountry.getSelectionModel().select(selectedCountry);
+
+
+        ObservableList<String> allDivs= FXCollections.observableArrayList();
+        //Countries selectedCountry = updateCustomerCountry.getSelectionModel().getSelectedItem(); //eg Canada
+
+        int countryID = Util.countryToCountryID(selectedCountry.getCountry()); //DOES THE HELPER NEED TO BE STATIC
+        ResultSet rs = Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
+        while (rs.next()){
+            String firstDiv = rs.getString("Division");
+            allDivs.add(firstDiv); //note: this is just adding a list of strings, not FirstDivision objects.
+            //to solve this, should I make addCustomerFirstDiv combobox only hold FirstClassDivision objects?
+        }
+        updateCustomerFirstDiv.setItems(allDivs);
+
+        FirstClassDivisions selectedDiv = new FirstClassDivisions(divID, Util.firstIDtoDiv(divID), selectedCountry.getCountryID());
+        updateCustomerFirstDiv.getSelectionModel().select
     }
 
     @Override
