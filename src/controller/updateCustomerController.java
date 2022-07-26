@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.CountryDaoImpl;
+import DAO.CustomerDaoImpl;
 import DAO.Query;
 import helper.Util;
 import javafx.collections.FXCollections;
@@ -33,7 +34,23 @@ public class updateCustomerController implements Initializable {
     public ComboBox updateCustomerFirstDiv;
     public ComboBox <Countries> updateCustomerCountry;
 
-    public void onClickUpdateCustomerSaveBtn(ActionEvent actionEvent) {
+    public void onClickUpdateCustomerSaveBtn(ActionEvent actionEvent) throws IOException, SQLException {
+        String custName = updateCustomerName.getText();
+        String custPostal = updateCustomerPostal.getText();
+        String custPhone = updateCustomerPhone.getText();
+        String custAddress = updateCustomerAddress.getText();
+        String custDivision = (String) updateCustomerFirstDiv.getValue();
+
+        //REPLACE WITH UPDATE IN SQL
+        int custDivID = Util.firstDivToID(custDivision);
+        CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 700);
+        stage.setTitle("Main Menu");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void onUpdateCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
