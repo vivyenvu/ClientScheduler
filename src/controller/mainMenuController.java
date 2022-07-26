@@ -58,7 +58,7 @@ public class mainMenuController implements Initializable {
         stage.show();
     }
 
-    public void onCustomerUpdateBtn(ActionEvent actionEvent) throws IOException {
+    public void onCustomerUpdateBtn(ActionEvent actionEvent) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/view/updateCustomer.fxml"));
         loader.load();

@@ -2,6 +2,7 @@ package helper;
 
 import DAO.Query;
 import javafx.scene.control.Alert;
+import model.Countries;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -77,8 +78,8 @@ public class Util {
         return name;
     }
 
-    public static String divIDToCountry(int id) throws SQLException {
-        String country="";
+    public static Countries divIDToCountry(int id) throws SQLException {
+        String countryName = "";
         int countryID =0;
         ResultSet rs = Query.getRS("SELECT Country_ID FROM first_level_divisions WHERE Division_ID = '"+id+"'");
         while (rs.next()){
@@ -87,8 +88,10 @@ public class Util {
 
         ResultSet rsc = Query.getRS("SELECT Country FROM countries WHERE Country_ID = '" +countryID+"'");
         while (rsc.next()) {
-            country = rs.getString("Country");
+            countryName = rs.getString("Country");
         }
+
+        Countries country = new Countries (countryID, countryName);
         return country;
     }
     public LocalDateTime systemToUTC(LocalDateTime origin){

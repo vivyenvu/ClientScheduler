@@ -44,12 +44,15 @@ public class updateCustomerController implements Initializable {
         stage.show();
     }
 
-    public void sendCustomer(Customers customer){
+    public void sendCustomer(Customers customer) throws SQLException {
         updateCustomerID.setText(String.valueOf(customer.getCustomerID()));
         updateCustomerName.setText(customer.getCustomerName());
         updateCustomerAddress.setText(customer.getAddress());
         updateCustomerPostal.setText(customer.getPostalCode());
         updateCustomerPhone.setText(customer.getPhone());
+        updateCustomerCountry.getSelectionModel().select
+                //(Util.divIDToCountry(customer.getDivisionIDFK()));
+        updateCustomerFirstDiv.getSelectionModel().select(customer.getDivisionIDFK());
     }
 
     @Override
@@ -65,6 +68,7 @@ public class updateCustomerController implements Initializable {
         }
     }
 
+    //might have to move body of this to initialize or sendCustomer
     public void onUpdateCustomerCountry(ActionEvent actionEvent) throws SQLException {
         ObservableList<String> allDivs= FXCollections.observableArrayList();
         Countries selectedCountry = updateCustomerCountry.getSelectionModel().getSelectedItem(); //eg Canada
