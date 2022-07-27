@@ -60,7 +60,6 @@ public class updateCustomerController implements Initializable {
             Util.stringToAlert(errorMessages);
         }
         else {
-
             int custDivID = Util.firstDivToID(custDivision);
             CustomerDaoImpl.updateCustomer(custID, custName, custAddress, custPostal, custPhone, custDivID);
 

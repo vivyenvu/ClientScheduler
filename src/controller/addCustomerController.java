@@ -46,20 +46,40 @@ public class addCustomerController implements Initializable {
     }
 
     public void onAddCustomerSaveBtn(ActionEvent actionEvent) throws SQLException, IOException {
+        String errorMessages = "";
         String custName = addCustomerName.getText();
         String custPostal = addCustomerPostal.getText();
         String custPhone = addCustomerPhone.getText();
         String custAddress = addCustomerAddress.getText();
         String custDivision = (String) addCustomerFirstDiv.getValue();
-        int custDivID = Util.firstDivToID(custDivision);
-        CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID);
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
-        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 700);
-        stage.setTitle("Main Menu");
-        stage.setScene(scene);
-        stage.show();
+        if (custName.isEmpty()){
+            errorMessages += "Name field is required. \n";
+        }
+        if (custPostal.isEmpty()){
+            errorMessages += "Postal code is required. \n";
+        }
+        if (custPhone.isEmpty()){
+            errorMessages += "Phone number is required. \n";
+        }
+        if (custAddress.isEmpty()){
+            errorMessages += "Address is required. \n";
+        }
+
+        if (errorMessages != "") {
+            Util.stringToAlert(errorMessages);
+        }
+        else{
+            int custDivID = Util.firstDivToID(custDivision);
+            CustomerDaoImpl.addCustomer(custName, custAddress, custPostal, custPhone, custDivID);
+
+            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+            Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 800, 700);
+            stage.setTitle("Main Menu");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void onAddCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
