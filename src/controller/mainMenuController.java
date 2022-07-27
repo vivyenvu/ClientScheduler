@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,6 +19,7 @@ import model.Customers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class mainMenuController implements Initializable {
@@ -81,13 +84,26 @@ public class mainMenuController implements Initializable {
     }
 
     public void onCustomerDeleteBtn(ActionEvent actionEvent) throws SQLException {
-        Object forDeletion = customerTable.getSelectionModel().getSelectedItem();
-        int idForDeletion = Integer.parseInt(forDeletion.toString());
-        CustomerDaoImpl.deleteCustomer(idForDeletion);
+        try{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete customer?");
+            alert.setContentText("Are you sure you want to delete this customer? ");
 
-        customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+            Optional<ButtonType> result = alert.showAndWait();
 
-        Util.stringToAlert("Customer with ID "+idForDeletion+ " has been deleted.");
+            Object forDeletion = customerTable.getSelectionModel().getSelectedItem();
+            int idForDeletion = Integer.parseInt(forDeletion.toString());
+
+            if (result.isPresent() && result.get() == ButtonType.OK){
+                CustomerDaoImpl.deleteCustomer(idForDeletion);
+                customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+                Util.stringToAlert("Customer with ID "+idForDeletion+ " has been deleted.");
+            }
+
+        }
+        catch(NullPointerException e){
+            Util.stringToAlert("Can't delete because no customer was selected. ");
+        }
     }
 
     public void onApptAddBtn(ActionEvent actionEvent) throws IOException {
