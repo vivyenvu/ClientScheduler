@@ -35,6 +35,7 @@ public class updateCustomerController implements Initializable {
     public ComboBox <Countries> updateCustomerCountry;
 
     public void onClickUpdateCustomerSaveBtn(ActionEvent actionEvent) throws IOException, SQLException {
+        String errorMessages = "";
         int custID = Integer.parseInt(updateCustomerID.getText());
         String custName = updateCustomerName.getText();
         String custPostal = updateCustomerPostal.getText();
@@ -42,16 +43,34 @@ public class updateCustomerController implements Initializable {
         String custAddress = updateCustomerAddress.getText();
         String custDivision = (String) updateCustomerFirstDiv.getValue();
 
-        //REPLACE WITH UPDATE IN SQL
-        int custDivID = Util.firstDivToID(custDivision);
-        CustomerDaoImpl.updateCustomer(custID, custName, custAddress, custPostal, custPhone, custDivID);
+        if (custName.isEmpty()){
+            errorMessages += "Name field is required. \n";
+        }
+        if (custPostal.isEmpty()){
+            errorMessages += "Postal code is required. \n";
+        }
+        if (custPhone.isEmpty()){
+            errorMessages += "Phone number is required. \n";
+        }
+        if (custAddress.isEmpty()){
+            errorMessages += "Address is required. \n";
+        }
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
-        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 700);
-        stage.setTitle("Main Menu");
-        stage.setScene(scene);
-        stage.show();
+        if (errorMessages != "") {
+            Util.stringToAlert(errorMessages);
+        }
+        else {
+
+            int custDivID = Util.firstDivToID(custDivision);
+            CustomerDaoImpl.updateCustomer(custID, custName, custAddress, custPostal, custPhone, custDivID);
+
+            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+            Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 800, 700);
+            stage.setTitle("Main Menu");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void onUpdateCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
