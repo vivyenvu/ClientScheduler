@@ -35,7 +35,7 @@ public class updateCustomerController implements Initializable {
     public ComboBox <Countries> updateCustomerCountry;
 
     public void onClickUpdateCustomerSaveBtn(ActionEvent actionEvent) throws IOException, SQLException {
-        int custID = Integer.parseInt(updateCustomerID);
+        int custID = Integer.parseInt(updateCustomerID.getText());
         String custName = updateCustomerName.getText();
         String custPostal = updateCustomerPostal.getText();
         String custPhone = updateCustomerPhone.getText();
