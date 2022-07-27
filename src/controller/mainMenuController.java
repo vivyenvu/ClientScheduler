@@ -59,21 +59,25 @@ public class mainMenuController implements Initializable {
     }
 
     public void onCustomerUpdateBtn(ActionEvent actionEvent) throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/view/updateCustomer.fxml"));
-        loader.load();
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/updateCustomer.fxml"));
+            loader.load();
 
-        Customers updateCustomer = (Customers) customerTable.getSelectionModel().getSelectedItem(); //this might need to be a global variable
+            Customers updateCustomer = (Customers) customerTable.getSelectionModel().getSelectedItem(); //this might need to be a global variable
 
-        updateCustomerController updateCustCtrl = loader.getController();
-        updateCustCtrl.sendCustomer(updateCustomer);
+            updateCustomerController updateCustCtrl = loader.getController();
+            updateCustCtrl.sendCustomer(updateCustomer);
 
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Parent scene = loader.getRoot();
-        stage.setTitle("Update Customer");
-        stage.setScene(new Scene(scene));
-        stage.show();
-
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setTitle("Update Customer");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch (NullPointerException e) {
+            Util.stringToAlert("Please select a customer. ");
+        }
     }
 
     public void onCustomerDeleteBtn(ActionEvent actionEvent) throws SQLException {
