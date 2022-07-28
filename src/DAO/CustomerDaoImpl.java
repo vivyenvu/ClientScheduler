@@ -13,7 +13,11 @@ import java.sql.Statement;
 public class CustomerDaoImpl {
     public static ObservableList<Customers> getAllCustomers() throws SQLException {
         ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
-        ResultSet result = Query.getRS("select * from customers");
+        ResultSet result = Query.getRS("select * from customers" +
+                                            "INNER JOIN first_level_divisions" +
+                                            "ON customers.Division_ID = first_level_divisions.Division_ID" +
+                                            "INNER JOIN countries" +
+                                            "ON first_level_divisions.Country_ID = countries.Country_ID");
         while(result.next()){
             int custID = result.getInt("Customer_ID");
             String custName = result.getString("Customer_Name");
@@ -21,8 +25,8 @@ public class CustomerDaoImpl {
             String custPostal = result.getString("Postal_Code");
             String custPhone = result.getString("Phone");
             int custDivID = result.getInt("Division_ID");
-            /*String custCountry = Util.divIDToCountry(custDivID); //helper methods to convert division_ID to country*/
-            Customers custResult = new Customers(custID, custName, custAddress, custPostal, custPhone, /*custCountry,*/ custDivID);
+            String custCountry = Util.divIDToCountry(custDivID); //helper methods to convert division_ID to country*/
+            Customers custResult = new Customers(custID, custName, custAddress, custPostal, custPhone, custCountry, custDivID);
             allCustomers.add(custResult);
         }
         return allCustomers;
@@ -37,14 +41,12 @@ public class CustomerDaoImpl {
         while(rs.next()) {
             custID = rs.getInt(1);
         }
-
         ps.setInt(1, custID);
         ps.setString (2, custName);
         ps.setString(3, custAddress);
         ps.setString(4, custPostal);
         ps.setString(5, custPhone);
         ps.setInt(6, custDivID);
-
         ps.execute();
     }
 
@@ -58,8 +60,6 @@ public class CustomerDaoImpl {
             PreparedStatement psc = Query.getPS("DELETE FROM customers WHERE Customer_ID = ?");
             psc.setInt(1, id);
             psc.execute();
-
-
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -77,12 +77,6 @@ public class CustomerDaoImpl {
             ps.setInt(6, divisionIDFK);
             ps.setInt(7, customerID);
             ps.execute();
-
-            /*PreparedStatement psc = Query.getPS("DELETE FROM customers WHERE Customer_ID = ?");
-            psc.setInt(1, id);
-            psc.execute();*/
-
-
         }
         catch (SQLException e){
             e.printStackTrace();

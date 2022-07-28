@@ -67,7 +67,7 @@ public class mainMenuController implements Initializable {
             loader.setLocation(getClass().getResource("/view/updateCustomer.fxml"));
             loader.load();
 
-            Customers updateCustomer = (Customers) customerTable.getSelectionModel().getSelectedItem(); //this might need to be a global variable
+            Customers updateCustomer = (Customers) customerTable.getSelectionModel().getSelectedItem();
 
             updateCustomerController updateCustCtrl = loader.getController();
             updateCustCtrl.sendCustomer(updateCustomer);
