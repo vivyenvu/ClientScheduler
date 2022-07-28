@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class addApptController {
     public TextField addApptID;
@@ -29,27 +30,46 @@ public class addApptController {
 
     public void onAddApptSaveBtn(ActionEvent actionEvent) {
         String errorMessages = "";
-        String custName = addCustomerName.getText();
-        String custPostal = addCustomerPostal.getText();
-        String custPhone = addCustomerPhone.getText();
-        String custAddress = addCustomerAddress.getText();
-        String custDivision = (String) addCustomerFirstDiv.getValue();
+        String title = addApptTitle.getText();
+        String desc = addApptDescription.getText();
+        String loc = addApptLocation.getText();
+        String type = addApptType.getText();
+        LocalDateTime start = addApptStartTime.getValue();
+        LocalDateTime end = addApptEndTime.getValue();
+        int custID = Integer.parseInt((String)addApptCustomerID.getValue());
+        int userID = Integer.parseInt((String)addApptUserID.getValue());
+        int contactID = Integer.parseInt((String)addApptContact.getValue());
 
-        if (custName.isEmpty()){
-            errorMessages += "Name field is required. \n";
+        //String custDivision = (String) addCustomerFirstDiv.getValue();
+
+        if (title.isEmpty()){
+            errorMessages += "Title is required. \n";
         }
-        if (custPostal.isEmpty()){
-            errorMessages += "Postal code is required. \n";
+        if (desc.isEmpty()){
+            errorMessages += "Description is required. \n";
         }
-        if (custPhone.isEmpty()){
-            errorMessages += "Phone number is required. \n";
+        if (loc.isEmpty()){
+            errorMessages += "Location is required. \n";
         }
-        if (custAddress.isEmpty()){
-            errorMessages += "Address is required. \n";
+        if (type.isEmpty()){
+            errorMessages += "Type is required. \n";
         }
-        if (custDivision == null){
-            errorMessages += "First level division is required. Please select a country then division. \n";
+        if (start.isEmpty()){
+            errorMessages += "Please select a start time. \n";
         }
+        if (end.isEmpty()){
+            errorMessages += "Please select an end time. \n";
+        }
+        if (custID.isEmpty()){
+            errorMessages += "Please select a customer ID. \n";
+        }
+        if (userID.isEmpty()){
+            errorMessages += "Please select a user ID. \n";
+        }
+        if (contactID.isEmpty()){
+            errorMessages += "Please select a contact ID. \n";
+        }
+
 
         if (errorMessages != "") {
             Util.stringToAlert(errorMessages);
