@@ -25,7 +25,7 @@ public class CustomerDaoImpl {
             String custPostal = result.getString("Postal_Code");
             String custPhone = result.getString("Phone");
             int custDivID = result.getInt("Division_ID");
-            String custCountry = Util.divIDToCountry(custDivID); //helper methods to convert division_ID to country*/
+            String custCountry = result.getString("Country"); //helper methods to convert division_ID to country*/
             Customers custResult = new Customers(custID, custName, custAddress, custPostal, custPhone, custCountry, custDivID);
             allCustomers.add(custResult);
         }
