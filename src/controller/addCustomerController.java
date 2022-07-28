@@ -66,7 +66,7 @@ public class addCustomerController implements Initializable {
             errorMessages += "Address is required. \n";
         }
         if (custDivision == null){
-            errorMessages += "First level division is required. Please selecte a country then division. \n";
+            errorMessages += "First level division is required. Please select a country then division. \n";
         }
 
         if (errorMessages != "") {

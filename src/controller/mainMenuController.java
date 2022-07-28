@@ -48,9 +48,6 @@ public class mainMenuController implements Initializable {
         customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         customerTableCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
         customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
-
-        //customerTableCountry.getColumns().add(new TableColumn<String, String>("Country"));
-
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
