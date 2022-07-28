@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-public class ApptCaoImpl {
+public class ApptDaoImpl {
     public static ObservableList<Appointments> getAllAppts() throws SQLException {
         ObservableList<Appointments> allAppts = FXCollections.observableArrayList();
         ResultSet result = Query.getRS("select * from appointments");
