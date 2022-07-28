@@ -13,10 +13,10 @@ import java.sql.Statement;
 public class CustomerDaoImpl {
     public static ObservableList<Customers> getAllCustomers() throws SQLException {
         ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
-        ResultSet result = Query.getRS("select * from customers" +
-                                            "INNER JOIN first_level_divisions" +
-                                            "ON customers.Division_ID = first_level_divisions.Division_ID" +
-                                            "INNER JOIN countries" +
+        ResultSet result = Query.getRS("select * from customers " +
+                                            "INNER JOIN first_level_divisions " +
+                                            "ON customers.Division_ID = first_level_divisions.Division_ID " +
+                                            "INNER JOIN countries " +
                                             "ON first_level_divisions.Country_ID = countries.Country_ID");
         while(result.next()){
             int custID = result.getInt("Customer_ID");
