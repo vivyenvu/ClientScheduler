@@ -1,5 +1,6 @@
 package model;
 
+import helper.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -65,14 +66,16 @@ public class Appointments {
         return contactIDFK;
     }
     public ObservableList<LocalTime> getBizHours(){
-        LocalTime end = LocalTime.of(22, 01);//Includes 10pm, so make sure to remove 30 min for start time
-        LocalTime toAdd = LocalTime.of(8, 00);
+        LocalTime end = LocalTime.of(2, 01);//Includes 10pm, so make sure to remove 30 min for start time, or validate that start<end
+        LocalTime toAdd = LocalTime.of(12, 00);
+
         while (toAdd.isBefore(end)){
             bizHours.add(toAdd);
             toAdd.plusMinutes(30);
         }
         return bizHours;
-
+    //NEED TO CONVERT TO UTC and then to local time before letting users choose
+        //Did this manually 8 est -> 12 utc. 22 est -> 2 est
     }
     public void setApptID(int id) {
         apptID = id;
