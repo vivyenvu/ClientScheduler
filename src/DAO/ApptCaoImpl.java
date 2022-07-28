@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class ApptCaoImpl {
-    public static ObservableList<Customers> getAllAppts() throws SQLException {
+    public static ObservableList<Appointments> getAllAppts() throws SQLException {
         ObservableList<Appointments> allAppts = FXCollections.observableArrayList();
         ResultSet result = Query.getRS("select * from appointments");
         while(result.next()){
@@ -19,8 +19,8 @@ public class ApptCaoImpl {
             String apptDesc = result.getString("Description");
             String apptLoc = result.getString("Location");
             String apptType = result.getString("Type");
-            LocalDateTime apptStart = result.getTime("Start");
-            LocalDateTime apptEnd = result.getDateTime("End");
+            LocalDateTime apptStart = result.getTimestamp("Start").toLocalDateTime();
+            LocalDateTime apptEnd = result.getTimestamp("End").toLocalDateTime();
             int custID = result.getInt("Customer_ID");
             int userID = result.getInt("User_ID");
             int contactID = result.getInt("Contact_ID");
