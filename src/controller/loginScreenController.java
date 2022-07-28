@@ -67,8 +67,7 @@ public class loginScreenController implements Initializable {
         try {
             currentUser = UserDaoImpl.getUser(inputUsername);
             associatedPassword = currentUser.getPassword();
-
-            System.out.println("InputPassword is " + inputPassword + " while AssociatedPassword is " + associatedPassword); //REMOVE WHEN DONE TESTING
+            //System.out.println("InputPassword is " + inputPassword + " while AssociatedPassword is " + associatedPassword);
 
             if (inputPassword.equals(associatedPassword)) {
                 Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));

@@ -48,6 +48,21 @@ public class mainMenuController implements Initializable {
         customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         customerTableCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
         customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
+
+        //appointments table
+        try {
+            customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        customerTableID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customerTableName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerTableAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        customerTablePostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        customerTableCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
+        customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
