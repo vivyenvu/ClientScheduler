@@ -5,8 +5,10 @@ import javafx.collections.ObservableList;
 import model.Appointments;
 import model.Customers;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -29,5 +31,27 @@ public class ApptDaoImpl {
             allAppts.add(apptResult);
         }
         return allAppts;
+    }
+
+    public static void addAppt(String title, String desc, String loc, String type, LocalDateTime start, LocalDateTime end, int customerIDFK, int userIDFK, int contactIDFK) throws SQLException {
+        int apptID=0; //might not be a good initialization
+        String sql = "INSERT INTO appointments VALUES (?,?,?,?,?,?,?,NULL, NULL, NULL, NULL,?,?,?)";
+        PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+        ResultSet rs = ps.getGeneratedKeys();
+        while(rs.next()) {
+            apptID = rs.getInt(1);
+        }
+        ps.setInt(1, apptID);
+        ps.setString (2, title);
+        ps.setString(3, desc);
+        ps.setString(4, loc);
+        ps.setString(5, type);
+        ps.setLocaleDateTime(6, start);
+        ps.setLocaleDateTime(7, end);
+        ps.setInt(8, customerIDFK);
+        ps.setInt(9, userIDFK);
+        ps.setInt(10, contactIDFK);
+        ps.execute();
     }
 }
