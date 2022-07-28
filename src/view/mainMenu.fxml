@@ -37,8 +37,16 @@
         </TableView>
         <TableView fx:id="allApptTable" layoutX="50.0" layoutY="408.0" prefHeight="200.0" prefWidth="700.0">
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="apptTableID" prefWidth="75.0" text="Appt ID" />
+                <TableColumn prefWidth="75.0" text="Title" />
+            <TableColumn prefWidth="75.0" text="Description" />
+            <TableColumn prefWidth="75.0" text="Location" />
+            <TableColumn prefWidth="75.0" text="Type" />
+            <TableColumn prefWidth="75.0" text="Start" />
+            <TableColumn prefWidth="75.0" text="End" />
+            <TableColumn prefWidth="75.0" text="Customer ID" />
+            <TableColumn prefWidth="75.0" text="User ID" />
+            <TableColumn prefWidth="75.0" text="Contact ID" />
             </columns>
         </TableView>
         <RadioButton layoutX="625.0" layoutY="373.0" mnemonicParsing="false" onAction="#onWeekViewBtn" text="Week">

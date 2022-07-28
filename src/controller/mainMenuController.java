@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.ApptDaoImpl;
 import DAO.CustomerDaoImpl;
 import helper.Util;
 import javafx.event.ActionEvent;
@@ -36,7 +37,7 @@ public class mainMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+            customerTable.setItems(ApptDaoImpl.getAllAppts());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
