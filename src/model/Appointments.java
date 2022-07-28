@@ -65,7 +65,12 @@ public class Appointments {
         return contactIDFK;
     }
     public ObservableList<LocalTime> getBizHours(){
-        bizHours.add("08:00");
+        LocalTime end = LocalTime.of(22, 01);//Includes 10pm, so make sure to remove 30 min for start time
+        LocalTime toAdd = LocalTime.of(8, 00);
+        while (toAdd.isBefore(end)){
+            bizHours.add(toAdd);
+            toAdd.plusMinutes(30);
+        }
         return bizHours;
 
     }
