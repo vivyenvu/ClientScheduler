@@ -28,25 +28,25 @@
             <columns>
                 <TableColumn fx:id="customerTableID" prefWidth="75.0" text="Customer ID" />
                 <TableColumn fx:id="customerTableName" prefWidth="112.0" text="Name" />
-            <TableColumn fx:id="customerTableAddress" prefWidth="120.0" text="Address" />
-            <TableColumn fx:id="customerTablePostal" prefWidth="71.0" text="Postal Code" />
-            <TableColumn fx:id="customerTablePhone" prefWidth="93.0" text="Phone Number" />
-            <TableColumn fx:id="customerTableCountry" prefWidth="118.0" text="Country" />
-            <TableColumn fx:id="customerTableFirst" prefWidth="110.0" text="First Level Division" />
+            <TableColumn fx:id="customerTableAddress" prefWidth="153.0" text="Address" />
+            <TableColumn fx:id="customerTablePostal" prefWidth="90.0" text="Postal Code" />
+            <TableColumn fx:id="customerTablePhone" prefWidth="131.0" text="Phone Number" />
+            <TableColumn fx:id="customerTableCountry" prefWidth="79.0" text="Country" />
+            <TableColumn fx:id="customerTableFirst" prefWidth="159.0" text="First Level Division" />
             </columns>
         </TableView>
         <TableView fx:id="allApptTable" layoutX="50.0" layoutY="408.0" prefHeight="200.0" prefWidth="800.0">
             <columns>
                 <TableColumn fx:id="apptTableID" prefWidth="59.0" text="Appt ID" />
-                <TableColumn fx:id="apptTableTitle" prefWidth="91.0" text="Title" />
-            <TableColumn fx:id="apptTableDesc" prefWidth="75.0" text="Description" />
-            <TableColumn fx:id="apptTableLoc" prefWidth="75.0" text="Location" />
-            <TableColumn fx:id="apptTableType" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="apptTableStart" prefWidth="75.0" text="Start" />
-            <TableColumn fx:id="apptTableEnd" prefWidth="75.0" text="End" />
-            <TableColumn fx:id="apptTableCustID" prefWidth="75.0" text="Customer ID" />
-            <TableColumn fx:id="apptTableUserID" prefWidth="46.0" text="User ID" />
-            <TableColumn fx:id="apptTableContactID" prefWidth="53.0" text="Contact ID" />
+                <TableColumn fx:id="apptTableTitle" prefWidth="67.0" text="Title" />
+            <TableColumn fx:id="apptTableDesc" prefWidth="120.0" text="Description" />
+            <TableColumn fx:id="apptTableLoc" prefWidth="81.0" text="Location" />
+            <TableColumn fx:id="apptTableType" prefWidth="88.0" text="Type" />
+            <TableColumn fx:id="apptTableStart" prefWidth="97.0" text="Start" />
+            <TableColumn fx:id="apptTableEnd" prefWidth="93.0" text="End" />
+            <TableColumn fx:id="apptTableCustID" prefWidth="78.0" text="Customer ID" />
+            <TableColumn fx:id="apptTableUserID" prefWidth="48.0" text="User ID" />
+            <TableColumn fx:id="apptTableContactID" prefWidth="68.0" text="Contact ID" />
             </columns>
         </TableView>
         <RadioButton layoutX="725.0" layoutY="373.0" mnemonicParsing="false" onAction="#onWeekViewBtn" text="Week">
