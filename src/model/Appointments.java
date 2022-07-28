@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 public class Appointments {
     //private ObservableList<Appointments> allAppointments; //DO I NEED THIS
-    private static ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
+    //private static ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
     private int apptID;
     private String title;
     private String desc;
@@ -66,6 +66,7 @@ public class Appointments {
         return contactIDFK;
     }
     public static ObservableList<LocalTime> getBizHours(){
+        ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
         LocalTime end = LocalTime.of(2, 01);//Includes 10pm, so make sure to remove 30 min for start time, or validate that start<end
         LocalTime toAdd = LocalTime.of(12, 00);
 
@@ -107,4 +108,7 @@ public class Appointments {
     public void setContactIDFK(int id){
         contactIDFK = id;
     }
+    /*public static void addBizHours(LocalTime hour){
+        bizHours.add(hour);
+    }*/
 }
