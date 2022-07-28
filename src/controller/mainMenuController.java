@@ -47,7 +47,7 @@ public class mainMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            customerTable.setItems(ApptDaoImpl.getAllAppts());
+            customerTable.setItems(CustomerDaoImpl.getAllCustomers());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
