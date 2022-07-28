@@ -33,6 +33,16 @@ public class mainMenuController implements Initializable {
     public TableColumn customerTableCountry;
     public TableColumn customerTableFirst;
     public TableView allApptTable;
+    public TableColumn apptTableID;
+    public TableColumn apptTableTitle;
+    public TableColumn apptTableDesc;
+    public TableColumn apptTableLoc;
+    public TableColumn apptTableType;
+    public TableColumn apptTableStart;
+    public TableColumn apptTableEnd;
+    public TableColumn apptTableCustID;
+    public TableColumn apptTableUserID;
+    public TableColumn apptTableContactID;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
