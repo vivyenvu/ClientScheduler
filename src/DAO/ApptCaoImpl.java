@@ -19,7 +19,7 @@ public class ApptCaoImpl {
             String apptDesc = result.getString("Description");
             String apptLoc = result.getString("Location");
             String apptType = result.getString("Type");
-            LocalDateTime apptStart = result.getDateTime("Start");
+            LocalDateTime apptStart = result.getTime("Start");
             LocalDateTime apptEnd = result.getDateTime("End");
             int custID = result.getInt("Customer_ID");
             int userID = result.getInt("User_ID");
