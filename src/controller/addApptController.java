@@ -36,12 +36,11 @@ public class addApptController {
         String desc = addApptDescription.getText();
         String loc = addApptLocation.getText();
         String type = addApptType.getText();
-        LocalDateTime start = addApptStartTime.getValue();
-        LocalDateTime end = addApptEndTime.getValue();
+        LocalDateTime start = (LocalDateTime)addApptStartTime.getValue();
+        LocalDateTime end = (LocalDateTime)addApptEndTime.getValue();
         String custID = (String) addApptCustomerID.getValue();
         String userID = (String) addApptUserID.getValue();
         String contactID = (String) addApptContact.getValue();
-        //String custDivision = (String) addCustomerFirstDiv.getValue();
 
         if (title.isEmpty()) {
             errorMessages += "Title is required. \n";
