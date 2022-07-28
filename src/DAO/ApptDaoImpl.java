@@ -47,8 +47,8 @@ public class ApptDaoImpl {
         ps.setString(3, desc);
         ps.setString(4, loc);
         ps.setString(5, type);
-        ps.setLocaleDateTime(6, start);
-        ps.setLocaleDateTime(7, end);
+        ps.setObject(6, start);
+        ps.setObject(7, end);
         ps.setInt(8, customerIDFK);
         ps.setInt(9, userIDFK);
         ps.setInt(10, contactIDFK);
