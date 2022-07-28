@@ -4,9 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Appointments {
     //private ObservableList<Appointments> allAppointments; //DO I NEED THIS
+    private ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
     private int apptID;
     private String title;
     private String desc;
@@ -61,6 +63,11 @@ public class Appointments {
     }
     public int getContactIDFK(){
         return contactIDFK;
+    }
+    public ObservableList<LocalTime> getBizHours(){
+        bizHours.add("08:00");
+        return bizHours;
+
     }
     public void setApptID(int id) {
         apptID = id;

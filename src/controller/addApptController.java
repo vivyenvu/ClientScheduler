@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class addApptController {
     public TextField addApptID;
@@ -36,8 +38,9 @@ public class addApptController {
         String desc = addApptDescription.getText();
         String loc = addApptLocation.getText();
         String type = addApptType.getText();
-        LocalDateTime start = (LocalDateTime)addApptStartTime.getValue();
-        LocalDateTime end = (LocalDateTime)addApptEndTime.getValue();
+        LocalDate date = addApptDate.getValue();
+        LocalTime startTime = (LocalTime)addApptStartTime.getValue();
+        LocalTime endTime = (LocalTime)addApptEndTime.getValue();
         String custID = (String) addApptCustomerID.getValue();
         String userID = (String) addApptUserID.getValue();
         String contactID = (String) addApptContact.getValue();
@@ -54,35 +57,55 @@ public class addApptController {
         if (type.isEmpty()) {
             errorMessages += "Type is required. \n";
         }
-        if (start.isEqual(null)) {
+        if (date == null){
+            errorMessages += "Please select a date. \n";
+        }
+        /*
+        try{
+            if (startTime.isEqual(null)) {
+            errorMessages += "Please select a start time. \n";
+            }
+        }
+        catch (NullPointerException e){
             errorMessages += "Please select a start time. \n";
         }
-        if (end.isEqual(null)) {
+
+        try{
+            if (endTime.isEqual(null)) {
+                errorMessages += "Please select an end time. \n";
+            }
+        }
+        catch (NullPointerException e){
             errorMessages += "Please select an end time. \n";
         }
-
+*/
+        // FIGURE OUT HOW TO VALIDATE BLANK LOCALTIME AFTER I POPULATE COMBOBXO WITH LOCALTIMES
         try {
             int validatedCustID = Integer.parseInt(custID);
         } catch (NumberFormatException e) {
-            errorMessages += "Customer ID is required. ";
+            errorMessages += "Customer ID is required. \n";
         }
         try {
             int validatedUserID = Integer.parseInt(userID);
         } catch (NumberFormatException e) {
-            errorMessages += "User ID is required. ";
+            errorMessages += "User ID is required. \n";
         }
         try {
             int validatedContactID = Integer.parseInt(contactID);
         } catch (NumberFormatException e) {
-            errorMessages += "Contact ID is required. ";
+            errorMessages += "Contact ID is required. \n";
         }
 
         if (errorMessages != "") {
             Util.stringToAlert(errorMessages);
-        } else {
+        }
+        else {
             int validatedCustID = Integer.parseInt(custID);
             int validatedUserID = Integer.parseInt(userID);
             int validatedContactID = Integer.parseInt(contactID);
+            LocalDateTime start = LocalDateTime.of(date, startTime);
+            LocalDateTime end = LocalDateTime.of(date, endTime);
+
             ApptDaoImpl.addAppt(title, desc, loc, type, start, end, validatedCustID, validatedUserID, validatedContactID);
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
