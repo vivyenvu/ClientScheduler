@@ -62,18 +62,21 @@ public class mainMenuController implements Initializable {
 
         //appointments table
         try {
-            customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+            allApptTable.setItems(ApptDaoImpl.getAllAppts());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        customerTableID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        customerTableName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        customerTableAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        customerTablePostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        customerTableCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
-        customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
+        apptTableID.setCellValueFactory(new PropertyValueFactory<>("apptID"));
+        apptTableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        apptTableDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
+        apptTableLoc.setCellValueFactory(new PropertyValueFactory<>("location"));
+        apptTableType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        apptTableStart.setCellValueFactory(new PropertyValueFactory<>("start"));
+        apptTableEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
+        apptTableCustID.setCellValueFactory(new PropertyValueFactory<>("customerIDFK"));
+        apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));
+        apptTableContactID.setCellValueFactory(new PropertyValueFactory<>("contactIDFK"));
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
