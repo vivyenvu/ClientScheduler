@@ -43,9 +43,9 @@ public class Customers {
         return phone;
     }
 
-    /*public String getCountry() {
+    public String getCountry() {
         return country;
-    }*/
+    }
 
     public int getDivisionIDFK() {
         return divisionIDFK;
