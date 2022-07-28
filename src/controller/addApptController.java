@@ -1,10 +1,13 @@
 package controller;
 
 import DAO.ApptDaoImpl;
+import DAO.CountryDaoImpl;
 import DAO.CustomerDaoImpl;
 import helper.Util;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,14 +15,18 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Appointments;
+import model.Countries;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ResourceBundle;
 
-public class addApptController {
+public class addApptController implements Initializable {
     public TextField addApptID;
     public TextField addApptTitle;
     public TextField addApptDescription;
@@ -124,5 +131,12 @@ public class addApptController {
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<LocalTime> times = Appointments.getBizHours();
+        addApptStartTime.setItems(times);
+        addApptStartTime.setVisibleRowCount(5);
     }
 }
