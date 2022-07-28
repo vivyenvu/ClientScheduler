@@ -78,7 +78,7 @@ public class addCustomerController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
             Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 800, 700);
+            Scene scene = new Scene(root, 900, 700);
             stage.setTitle("Main Menu");
             stage.setScene(scene);
             stage.show();
@@ -88,7 +88,7 @@ public class addCustomerController implements Initializable {
     public void onAddCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 700);
+        Scene scene = new Scene(root, 900, 700);
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
