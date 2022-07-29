@@ -1,5 +1,6 @@
 package model;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,7 +12,6 @@ public class Customers {
     private String phone;
     private String country;
     private int divisionIDFK;
-    private ObservableList<Appointments> associatedAppts = FXCollections.observableArrayList();
     private static ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
 
     public Customers(int customerID, String customerName, String address, String postalCode, String phone, String country, int divisionIDFK) {
@@ -22,7 +22,6 @@ public class Customers {
         this.phone = phone;
         this.country = country;
         this.divisionIDFK = divisionIDFK;
-        this.associatedAppts = FXCollections.observableArrayList();
     }
 
     public int getCustomerID() {
@@ -51,10 +50,6 @@ public class Customers {
 
     public int getDivisionIDFK() {
         return divisionIDFK;
-    }
-
-    public ObservableList<Appointments> getAssociatedAppts() {
-        return associatedAppts;
     }
 
     public ObservableList<Customers> getAllCustomers() {
@@ -89,12 +84,12 @@ public class Customers {
         divisionIDFK = id;
     }
 
-    public void addAssociatedAppts (Appointments addAppt) {
-        associatedAppts.add(addAppt);
-    }
-
     public static void addToAllCustomers(Customers add) {
         allCustomers.add(add);
+    }
+
+    public static void setAllCustomers(ObservableList<Customers> toSet){
+        allCustomers = toSet;
     }
 
     public static Customers lookupCustomer(int id){
@@ -106,9 +101,9 @@ public class Customers {
         return null;
     }
 
-    public Appointments lookupAppt(int id) {
-        for (Appointments appt : this.getAssociatedAppts()){
-            if (appt.getApptID() == id) {
+    public static Appointments checkForAppts(int custID) {
+        for (Appointments appt : Appointments.getAllAppts()){
+            if (appt.getCustomerIDFK() == custID) {
                 return appt;
             }
         }

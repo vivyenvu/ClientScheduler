@@ -36,6 +36,7 @@ public class ApptDaoImpl {
             Appointments apptResult = new Appointments(apptID, apptTitle, apptDesc, apptLoc, apptType, apptStart, apptEnd, custID, userID, contactID, contactName);
             allAppts.add(apptResult);
         }
+        Appointments.setAllAppts(allAppts);
         return allAppts;
     }
 

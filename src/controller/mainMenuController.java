@@ -123,9 +123,15 @@ public class mainMenuController implements Initializable {
             //Integer.parseInt(forDeletion.toString());
 
             if (result.isPresent() && result.get() == ButtonType.OK){
-                CustomerDaoImpl.deleteCustomer(idForDeletion);
-                customerTable.setItems(CustomerDaoImpl.getAllCustomers());
-                Util.stringToAlert("Customer with ID "+idForDeletion+ " has been deleted.");
+                if(Customers.checkForAppts(idForDeletion) != null){
+                    Util.stringToAlert("Delete this customer's appointments before attempting to delete customer. ");
+                }
+
+                else {
+                    CustomerDaoImpl.deleteCustomer(idForDeletion);
+                    customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+                    Util.stringToAlert("Customer with ID " + idForDeletion + " has been deleted.");
+                }
             }
 
         }

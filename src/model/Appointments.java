@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Appointments {
-    //private ObservableList<Appointments> allAppointments; //DO I NEED THIS
+    private static ObservableList<Appointments> allAppointments;
     //private static ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
     private int apptID;
     private String title;
@@ -69,6 +69,15 @@ public class Appointments {
     }
     public String getContactName(){
         return contactName;
+    }
+    public static ObservableList<Appointments> getAllAppts() {
+        return allAppointments;
+    }
+    public static void addToAllAppts(Appointments add) {
+        allAppointments.add(add);
+    }
+    public static void setAllAppts(ObservableList<Appointments> toSet){
+        allAppointments = toSet;
     }
     /*public static ObservableList<LocalTime> getBizHours(){
         ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();

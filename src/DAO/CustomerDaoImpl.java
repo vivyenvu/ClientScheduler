@@ -28,8 +28,8 @@ public class CustomerDaoImpl {
             String custCountry = result.getString("Country");
             Customers custResult = new Customers(custID, custName, custAddress, custPostal, custPhone, custCountry, custDivID);
             loadCustomers.add(custResult);
-            Customers.addToAllCustomers(custResult);
         }
+        Customers.setAllCustomers(loadCustomers);
         return loadCustomers;
     }
 
