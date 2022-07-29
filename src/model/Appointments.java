@@ -20,9 +20,10 @@ public class Appointments {
     private int customerIDFK;
     private int userIDFK;
     private int contactIDFK;
+    private String contactName;
 
     public Appointments (int apptID, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end,
-                         int customerIDFK, int userIDFK, int contactIDFK){
+                         int customerIDFK, int userIDFK, int contactIDFK, String contactName){
         this.apptID = apptID;
         this.title = title;
         this.desc = desc;
@@ -33,6 +34,7 @@ public class Appointments {
         this.customerIDFK = customerIDFK;
         this.userIDFK = userIDFK;
         this.contactIDFK = contactIDFK;
+        this.contactName = contactName;
     }
 
     public int getApptID() {
@@ -64,6 +66,9 @@ public class Appointments {
     }
     public int getContactIDFK(){
         return contactIDFK;
+    }
+    public String getContactName(){
+        return contactName;
     }
     public static ObservableList<LocalTime> getBizHours(){
         ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
@@ -107,6 +112,9 @@ public class Appointments {
     }
     public void setContactIDFK(int id){
         contactIDFK = id;
+    }
+    public void setContactName (String name){
+        contactName = name;
     }
     /*public static void addBizHours(LocalTime hour){
         bizHours.add(hour);

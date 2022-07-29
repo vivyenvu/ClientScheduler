@@ -76,7 +76,7 @@ public class mainMenuController implements Initializable {
         apptTableEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
         apptTableCustID.setCellValueFactory(new PropertyValueFactory<>("customerIDFK"));
         apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));
-        apptTableContactID.setCellValueFactory(new PropertyValueFactory<>("contactIDFK"));
+        apptTableContactID.setCellValueFactory(new PropertyValueFactory<>("contactName"));
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));

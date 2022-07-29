@@ -15,7 +15,9 @@ import java.time.ZoneId;
 public class ApptDaoImpl {
     public static ObservableList<Appointments> getAllAppts() throws SQLException {
         ObservableList<Appointments> allAppts = FXCollections.observableArrayList();
-        ResultSet result = Query.getRS("select * from appointments");
+        ResultSet result = Query.getRS("select * from appointments " +
+                                            "INNER JOIN contacts " +
+                                            "ON appointments.Contact_ID = contacts.Contact_ID ");
         while(result.next()){
             int apptID = result.getInt("Appointment_ID");
             String apptTitle = result.getString("Title");
@@ -27,7 +29,8 @@ public class ApptDaoImpl {
             int custID = result.getInt("Customer_ID");
             int userID = result.getInt("User_ID");
             int contactID = result.getInt("Contact_ID");
-            Appointments apptResult = new Appointments(apptID, apptTitle, apptDesc, apptLoc, apptType, apptStart, apptEnd, custID, userID, contactID);
+            String contactName = result.getString("Contact_Name");
+            Appointments apptResult = new Appointments(apptID, apptTitle, apptDesc, apptLoc, apptType, apptStart, apptEnd, custID, userID, contactID, contactName);
             allAppts.add(apptResult);
         }
         return allAppts;
