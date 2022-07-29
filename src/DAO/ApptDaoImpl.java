@@ -1,5 +1,6 @@
 package DAO;
 
+import helper.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
@@ -25,7 +26,9 @@ public class ApptDaoImpl {
             String apptLoc = result.getString("Location");
             String apptType = result.getString("Type");
             LocalDateTime apptStart = result.getTimestamp("Start").toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime();
+            apptStart = Util.UTCToSystem(apptStart);
             LocalDateTime apptEnd = result.getTimestamp("End").toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime(); //better than .toLocalDateTime()
+            apptEnd = Util.UTCToSystem(apptEnd);
             int custID = result.getInt("Customer_ID");
             int userID = result.getInt("User_ID");
             int contactID = result.getInt("Contact_ID");
