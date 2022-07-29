@@ -2,6 +2,7 @@ package controller;
 
 import DAO.*;
 import helper.Util;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -73,9 +74,9 @@ public class addApptController implements Initializable {
         if (selectedContact == null){
             errorMessages += "Please select a contact. \n";
         }
-        /*
+
         try{
-            if (startTime.isEqual(null)) {
+            if (startTime.equals(null)) {
             errorMessages += "Please select a start time. \n";
             }
         }
@@ -84,14 +85,14 @@ public class addApptController implements Initializable {
         }
 
         try{
-            if (endTime.isEqual(null)) {
+            if (endTime.equals(null)) {
                 errorMessages += "Please select an end time. \n";
             }
         }
         catch (NullPointerException e){
             errorMessages += "Please select an end time. \n";
         }
-*/
+
         // FIGURE OUT HOW TO VALIDATE BLANK LOCALTIME AFTER I POPULATE COMBOBXO WITH LOCALTIMES
 
         if (errorMessages != "") {
@@ -104,7 +105,7 @@ public class addApptController implements Initializable {
             LocalDateTime start = LocalDateTime.of(date, startTime);
             LocalDateTime end = LocalDateTime.of(date, endTime);
 
-            ApptDaoImpl.addAppt(title, desc, loc, type, start, end, custID, userID, contactID);
+            ApptDaoImpl.addAppt(title, desc, loc, type, start, end, custID, userID, contactID); //CHANGE STARTTIME
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -126,8 +127,14 @@ public class addApptController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<LocalTime> start = Appointments.getStartBizHours();
-        addApptStartTime.setItems(start);
+        ObservableList<LocalTime> startUTC = Appointments.getStartBizHours();
+        ObservableList<LocalTime> startLocal = FXCollections.observableArrayList();
+        for (LocalTime time : startUTC){
+            LocalTime local = time.plusHours(3);
+
+            startLocal.add(local);
+        }
+        addApptStartTime.setItems(startLocal);
         addApptStartTime.setVisibleRowCount(5);
 
         ObservableList<LocalTime> end = Appointments.getEndBizHours();

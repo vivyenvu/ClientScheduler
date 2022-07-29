@@ -2,7 +2,6 @@ package helper;
 
 import DAO.Query;
 import javafx.scene.control.Alert;
-import model.Countries;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -110,7 +109,7 @@ public class Util {
         return target;
     }
 
-    public LocalDateTime UTCToSystem(LocalDateTime utc){
+    public static LocalDateTime UTCToSystem(LocalDateTime utc){
         ZonedDateTime zonedUtc = utc.atZone(ZoneId.of("UTC"));
         ZonedDateTime zonedTarget = zonedUtc.withZoneSameInstant(ZoneId.systemDefault());
         LocalDateTime target = zonedTarget.toLocalDateTime();
