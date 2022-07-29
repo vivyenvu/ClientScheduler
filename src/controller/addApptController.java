@@ -111,7 +111,7 @@ public class addApptController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 900, 700);
+            Scene scene = new Scene(root, 1000, 700);
             stage.setTitle("Main Menu");
             stage.setScene(scene);
             stage.show();
@@ -121,7 +121,7 @@ public class addApptController implements Initializable {
     public void onAddApptCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 900, 700);
+        Scene scene = new Scene(root, 1000, 700);
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
