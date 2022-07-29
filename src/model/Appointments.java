@@ -73,11 +73,42 @@ public class Appointments {
     public static ObservableList<Appointments> getAllAppts() {
         return allAppointments;
     }
-    public static void addToAllAppts(Appointments add) {
-        allAppointments.add(add);
-    }
+
     public static void setAllAppts(ObservableList<Appointments> toSet){
         allAppointments = toSet;
+    }
+    public void setApptID(int id) {
+        apptID = id;
+    }
+    public void setTitle(String inputTitle){
+        title = inputTitle;
+    }
+    public void setDesc(String inputDesc){
+        desc = inputDesc;
+    }
+    public void setLocation(String inputLoc){
+        location = inputLoc;
+    }
+    public void setType(String inputType){
+        type = inputType;
+    }
+    public void setStart(LocalDateTime inputStart) {
+        start = inputStart;
+    }
+    public void setEnd(LocalDateTime inputEnd){
+        end = inputEnd;
+    }
+    public void setCustomerIDFK(int id){
+        customerIDFK = id;
+    }
+    public void setUserIDFK(int id){
+        userIDFK = id;
+    }
+    public void setContactIDFK(int id){
+        contactIDFK = id;
+    }
+    public void setContactName (String name){
+        contactName = name;
     }
     /*public static ObservableList<LocalTime> getBizHours(){
         ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
@@ -165,40 +196,5 @@ public class Appointments {
         end.add(LocalTime.of(2,00));
         return end;
     }
-    public void setApptID(int id) {
-        apptID = id;
-    }
-    public void setTitle(String inputTitle){
-        title = inputTitle;
-    }
-    public void setDesc(String inputDesc){
-        desc = inputDesc;
-    }
-    public void setLocation(String inputLoc){
-        location = inputLoc;
-    }
-    public void setType(String inputType){
-        type = inputType;
-    }
-    public void setStart(LocalDateTime inputStart) {
-        start = inputStart;
-    }
-    public void setEnd(LocalDateTime inputEnd){
-        end = inputEnd;
-    }
-    public void setCustomerIDFK(int id){
-        customerIDFK = id;
-    }
-    public void setUserIDFK(int id){
-        userIDFK = id;
-    }
-    public void setContactIDFK(int id){
-        contactIDFK = id;
-    }
-    public void setContactName (String name){
-        contactName = name;
-    }
-    /*public static void addBizHours(LocalTime hour){
-        bizHours.add(hour);
-    }*/
+
 }

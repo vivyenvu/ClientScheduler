@@ -84,21 +84,8 @@ public class Customers {
         divisionIDFK = id;
     }
 
-    public static void addToAllCustomers(Customers add) {
-        allCustomers.add(add);
-    }
-
     public static void setAllCustomers(ObservableList<Customers> toSet){
         allCustomers = toSet;
-    }
-
-    public static Customers lookupCustomer(int id){
-        for (Customers c : allCustomers){
-            if(c.getCustomerID() == id){
-                return c;
-            }
-        }
-        return null;
     }
 
     public static Appointments checkForAppts(int custID) {
