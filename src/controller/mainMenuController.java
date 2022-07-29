@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class mainMenuController implements Initializable {
-    public TableView customerTable;
+    public TableView <Customers> customerTable;
     public TableColumn customerTableID;
     public TableColumn customerTableName;
     public TableColumn customerTableAddress;
@@ -118,8 +118,9 @@ public class mainMenuController implements Initializable {
 
             Optional<ButtonType> result = alert.showAndWait();
 
-            Object forDeletion = customerTable.getSelectionModel().getSelectedItem();
-            int idForDeletion = Integer.parseInt(forDeletion.toString());
+            Customers forDeletion = customerTable.getSelectionModel().getSelectedItem();
+            int idForDeletion = forDeletion.getCustomerID();
+            //Integer.parseInt(forDeletion.toString());
 
             if (result.isPresent() && result.get() == ButtonType.OK){
                 CustomerDaoImpl.deleteCustomer(idForDeletion);
