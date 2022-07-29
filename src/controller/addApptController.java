@@ -43,8 +43,8 @@ public class addApptController implements Initializable {
         String loc = addApptLocation.getText();
         String type = addApptType.getText();
         LocalDate date = addApptDate.getValue();
-        LocalTime startTime = (LocalTime)addApptStartTime.getValue();
-        LocalTime endTime = (LocalTime)addApptEndTime.getValue();
+        LocalTime startTime = LocalTime.of(13, 00);//(LocalTime)addApptStartTime.getValue();
+        LocalTime endTime = LocalTime.of(14, 00);//(LocalTime)addApptEndTime.getValue();
         //String custID = (String) addApptCustomerID.getValue();
         //String userID = (String) addApptUserID.getValue();
         //String contactName =  (String) addApptContact.getValue();
@@ -96,33 +96,18 @@ public class addApptController implements Initializable {
         }
 */
         // FIGURE OUT HOW TO VALIDATE BLANK LOCALTIME AFTER I POPULATE COMBOBXO WITH LOCALTIMES
-        /*try {
-            int validatedCustID = Integer.parseInt(custID);
-        } catch (NumberFormatException e) {
-            errorMessages += "Customer ID is required. \n";
-        }
-        try {
-            int validatedUserID = Integer.parseInt(userID);
-        } catch (NumberFormatException e) {
-            errorMessages += "User ID is required. \n";
-        }
-        try {
-            int validatedContactID = Integer.parseInt(contactName);
-        } catch (NumberFormatException e) {
-            errorMessages += "Contact ID is required. \n";
-        }*/
 
         if (errorMessages != "") {
             Util.stringToAlert(errorMessages);
         }
         else {
-            /*int validatedCustID = Integer.parseInt(custID);
-            int validatedUserID = Integer.parseInt(userID);
-            int validatedContactID = Integer.parseInt(contactID);*/
+            int custID = selectedCust.getCustomerID();
+            int userID = selectedUser.getUserID();
+            int contactID = selectedContact.getContactID();
             LocalDateTime start = LocalDateTime.of(date, startTime);
             LocalDateTime end = LocalDateTime.of(date, endTime);
 
-            //ApptDaoImpl.addAppt(title, desc, loc, type, start, end, validatedCustID, validatedUserID, validatedContactID);
+            ApptDaoImpl.addAppt(title, desc, loc, type, start, end, custID, userID, contactID);
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
