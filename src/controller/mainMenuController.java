@@ -120,7 +120,6 @@ public class mainMenuController implements Initializable {
 
             Customers forDeletion = customerTable.getSelectionModel().getSelectedItem();
             int idForDeletion = forDeletion.getCustomerID();
-            //Integer.parseInt(forDeletion.toString());
 
             if (result.isPresent() && result.get() == ButtonType.OK){
                 if(Customers.checkForAppts(idForDeletion) != null){
@@ -149,21 +148,25 @@ public class mainMenuController implements Initializable {
     }
 
     public void onApptUpdateBtn(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/view/updateAppt.fxml"));
-        loader.load();
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/updateAppt.fxml"));
+            loader.load();
 
-        /* on old project
-        modPart = (Part) mainPartTable.getSelectionModel().getSelectedItem();
-        modPartIndex = getAllParts().indexOf(modPart);
-        FIGURE OUT WHAT GLOBAL VARIABLES I NEED TO UPDATE CUSTOMER INFO ON NEXT SCREEN
-         */
+            Appointments updateAppt = allApptTable.getSelectionModel().getSelectedItem();
 
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Parent scene = loader.getRoot();
-        stage.setTitle("Update Appointment");
-        stage.setScene(new Scene(scene));
-        stage.show();
+            updateApptController updateApptCtrl = loader.getController();
+            updateApptCtrl.sendAppointment(updateAppt);
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setTitle("Update Appointment");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch (NullPointerException | SQLException e) {
+            Util.stringToAlert("Please select an appointment. ");
+        }
     }
 
     public void onApptDeleteBtn(ActionEvent actionEvent) {
