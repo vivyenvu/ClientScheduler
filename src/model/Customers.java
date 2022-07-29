@@ -11,6 +11,7 @@ public class Customers {
     private String phone;
     private String country;
     private int divisionIDFK;
+    private ObservableList<Appointments> associatedAppts = FXCollections.observableArrayList();
     //private static ObservableList<Customers> allCustomers = FXCollections.observableArrayList(); //maybe I don't need this?
 
     public Customers(int customerID, String customerName, String address, String postalCode, String phone, String country, int divisionIDFK) {
@@ -21,6 +22,7 @@ public class Customers {
         this.phone = phone;
         this.country = country;
         this.divisionIDFK = divisionIDFK;
+        this.associatedAppts = FXCollections.observableArrayList();
     }
 
     public int getCustomerID() {

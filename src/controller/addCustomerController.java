@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Countries;
 import model.FirstClassDivisions;
 
@@ -32,6 +33,7 @@ public class addCustomerController implements Initializable {
     public TextField addCustomerPhone;
     public ComboBox addCustomerFirstDiv;
     public ComboBox <Countries> addCustomerCountry;
+    private ObservableList<Appointments> associatedAppts = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
