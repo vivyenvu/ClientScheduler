@@ -26,13 +26,13 @@
         </Label>
         <TableView fx:id="customerTable" layoutX="50.0" layoutY="89.0" prefHeight="200.0" prefWidth="900.0">
             <columns>
-                <TableColumn fx:id="customerTableID" prefWidth="75.0" text="Customer ID" />
-                <TableColumn fx:id="customerTableName" prefWidth="112.0" text="Name" />
-            <TableColumn fx:id="customerTableAddress" prefWidth="183.0" text="Address" />
-            <TableColumn fx:id="customerTablePostal" prefWidth="102.0" text="Postal Code" />
-            <TableColumn fx:id="customerTablePhone" prefWidth="111.0" text="Phone Number" />
-            <TableColumn fx:id="customerTableCountry" prefWidth="97.0" text="Country" />
-            <TableColumn fx:id="customerTableFirst" prefWidth="119.0" text="First Level Division" />
+                <TableColumn fx:id="customerTableID" prefWidth="91.0" text="Customer ID" />
+                <TableColumn fx:id="customerTableName" prefWidth="131.0" text="Name" />
+            <TableColumn fx:id="customerTableAddress" prefWidth="195.0" text="Address" />
+            <TableColumn fx:id="customerTablePostal" prefWidth="100.0" text="Postal Code" />
+            <TableColumn fx:id="customerTablePhone" prefWidth="160.0" text="Phone Number" />
+            <TableColumn fx:id="customerTableCountry" prefWidth="95.0" text="Country" />
+            <TableColumn fx:id="customerTableFirst" prefWidth="127.0" text="First Level Division" />
             </columns>
         </TableView>
         <TableView fx:id="allApptTable" layoutX="50.0" layoutY="408.0" prefHeight="200.0" prefWidth="900.0">
