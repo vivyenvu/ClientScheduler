@@ -12,7 +12,7 @@ public class Customers {
     private String country;
     private int divisionIDFK;
     private ObservableList<Appointments> associatedAppts = FXCollections.observableArrayList();
-    //private static ObservableList<Customers> allCustomers = FXCollections.observableArrayList(); //maybe I don't need this?
+    private static ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
 
     public Customers(int customerID, String customerName, String address, String postalCode, String phone, String country, int divisionIDFK) {
         this.customerID = customerID;
@@ -53,6 +53,14 @@ public class Customers {
         return divisionIDFK;
     }
 
+    public ObservableList<Appointments> getAssociatedAppts() {
+        return associatedAppts;
+    }
+
+    public ObservableList<Customers> getAllCustomers() {
+        return allCustomers;
+    }
+
     public void setCustomerID(int id) {
         customerID = id;
     }
@@ -81,6 +89,31 @@ public class Customers {
         divisionIDFK = id;
     }
 
+    public void addAssociatedAppts (Appointments addAppt) {
+        associatedAppts.add(addAppt);
+    }
+
+    public static void addToAllCustomers(Customers add) {
+        allCustomers.add(add);
+    }
+
+    public static Customers lookupCustomer(int id){
+        for (Customers c : allCustomers){
+            if(c.getCustomerID() == id){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public Appointments lookupAppt(int id) {
+        for (Appointments appt : this.getAssociatedAppts()){
+            if (appt.getApptID() == id) {
+                return appt;
+            }
+        }
+        return null;
+    }
     @Override
     public String toString(){
         return Integer.toString(getCustomerID());

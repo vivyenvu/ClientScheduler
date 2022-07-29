@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class CustomerDaoImpl {
     public static ObservableList<Customers> getAllCustomers() throws SQLException {
-        ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
+        ObservableList<Customers> loadCustomers = FXCollections.observableArrayList();
         ResultSet result = Query.getRS("select * from customers " +
                                             "INNER JOIN first_level_divisions " +
                                             "ON customers.Division_ID = first_level_divisions.Division_ID " +
@@ -27,9 +27,10 @@ public class CustomerDaoImpl {
             int custDivID = result.getInt("Division_ID");
             String custCountry = result.getString("Country");
             Customers custResult = new Customers(custID, custName, custAddress, custPostal, custPhone, custCountry, custDivID);
-            allCustomers.add(custResult);
+            loadCustomers.add(custResult);
+            Customers.addToAllCustomers(custResult);
         }
-        return allCustomers;
+        return loadCustomers;
     }
 
     public static void addCustomer(String custName, String custAddress, String custPostal, String custPhone, int custDivID) throws SQLException {
