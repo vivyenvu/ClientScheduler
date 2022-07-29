@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Customers;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class mainMenuController implements Initializable {
     public TableColumn customerTablePhone;
     public TableColumn customerTableCountry;
     public TableColumn customerTableFirst;
-    public TableView allApptTable;
+    public TableView <Appointments> allApptTable;
     public TableColumn apptTableID;
     public TableColumn apptTableTitle;
     public TableColumn apptTableDesc;
@@ -160,6 +161,28 @@ public class mainMenuController implements Initializable {
     }
 
     public void onApptDeleteBtn(ActionEvent actionEvent) {
+        try{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete appointment?");
+            alert.setContentText("Are you sure you want to delete this appointment? ");
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            Appointments forDeletion = allApptTable.getSelectionModel().getSelectedItem();
+            int idForDeletion = forDeletion.getApptID();
+                    ///Integer.parseInt(forDeletion.toString());
+            String apptType = forDeletion.getType();
+
+            if (result.isPresent() && result.get() == ButtonType.OK){
+                ApptDaoImpl.deleteAppt(idForDeletion);
+                allApptTable.setItems(ApptDaoImpl.getAllAppts());
+                Util.stringToAlert("Appointment with ID "+idForDeletion+ " and type "+apptType+" has been deleted.");
+            }
+
+        }
+        catch(NullPointerException | SQLException e){
+            Util.stringToAlert("Can't delete because no customer was selected. ");
+        }
     }
 
     public void onWeekViewBtn(ActionEvent actionEvent) {
