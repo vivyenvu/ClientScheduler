@@ -70,19 +70,91 @@ public class Appointments {
     public String getContactName(){
         return contactName;
     }
-    public static ObservableList<LocalTime> getBizHours(){
+    /*public static ObservableList<LocalTime> getBizHours(){
         ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
         //bizHours.add(LocalTime.of(13,00));
-        LocalTime end = LocalTime.of(23, 00);//Includes 10pm, so make sure to remove 30 min for start time, or validate that start<end
+        LocalTime end = LocalTime.of(23, 30);//Includes 10pm, so make sure to remove 30 min for start time, or validate that start<end
         LocalTime toAdd = LocalTime.of(12, 00);
 
         while (toAdd.isBefore(end)){
             bizHours.add(toAdd);
-            toAdd.plusMinutes(30);
+            toAdd = toAdd.plusMinutes(30);
         }
+        end = LocalTime.of(2,00);
+        toAdd = LocalTime.of(0,00);
+        while (toAdd.isBefore(end)){
+            bizHours.add(toAdd);
+            toAdd = toAdd.plusMinutes(30);
+        }
+
         return bizHours;
     //NEED TO CONVERT TO UTC and then to local time before letting users choose
         //Did this manually 8 est -> 12 utc. 22 est -> 2 est
+    }*/
+    public static ObservableList<LocalTime> getStartBizHours(){
+        ObservableList<LocalTime> start = FXCollections.observableArrayList();
+        start.add(LocalTime.of(12,00));
+        start.add(LocalTime.of(12,30));
+        start.add(LocalTime.of(13,00));
+        start.add(LocalTime.of(13,30));
+        start.add(LocalTime.of(14,00));
+        start.add(LocalTime.of(14,30));
+        start.add(LocalTime.of(15,00));
+        start.add(LocalTime.of(15,30));
+        start.add(LocalTime.of(16,00));
+        start.add(LocalTime.of(16,30));
+        start.add(LocalTime.of(17,00));
+        start.add(LocalTime.of(17,30));
+        start.add(LocalTime.of(18,00));
+        start.add(LocalTime.of(18,30));
+        start.add(LocalTime.of(19,00));
+        start.add(LocalTime.of(19,30));
+        start.add(LocalTime.of(20,00));
+        start.add(LocalTime.of(20,30));
+        start.add(LocalTime.of(21,00));
+        start.add(LocalTime.of(21,30));
+        start.add(LocalTime.of(22,00));
+        start.add(LocalTime.of(22,30));
+        start.add(LocalTime.of(23,00));
+        start.add(LocalTime.of(23,30));
+        start.add(LocalTime.of(00,00));
+        start.add(LocalTime.of(00,30));
+        start.add(LocalTime.of(1,00));
+        start.add(LocalTime.of(1,30));
+        return start;
+    }
+
+    public static ObservableList<LocalTime> getEndBizHours(){
+        ObservableList<LocalTime> end = FXCollections.observableArrayList();
+        end.add(LocalTime.of(12,30));
+        end.add(LocalTime.of(13,00));
+        end.add(LocalTime.of(13,30));
+        end.add(LocalTime.of(14,00));
+        end.add(LocalTime.of(14,30));
+        end.add(LocalTime.of(15,00));
+        end.add(LocalTime.of(15,30));
+        end.add(LocalTime.of(16,00));
+        end.add(LocalTime.of(16,30));
+        end.add(LocalTime.of(17,00));
+        end.add(LocalTime.of(17,30));
+        end.add(LocalTime.of(18,00));
+        end.add(LocalTime.of(18,30));
+        end.add(LocalTime.of(19,00));
+        end.add(LocalTime.of(19,30));
+        end.add(LocalTime.of(20,00));
+        end.add(LocalTime.of(20,30));
+        end.add(LocalTime.of(21,00));
+        end.add(LocalTime.of(21,30));
+        end.add(LocalTime.of(22,00));
+        end.add(LocalTime.of(22,30));
+        end.add(LocalTime.of(23,00));
+        end.add(LocalTime.of(23,30));
+        end.add(LocalTime.of(00,00));
+        end.add(LocalTime.of(00,30));
+        end.add(LocalTime.of(1,00));
+        end.add(LocalTime.of(1,30));
+        end.add(LocalTime.of(2,00));
+        return end;
     }
     public void setApptID(int id) {
         apptID = id;

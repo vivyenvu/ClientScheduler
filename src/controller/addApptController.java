@@ -43,11 +43,8 @@ public class addApptController implements Initializable {
         String loc = addApptLocation.getText();
         String type = addApptType.getText();
         LocalDate date = addApptDate.getValue();
-        LocalTime startTime = LocalTime.of(13, 00);//(LocalTime)addApptStartTime.getValue();
-        LocalTime endTime = LocalTime.of(14, 00);//(LocalTime)addApptEndTime.getValue();
-        //String custID = (String) addApptCustomerID.getValue();
-        //String userID = (String) addApptUserID.getValue();
-        //String contactName =  (String) addApptContact.getValue();
+        LocalTime startTime = addApptStartTime.getValue();
+        LocalTime endTime = addApptEndTime.getValue();
         Customers selectedCust = addApptCustomerID.getSelectionModel().getSelectedItem();
         Users selectedUser = addApptUserID.getSelectionModel().getSelectedItem();
         Contacts selectedContact = addApptContact.getSelectionModel().getSelectedItem();
@@ -129,9 +126,13 @@ public class addApptController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<LocalTime> times = Appointments.getBizHours();
-        addApptStartTime.setItems(times);
+        ObservableList<LocalTime> start = Appointments.getStartBizHours();
+        addApptStartTime.setItems(start);
         addApptStartTime.setVisibleRowCount(5);
+
+        ObservableList<LocalTime> end = Appointments.getEndBizHours();
+        addApptEndTime.setItems(end);
+        addApptEndTime.setVisibleRowCount(5);
 
         ObservableList<Contacts> contactDisplay = null;
         try {
