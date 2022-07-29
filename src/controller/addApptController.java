@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.ApptDaoImpl;
+import DAO.ContactDaoImpl;
 import DAO.CountryDaoImpl;
 import DAO.CustomerDaoImpl;
 import helper.Util;
@@ -15,8 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Appointments;
-import model.Countries;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,12 +31,12 @@ public class addApptController implements Initializable {
     public TextField addApptTitle;
     public TextField addApptDescription;
     public TextField addApptLocation;
-    public ComboBox addApptContact;
+    public ComboBox <Contacts> addApptContact;
     public DatePicker addApptDate;
     public ComboBox addApptStartTime;
     public ComboBox addApptEndTime;
-    public ComboBox addApptCustomerID;
-    public ComboBox addApptUserID;
+    public ComboBox <Customers> addApptCustomerID;
+    public ComboBox <Users> addApptUserID;
     public TextField addApptType;
 
     public void onAddApptSaveBtn(ActionEvent actionEvent) throws IOException, SQLException {
@@ -48,9 +48,12 @@ public class addApptController implements Initializable {
         LocalDate date = addApptDate.getValue();
         LocalTime startTime = (LocalTime)addApptStartTime.getValue();
         LocalTime endTime = (LocalTime)addApptEndTime.getValue();
-        String custID = (String) addApptCustomerID.getValue();
-        String userID = (String) addApptUserID.getValue();
-        String contactID = (String) addApptContact.getValue();
+        //String custID = (String) addApptCustomerID.getValue();
+        //String userID = (String) addApptUserID.getValue();
+        //String contactName =  (String) addApptContact.getValue();
+        Customers selectedCust = addApptCustomerID.getSelectionModel().getSelectedItem();
+        Users selectedUser = addApptUserID.getSelectionModel().getSelectedItem();
+        Contacts selectedContact = addApptContact.getSelectionModel().getSelectedItem();
 
         if (title.isEmpty()) {
             errorMessages += "Title is required. \n";
@@ -66,6 +69,15 @@ public class addApptController implements Initializable {
         }
         if (date == null){
             errorMessages += "Please select a date. \n";
+        }
+        if (selectedCust == null){
+            errorMessages += "Please select a Customer ID. \n";
+        }
+        if (selectedUser == null){
+            errorMessages += "Please select a User ID. \n";
+        }
+        if (selectedContact == null){
+            errorMessages += "Please select a contact. \n";
         }
         /*
         try{
@@ -87,7 +99,7 @@ public class addApptController implements Initializable {
         }
 */
         // FIGURE OUT HOW TO VALIDATE BLANK LOCALTIME AFTER I POPULATE COMBOBXO WITH LOCALTIMES
-        try {
+        /*try {
             int validatedCustID = Integer.parseInt(custID);
         } catch (NumberFormatException e) {
             errorMessages += "Customer ID is required. \n";
@@ -98,22 +110,22 @@ public class addApptController implements Initializable {
             errorMessages += "User ID is required. \n";
         }
         try {
-            int validatedContactID = Integer.parseInt(contactID);
+            int validatedContactID = Integer.parseInt(contactName);
         } catch (NumberFormatException e) {
             errorMessages += "Contact ID is required. \n";
-        }
+        }*/
 
         if (errorMessages != "") {
             Util.stringToAlert(errorMessages);
         }
         else {
-            int validatedCustID = Integer.parseInt(custID);
+            /*int validatedCustID = Integer.parseInt(custID);
             int validatedUserID = Integer.parseInt(userID);
-            int validatedContactID = Integer.parseInt(contactID);
+            int validatedContactID = Integer.parseInt(contactID);*/
             LocalDateTime start = LocalDateTime.of(date, startTime);
             LocalDateTime end = LocalDateTime.of(date, endTime);
 
-            ApptDaoImpl.addAppt(title, desc, loc, type, start, end, validatedCustID, validatedUserID, validatedContactID);
+            //ApptDaoImpl.addAppt(title, desc, loc, type, start, end, validatedCustID, validatedUserID, validatedContactID);
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -135,8 +147,17 @@ public class addApptController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<LocalTime> times = Appointments.getBizHours();
+        /*ObservableList<LocalTime> times = Appointments.getBizHours();
         addApptStartTime.setItems(times);
-        addApptStartTime.setVisibleRowCount(5);
+        addApptStartTime.setVisibleRowCount(5);*/
+        ObservableList<Contacts> contactNames = null;
+        try {
+            contactNames = ContactDaoImpl.getAllContacts();
+            addApptContact.setItems(contactNames);
+            addApptContact.setVisibleRowCount(5);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }

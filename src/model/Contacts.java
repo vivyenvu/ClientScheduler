@@ -34,4 +34,9 @@ public class Contacts {
     public void setEmail(String emailAddress) {
         email = emailAddress;
     }
+
+    @Override
+    public String toString(){
+        return getContactName();
+    }
 }
