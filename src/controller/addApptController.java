@@ -61,6 +61,9 @@ public class addApptController implements Initializable {
         if (loc.isEmpty()) {
             errorMessages += "Location is required. \n";
         }
+        if (selectedContact == null){
+            errorMessages += "Please select a contact. \n";
+        }
         if (type.isEmpty()) {
             errorMessages += "Type is required. \n";
         }
@@ -72,9 +75,6 @@ public class addApptController implements Initializable {
         }
         if (selectedUser == null){
             errorMessages += "Please select a User ID. \n";
-        }
-        if (selectedContact == null){
-            errorMessages += "Please select a contact. \n";
         }
 
         try{
@@ -94,8 +94,14 @@ public class addApptController implements Initializable {
         catch (NullPointerException e){
             errorMessages += "Please select an end time. \n";
         }
-
-        // FIGURE OUT HOW TO VALIDATE BLANK LOCALTIME AFTER I POPULATE COMBOBXO WITH LOCALTIMES
+        try{
+            if (startTime.isAfter(endTime) || startTime.equals(endTime)){
+                errorMessages += "Start time needs to come before end time. \n";
+            }
+        }
+        catch (NullPointerException e){
+            System.out.println ("Need to select a start and end time. ");
+        }
 
         if (errorMessages != "") {
             Util.stringToAlert(errorMessages);
