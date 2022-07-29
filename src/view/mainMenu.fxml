@@ -46,7 +46,7 @@
             <TableColumn fx:id="apptTableEnd" prefWidth="137.0" text="End" />
             <TableColumn fx:id="apptTableCustID" prefWidth="78.0" text="Customer ID" />
             <TableColumn fx:id="apptTableUserID" prefWidth="48.0" text="User ID" />
-            <TableColumn fx:id="apptTableContactID" prefWidth="68.0" text="Contact ID" />
+            <TableColumn fx:id="apptTableContactID" prefWidth="68.0" text="Contact" />
             </columns>
         </TableView>
         <RadioButton layoutX="725.0" layoutY="373.0" mnemonicParsing="false" onAction="#onWeekViewBtn" text="Week">
