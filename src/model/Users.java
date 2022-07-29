@@ -52,4 +52,9 @@ public class Users {
     public void setPassword (String pw) {
         password = pw;
     }
+
+    @Override
+    public String toString(){
+        return Integer.toString(getUserID());
+    }
 }

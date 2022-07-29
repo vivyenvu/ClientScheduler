@@ -1,9 +1,6 @@
 package controller;
 
-import DAO.ApptDaoImpl;
-import DAO.ContactDaoImpl;
-import DAO.CountryDaoImpl;
-import DAO.CustomerDaoImpl;
+import DAO.*;
 import helper.Util;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -167,6 +164,15 @@ public class addApptController implements Initializable {
             addApptCustomerID.setVisibleRowCount(5);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+
+        ObservableList<Users> userDisplay = null;
+        try {
+            userDisplay = UserDaoImpl.getAllUsers();
+            addApptUserID.setItems(userDisplay);
+            addApptUserID.setVisibleRowCount(5);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
