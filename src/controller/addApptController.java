@@ -22,7 +22,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class addApptController implements Initializable {
     public TextField addApptID;
@@ -102,10 +104,10 @@ public class addApptController implements Initializable {
             int custID = selectedCust.getCustomerID();
             int userID = selectedUser.getUserID();
             int contactID = selectedContact.getContactID();
-            LocalDateTime start = LocalDateTime.of(date, startTime);
-            LocalDateTime end = LocalDateTime.of(date, endTime);
+            LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
+            LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
 
-            ApptDaoImpl.addAppt(title, desc, loc, type, start, end, custID, userID, contactID); //CHANGE STARTTIME
+            ApptDaoImpl.addAppt(title, desc, loc, type, start, end, custID, userID, contactID);
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -127,20 +129,36 @@ public class addApptController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //calculate time offset between system timezone and utc in hours
+        ZoneId currentZone = ZoneId.systemDefault();
+        System.out.println(currentZone);
+        long now = System.currentTimeMillis();
+        long diff = TimeZone.getTimeZone("UTC").getOffset(now) - TimeZone.getTimeZone(currentZone).getOffset(now);
+        diff = diff/3600000; // turns milliseconds into hours
+
+        //applies offset to start time and populates combobox
         ObservableList<LocalTime> startUTC = Appointments.getStartBizHours();
         ObservableList<LocalTime> startLocal = FXCollections.observableArrayList();
-        for (LocalTime time : startUTC){
-            LocalTime local = time.plusHours(3);
 
+        for (LocalTime time : startUTC){
+            LocalTime local = time.minusHours(diff);
             startLocal.add(local);
         }
         addApptStartTime.setItems(startLocal);
         addApptStartTime.setVisibleRowCount(5);
 
-        ObservableList<LocalTime> end = Appointments.getEndBizHours();
-        addApptEndTime.setItems(end);
+        //applies offset to end time and populates combobox
+        ObservableList<LocalTime> endUTC = Appointments.getEndBizHours();
+        ObservableList<LocalTime> endLocal = FXCollections.observableArrayList();
+
+        for (LocalTime time : endUTC){
+            LocalTime local = time.minusHours(diff);
+            endLocal.add(local);
+        }
+        addApptEndTime.setItems(endLocal);
         addApptEndTime.setVisibleRowCount(5);
 
+        //populates Contacts combobox
         ObservableList<Contacts> contactDisplay = null;
         try {
             contactDisplay = ContactDaoImpl.getAllContacts();
@@ -150,6 +168,7 @@ public class addApptController implements Initializable {
             throwables.printStackTrace();
         }
 
+        //populates Customer ID combobox
         ObservableList<Customers> customerDisplay = null;
         try {
             customerDisplay = CustomerDaoImpl.getAllCustomers();
@@ -159,6 +178,7 @@ public class addApptController implements Initializable {
             throwables.printStackTrace();
         }
 
+        //populates Contacts ID combobox
         ObservableList<Users> userDisplay = null;
         try {
             userDisplay = UserDaoImpl.getAllUsers();

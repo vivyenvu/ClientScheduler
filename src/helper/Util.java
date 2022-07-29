@@ -101,7 +101,7 @@ public class Util {
 
         return countryName;
     }
-    public LocalDateTime systemToUTC(LocalDateTime origin){
+    public static LocalDateTime systemToUTC(LocalDateTime origin){
         ZonedDateTime zonedOrigin = origin.atZone(ZoneId.systemDefault());
         ZonedDateTime zonedTarget = zonedOrigin.withZoneSameInstant(ZoneId.of("UTC"));
         LocalDateTime target = zonedTarget.toLocalDateTime();
