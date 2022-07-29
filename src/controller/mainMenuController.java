@@ -42,7 +42,7 @@ public class mainMenuController implements Initializable {
     public TableColumn apptTableEnd;
     public TableColumn apptTableCustID;
     public TableColumn apptTableUserID;
-    public TableColumn apptTableContactID;
+    public TableColumn apptTableContact;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,12 +71,12 @@ public class mainMenuController implements Initializable {
         apptTableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         apptTableDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
         apptTableLoc.setCellValueFactory(new PropertyValueFactory<>("location"));
+        apptTableContact.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         apptTableType.setCellValueFactory(new PropertyValueFactory<>("type"));
         apptTableStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         apptTableEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
         apptTableCustID.setCellValueFactory(new PropertyValueFactory<>("customerIDFK"));
         apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));
-        apptTableContactID.setCellValueFactory(new PropertyValueFactory<>("contactName"));
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));

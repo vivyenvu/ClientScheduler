@@ -38,15 +38,15 @@
         <TableView fx:id="allApptTable" layoutX="50.0" layoutY="408.0" prefHeight="200.0" prefWidth="900.0">
             <columns>
                 <TableColumn fx:id="apptTableID" prefWidth="59.0" text="Appt ID" />
-                <TableColumn fx:id="apptTableTitle" prefWidth="67.0" text="Title" />
-            <TableColumn fx:id="apptTableDesc" prefWidth="79.0" text="Description" />
-            <TableColumn fx:id="apptTableLoc" prefWidth="62.0" text="Location" />
-            <TableColumn fx:id="apptTableType" prefWidth="71.0" text="Type" />
-            <TableColumn fx:id="apptTableStart" prefWidth="143.0" text="Start" />
-            <TableColumn fx:id="apptTableEnd" prefWidth="143.0" text="End" />
-            <TableColumn fx:id="apptTableCustID" prefWidth="77.0" text="Customer ID" />
-            <TableColumn fx:id="apptTableUserID" prefWidth="49.0" text="User ID" />
-            <TableColumn fx:id="apptTableContactID" prefWidth="149.0" text="Contact" />
+                <TableColumn fx:id="apptTableTitle" prefWidth="73.0" text="Title" />
+            <TableColumn fx:id="apptTableDesc" prefWidth="96.0" text="Description" />
+            <TableColumn fx:id="apptTableLoc" prefWidth="100.0" text="Location" />
+            <TableColumn fx:id="apptTableContact" prefWidth="105.0" text="Contact" />
+            <TableColumn fx:id="apptTableType" prefWidth="105.0" text="Type" />
+            <TableColumn fx:id="apptTableStart" prefWidth="123.0" text="Start" />
+            <TableColumn fx:id="apptTableEnd" prefWidth="106.0" text="End" />
+            <TableColumn fx:id="apptTableCustID" prefWidth="76.0" text="Customer ID" />
+            <TableColumn fx:id="apptTableUserID" prefWidth="56.0" text="User ID" />
             </columns>
         </TableView>
         <RadioButton layoutX="825.0" layoutY="373.0" mnemonicParsing="false" onAction="#onWeekViewBtn" text="Week">
