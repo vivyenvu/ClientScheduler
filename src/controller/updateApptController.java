@@ -1,6 +1,9 @@
 package controller;
 
+import DAO.ContactDaoImpl;
+import DAO.CustomerDaoImpl;
 import DAO.Query;
+import DAO.UserDaoImpl;
 import helper.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,9 +24,11 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
-public class updateApptController{
+public class updateApptController implements Initializable{
     public TextField updateApptTitle;
     public TextField updateApptDescription;
     public TextField updateApptLocation;
@@ -47,12 +52,17 @@ public class updateApptController{
         stage.show();
     }
     public void sendAppointment(Appointments appt) throws SQLException {
-        updateCustomerID.setText(String.valueOf(customer.getCustomerID()));
-        updateCustomerName.setText(customer.getCustomerName());
-        updateCustomerAddress.setText(customer.getAddress());
-        updateCustomerPostal.setText(customer.getPostalCode());
-        updateCustomerPhone.setText(customer.getPhone());
-
+        updateApptTitle.setText(appt.getTitle());
+        updateApptDescription.setText(appt.getDesc());
+        updateApptLocation.setText(appt.getLocation());
+        updateApptContact.getSelectionModel().select(appt.getContactIDFK());//NEEDS A CONTACT NAME
+        updateApptType.setText(appt.getType());
+        updateApptDate.equals(appt.getStart().getDayOfWeek());//need to parse this from LocalDateTime start INSTEAD OF DAY OF WEEK PLACEHOLDER
+        updateApptStartTime.getSelectionModel().select(appt.getStart().toLocalTime());
+        updateApptEndTime.getSelectionModel().select(appt.getEnd().toLocalTime());
+        updateApptCustomerID.getSelectionModel().select(appt.getCustomerIDFK());
+        updateApptUserID.getSelectionModel().select(appt.getUserIDFK());
+/*
         //set Country combobox
         int divID = customer.getDivisionIDFK();
         Countries selectedCountry = new Countries (divID, Util.divIDToCountry(divID));
@@ -71,6 +81,68 @@ public class updateApptController{
 
         //set First Division combobox
         FirstClassDivisions selectedDiv = new FirstClassDivisions(divID, Util.firstIDtoDiv(divID), selectedCountry.getCountryID());
-        updateCustomerFirstDiv.getSelectionModel().select(selectedDiv.getDivision());
+        updateCustomerFirstDiv.getSelectionModel().select(selectedDiv.getDivision());*/
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //calculate time offset between system timezone and utc in hours
+        ZoneId currentZone = ZoneId.systemDefault();
+        System.out.println(currentZone);
+        long now = System.currentTimeMillis();
+        long diff = TimeZone.getTimeZone("UTC").getOffset(now) - TimeZone.getTimeZone(currentZone).getOffset(now);
+        diff = diff/3600000; // turns milliseconds into hours
+
+        //applies offset to start time and populates combobox
+        ObservableList<LocalTime> startUTC = Appointments.getStartBizHours();
+        ObservableList<LocalTime> startLocal = FXCollections.observableArrayList();
+
+        for (LocalTime time : startUTC){
+            LocalTime local = time.minusHours(diff);
+            startLocal.add(local);
+        }
+        updateApptStartTime.setItems(startLocal);
+        updateApptStartTime.setVisibleRowCount(5);
+
+        //applies offset to end time and populates combobox
+        ObservableList<LocalTime> endUTC = Appointments.getEndBizHours();
+        ObservableList<LocalTime> endLocal = FXCollections.observableArrayList();
+
+        for (LocalTime time : endUTC){
+            LocalTime local = time.minusHours(diff);
+            endLocal.add(local);
+        }
+        updateApptEndTime.setItems(endLocal);
+        updateApptEndTime.setVisibleRowCount(5);
+
+        //populates Contacts combobox
+        ObservableList<Contacts> contactDisplay = null;
+        try {
+            contactDisplay = ContactDaoImpl.getAllContacts();
+            updateApptContact.setItems(contactDisplay);
+            updateApptContact.setVisibleRowCount(5);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        //populates Customer ID combobox
+        ObservableList<Customers> customerDisplay = null;
+        try {
+            customerDisplay = CustomerDaoImpl.getAllCustomers();
+            updateApptCustomerID.setItems(customerDisplay);
+            updateApptCustomerID.setVisibleRowCount(5);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        //populates Contacts ID combobox
+        ObservableList<Users> userDisplay = null;
+        try {
+            userDisplay = UserDaoImpl.getAllUsers();
+            updateApptUserID.setItems(userDisplay);
+            updateApptUserID.setVisibleRowCount(5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
