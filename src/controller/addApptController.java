@@ -150,14 +150,23 @@ public class addApptController implements Initializable {
         /*ObservableList<LocalTime> times = Appointments.getBizHours();
         addApptStartTime.setItems(times);
         addApptStartTime.setVisibleRowCount(5);*/
-        ObservableList<Contacts> contactNames = null;
+
+        ObservableList<Contacts> contactDisplay = null;
         try {
-            contactNames = ContactDaoImpl.getAllContacts();
-            addApptContact.setItems(contactNames);
+            contactDisplay = ContactDaoImpl.getAllContacts();
+            addApptContact.setItems(contactDisplay);
             addApptContact.setVisibleRowCount(5);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
+        ObservableList<Customers> customerDisplay = null;
+        try {
+            customerDisplay = CustomerDaoImpl.getAllCustomers();
+            addApptCustomerID.setItems(customerDisplay);
+            addApptCustomerID.setVisibleRowCount(5);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
