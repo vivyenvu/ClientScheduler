@@ -30,8 +30,8 @@ public class addApptController implements Initializable {
     public TextField addApptLocation;
     public ComboBox <Contacts> addApptContact;
     public DatePicker addApptDate;
-    public ComboBox addApptStartTime;
-    public ComboBox addApptEndTime;
+    public ComboBox <LocalTime> addApptStartTime;
+    public ComboBox <LocalTime> addApptEndTime;
     public ComboBox <Customers> addApptCustomerID;
     public ComboBox <Users> addApptUserID;
     public TextField addApptType;
@@ -129,9 +129,9 @@ public class addApptController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*ObservableList<LocalTime> times = Appointments.getBizHours();
+        ObservableList<LocalTime> times = Appointments.getBizHours();
         addApptStartTime.setItems(times);
-        addApptStartTime.setVisibleRowCount(5);*/
+        addApptStartTime.setVisibleRowCount(5);
 
         ObservableList<Contacts> contactDisplay = null;
         try {

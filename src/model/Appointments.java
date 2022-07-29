@@ -72,7 +72,8 @@ public class Appointments {
     }
     public static ObservableList<LocalTime> getBizHours(){
         ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
-        LocalTime end = LocalTime.of(2, 01);//Includes 10pm, so make sure to remove 30 min for start time, or validate that start<end
+        //bizHours.add(LocalTime.of(13,00));
+        LocalTime end = LocalTime.of(23, 00);//Includes 10pm, so make sure to remove 30 min for start time, or validate that start<end
         LocalTime toAdd = LocalTime.of(12, 00);
 
         while (toAdd.isBefore(end)){
