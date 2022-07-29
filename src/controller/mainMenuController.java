@@ -133,7 +133,6 @@ public class mainMenuController implements Initializable {
                     Util.stringToAlert("Customer with ID " + idForDeletion + " has been deleted.");
                 }
             }
-
         }
         catch(NullPointerException e){
             Util.stringToAlert("Can't delete because no customer was selected. ");
