@@ -60,4 +60,16 @@ public class ApptDaoImpl {
         ps.setInt(10, contactIDFK);
         ps.execute();
     }
+
+    public static void deleteAppt(int id) throws SQLException {
+        //delete from appointments THEN delete from customer table
+        try{
+            PreparedStatement psa = Query.getPS("DELETE FROM appointments WHERE Appointment_ID = ?");
+            psa.setInt(1,id);
+            psa.execute();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

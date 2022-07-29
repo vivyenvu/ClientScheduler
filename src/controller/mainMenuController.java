@@ -176,7 +176,7 @@ public class mainMenuController implements Initializable {
             if (result.isPresent() && result.get() == ButtonType.OK){
                 ApptDaoImpl.deleteAppt(idForDeletion);
                 allApptTable.setItems(ApptDaoImpl.getAllAppts());
-                Util.stringToAlert("Appointment with ID "+idForDeletion+ " and type "+apptType+" has been deleted.");
+                Util.stringToAlert("Appointment with ID "+idForDeletion+ " and Type "+apptType+" has been deleted.");
             }
 
         }
