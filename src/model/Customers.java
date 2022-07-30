@@ -52,7 +52,7 @@ public class Customers {
         return divisionIDFK;
     }
 
-    public ObservableList<Customers> getAllCustomers() {
+    public static ObservableList<Customers> getAllCustomers() {
         return allCustomers;
     }
 

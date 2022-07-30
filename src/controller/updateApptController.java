@@ -75,9 +75,22 @@ public class updateApptController implements Initializable{
 
         updateApptStartTime.getSelectionModel().select(appt.getStart().toLocalTime());
         updateApptEndTime.getSelectionModel().select(appt.getEnd().toLocalTime());
-        updateApptCustomerID.getSelectionModel().select(appt.getCustomerIDFK()); //DISPLAYS BUT IF OFF BY +1
-        updateApptUserID.getSelectionModel().select(appt.getUserIDFK()); //DISPLAYS BUT IS OFF BY +1
 
+        Customers selectedCustomer = null;
+        for (Customers cust : Customers.getAllCustomers()){
+            if (cust.getCustomerID() == appt.getCustomerIDFK()){
+                selectedCustomer = cust;
+            }
+        }
+        updateApptCustomerID.getSelectionModel().select(selectedCustomer);
+
+        Users selectedUser = null;
+        for (Users u : Users.getAllUsers()){
+            if (u.getUserID() == appt.getUserIDFK()){
+                selectedUser = u;
+            }
+        }
+        updateApptUserID.getSelectionModel().select(selectedUser);
     }
 
     @Override
