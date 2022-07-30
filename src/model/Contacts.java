@@ -1,9 +1,13 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Contacts {
     private int contactID;
     private String contactName;
     private String email;
+    private static ObservableList<Contacts> allContacts = FXCollections.observableArrayList();
 
     public Contacts (int contactID, String contactName, String email){
         this.contactID = contactID;
@@ -23,6 +27,10 @@ public class Contacts {
         return email;
     }
 
+    public static ObservableList<Contacts> getAllContacts(){
+        return allContacts;
+    }
+
     public void setContactID(int id) {
         contactID = id;
     }
@@ -33,6 +41,10 @@ public class Contacts {
 
     public void setEmail(String emailAddress) {
         email = emailAddress;
+    }
+
+    public static void setAllContacts(ObservableList<Contacts> toSet){
+        allContacts = toSet;
     }
 
     @Override

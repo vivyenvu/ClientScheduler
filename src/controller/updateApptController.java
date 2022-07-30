@@ -23,8 +23,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
@@ -52,16 +55,28 @@ public class updateApptController implements Initializable{
         stage.show();
     }
     public void sendAppointment(Appointments appt) throws SQLException {
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
+        Contacts selectedContact = null;
+        for (Contacts c : Contacts.getAllContacts()){
+            if (c.getContactID() == appt.getContactIDFK()){
+                selectedContact = c;
+            }
+        }
         updateApptTitle.setText(appt.getTitle());
         updateApptDescription.setText(appt.getDesc());
         updateApptLocation.setText(appt.getLocation());
-        updateApptContact.getSelectionModel().select(appt.getContactIDFK());//NEEDS A CONTACT NAME
+        updateApptContact.getSelectionModel().select(selectedContact);//WHY DOESN'T IT DISPLAY THE CONTACT NAME AT ALL
         updateApptType.setText(appt.getType());
-        updateApptDate.equals(appt.getStart().getDayOfWeek());//need to parse this from LocalDateTime start INSTEAD OF DAY OF WEEK PLACEHOLDER
+
+        LocalDateTime chooseDate = appt.getStart();
+        String formattedDate = chooseDate.format(formatter);
+        LocalDate selectedDate = LocalDate.parse(formattedDate);
+        updateApptDate.setValue(selectedDate);
+
         updateApptStartTime.getSelectionModel().select(appt.getStart().toLocalTime());
         updateApptEndTime.getSelectionModel().select(appt.getEnd().toLocalTime());
-        updateApptCustomerID.getSelectionModel().select(appt.getCustomerIDFK());
-        updateApptUserID.getSelectionModel().select(appt.getUserIDFK());
+        updateApptCustomerID.getSelectionModel().select(appt.getCustomerIDFK()); //DISPLAYS BUT IF OFF BY +1
+        updateApptUserID.getSelectionModel().select(appt.getUserIDFK()); //DISPLAYS BUT IS OFF BY +1
 /*
         //set Country combobox
         int divID = customer.getDivisionIDFK();
