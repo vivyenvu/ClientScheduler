@@ -65,7 +65,7 @@ public class updateApptController implements Initializable{
         updateApptTitle.setText(appt.getTitle());
         updateApptDescription.setText(appt.getDesc());
         updateApptLocation.setText(appt.getLocation());
-        updateApptContact.getSelectionModel().select(selectedContact);//WHY DOESN'T IT DISPLAY THE CONTACT NAME AT ALL
+        updateApptContact.getSelectionModel().select(selectedContact);
         updateApptType.setText(appt.getType());
 
         LocalDateTime chooseDate = appt.getStart();
@@ -77,26 +77,7 @@ public class updateApptController implements Initializable{
         updateApptEndTime.getSelectionModel().select(appt.getEnd().toLocalTime());
         updateApptCustomerID.getSelectionModel().select(appt.getCustomerIDFK()); //DISPLAYS BUT IF OFF BY +1
         updateApptUserID.getSelectionModel().select(appt.getUserIDFK()); //DISPLAYS BUT IS OFF BY +1
-/*
-        //set Country combobox
-        int divID = customer.getDivisionIDFK();
-        Countries selectedCountry = new Countries (divID, Util.divIDToCountry(divID));
-        updateCustomerCountry.getSelectionModel().select(selectedCountry);
 
-        //load First Division combobox based on selected country
-        ObservableList<String> allDivs= FXCollections.observableArrayList();
-        int countryID = Util.countryToCountryID(selectedCountry.getCountry()); //DOES THE HELPER NEED TO BE STATIC
-        ResultSet rs = Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
-        while (rs.next()){
-            String firstDiv = rs.getString("Division");
-            allDivs.add(firstDiv); //note: this is just adding a list of strings, not FirstDivision objects.
-            //to solve this, should I make addCustomerFirstDiv combobox only hold FirstClassDivision objects?
-        }
-        updateCustomerFirstDiv.setItems(allDivs);
-
-        //set First Division combobox
-        FirstClassDivisions selectedDiv = new FirstClassDivisions(divID, Util.firstIDtoDiv(divID), selectedCountry.getCountryID());
-        updateCustomerFirstDiv.getSelectionModel().select(selectedDiv.getDivision());*/
     }
 
     @Override
@@ -158,6 +139,14 @@ public class updateApptController implements Initializable{
             updateApptUserID.setVisibleRowCount(5);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        //setAllContacts()
+        try {
+            ObservableList<Contacts> loadContacts = ContactDaoImpl.getAllContacts();
+            Contacts.setAllContacts(loadContacts);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }
