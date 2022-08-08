@@ -76,18 +76,18 @@ public class ApptDaoImpl {
 
     public static void updateAppt (int apptID, String title, String desc, String loc, String type, LocalDateTime start, LocalDateTime end, int customerIDFK, int userIDFK, int contactIDFK){
         try{
-            PreparedStatement ps = Query.getPS("UPDATE appointments set Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?");
-            //ps.setInt(1, apptID);
-            ps.setString(1, title);
-            ps.setString(2, desc);
-            ps.setString(3, loc);
-            ps.setString(4, type);
-            ps.setObject(5, start);
-            ps.setObject(6, end);
-            ps.setInt(7, customerIDFK);
-            ps.setInt(8, userIDFK);
-            ps.setInt(9, contactIDFK);
-            ps.setInt(10, apptID);
+            PreparedStatement ps = Query.getPS("UPDATE appointments set Appointment_ID = ?, Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?");
+            ps.setInt(1, apptID);
+            ps.setString(2, title);
+            ps.setString(3, desc);
+            ps.setString(4, loc);
+            ps.setString(5, type);
+            ps.setObject(6, start);
+            ps.setObject(7, end);
+            ps.setInt(8, customerIDFK);
+            ps.setInt(9, userIDFK);
+            ps.setInt(10, contactIDFK);
+            ps.setInt(11, apptID);
             ps.execute();
         }
         catch (SQLException e){

@@ -123,7 +123,7 @@ public class mainMenuController implements Initializable {
 
             if (result.isPresent() && result.get() == ButtonType.OK){
                 if(Customers.checkForAppts(idForDeletion) != null){
-                    Util.stringToAlert("Delete this customer's appointments before attempting to delete customer. ");
+                    Util.stringToAlert("Remove this customer's appointments before attempting to delete customer. ");
                 }
 
                 else {
