@@ -197,7 +197,7 @@ public class mainMenuController implements Initializable {
     public void onWeekViewBtn(ActionEvent actionEvent) throws SQLException {
         allApptTable.setItems(ApptDaoImpl.getWeekAppts());
 
-        apptTableID.setCellValueFactory(new PropertyValueFactory<>("apptID"));
+        /*apptTableID.setCellValueFactory(new PropertyValueFactory<>("apptID"));
         apptTableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         apptTableDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
         apptTableLoc.setCellValueFactory(new PropertyValueFactory<>("location"));
@@ -206,7 +206,7 @@ public class mainMenuController implements Initializable {
         apptTableStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         apptTableEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
         apptTableCustID.setCellValueFactory(new PropertyValueFactory<>("customerIDFK"));
-        apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));
+        apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));*/
     }
 
     public void onMonthViewBtn(ActionEvent actionEvent) {
@@ -219,5 +219,9 @@ public class mainMenuController implements Initializable {
         stage.setTitle("Reports");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void onAllViewBtn(ActionEvent actionEvent) throws SQLException {
+        allApptTable.setItems(ApptDaoImpl.getAllAppts());
     }
 }

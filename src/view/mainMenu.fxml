@@ -54,7 +54,7 @@
                 <ToggleGroup fx:id="apptViewToggle" />
             </toggleGroup></RadioButton>
         <RadioButton layoutX="890.0" layoutY="373.0" mnemonicParsing="false" onAction="#onMonthViewBtn" text="Month" toggleGroup="$apptViewToggle" />
-      <RadioButton layoutX="775.0" layoutY="373.0" mnemonicParsing="false" onAction="#onMonthViewBtn" selected="true" text="All" toggleGroup="$apptViewToggle" />
+      <RadioButton layoutX="775.0" layoutY="373.0" mnemonicParsing="false" onAction="#onAllViewBtn" selected="true" text="All" toggleGroup="$apptViewToggle" />
         <Button layoutX="787.0" layoutY="301.0" mnemonicParsing="false" onAction="#onCustomerAddBtn" text="Add" />
         <Button layoutX="834.0" layoutY="301.0" mnemonicParsing="false" onAction="#onCustomerUpdateBtn" text="Update" />
         <Button layoutX="899.0" layoutY="301.0" mnemonicParsing="false" onAction="#onCustomerDeleteBtn" text="Delete" />
