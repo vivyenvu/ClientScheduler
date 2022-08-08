@@ -143,6 +143,7 @@ public class updateApptController implements Initializable{
                 selectedContact = c;
             }
         }
+        updateApptID.setText(String.valueOf(appt.getApptID()));
         updateApptTitle.setText(appt.getTitle());
         updateApptDescription.setText(appt.getDesc());
         updateApptLocation.setText(appt.getLocation());
