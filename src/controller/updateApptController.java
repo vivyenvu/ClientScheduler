@@ -39,9 +39,11 @@ public class updateApptController implements Initializable{
     public ComboBox <Customers> updateApptCustomerID;
     public ComboBox <Users> updateApptUserID;
     public TextField updateApptType;
+    public TextField updateApptID;
 
-    public void onUpdateApptSaveBtn(ActionEvent actionEvent) {
+    public void onUpdateApptSaveBtn(ActionEvent actionEvent) throws IOException {
         String errorMessages = "";
+        int apptID = Integer.parseInt(updateApptID.getText());
         String title = updateApptTitle.getText();
         String desc = updateApptDescription.getText();
         String loc = updateApptLocation.getText();
@@ -114,7 +116,7 @@ public class updateApptController implements Initializable{
             LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
             LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
 
-            ApptDaoImpl.updateAppt(title, desc, loc, type, start, end, custID, userID, contactID);
+            ApptDaoImpl.updateAppt(apptID, title, desc, loc, type, start, end, custID, userID, contactID);
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
