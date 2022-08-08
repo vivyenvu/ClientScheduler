@@ -73,4 +73,26 @@ public class ApptDaoImpl {
             e.printStackTrace();
         }
     }
+
+    public static void updateAppt (int apptID, String title, String desc, String loc, String type, LocalDateTime start, LocalDateTime end, int customerIDFK, int userIDFK, int contactIDFK){
+        try{
+            PreparedStatement ps = Query.getPS("UPDATE customers set Appointment_ID = ?, Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?," +
+                    "User_ID = ?, Contact_ID = ?, WHERE Appointment_ID = ?");
+            ps.setInt(1, apptID);
+            ps.setString(2, title);
+            ps.setString(3, desc);
+            ps.setString(4, loc);
+            ps.setString(5, type);
+            ps.setObject(6, start);
+            ps.setObject(7, end);
+            ps.setInt(8, customerIDFK);
+            ps.setInt(1, userIDFK);
+            ps.setInt(1, contactIDFK);
+            ps.setInt(1, apptID);
+            ps.execute();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

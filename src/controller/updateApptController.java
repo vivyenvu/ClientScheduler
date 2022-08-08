@@ -1,9 +1,6 @@
 package controller;
 
-import DAO.ContactDaoImpl;
-import DAO.CustomerDaoImpl;
-import DAO.Query;
-import DAO.UserDaoImpl;
+import DAO.*;
 import helper.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +41,88 @@ public class updateApptController implements Initializable{
     public TextField updateApptType;
 
     public void onUpdateApptSaveBtn(ActionEvent actionEvent) {
+        String errorMessages = "";
+        String title = updateApptTitle.getText();
+        String desc = updateApptDescription.getText();
+        String loc = updateApptLocation.getText();
+        String type = updateApptType.getText();
+        LocalDate date = updateApptDate.getValue();
+        LocalTime startTime = updateApptStartTime.getValue();
+        LocalTime endTime = updateApptEndTime.getValue();
+        Customers selectedCust = updateApptCustomerID.getSelectionModel().getSelectedItem();
+        Users selectedUser = updateApptUserID.getSelectionModel().getSelectedItem();
+        Contacts selectedContact = updateApptContact.getSelectionModel().getSelectedItem();
+
+        if (title.isEmpty()) {
+            errorMessages += "Title is required. \n";
+        }
+        if (desc.isEmpty()) {
+            errorMessages += "Description is required. \n";
+        }
+        if (loc.isEmpty()) {
+            errorMessages += "Location is required. \n";
+        }
+        if (selectedContact == null){
+            errorMessages += "Please select a contact. \n";
+        }
+        if (type.isEmpty()) {
+            errorMessages += "Type is required. \n";
+        }
+        if (date == null){
+            errorMessages += "Please select a date. \n";
+        }
+        if (selectedCust == null){
+            errorMessages += "Please select a Customer ID. \n";
+        }
+        if (selectedUser == null){
+            errorMessages += "Please select a User ID. \n";
+        }
+
+        try{
+            if (startTime.equals(null)) {
+                errorMessages += "Please select a start time. \n";
+            }
+        }
+        catch (NullPointerException e){
+            errorMessages += "Please select a start time. \n";
+        }
+
+        try{
+            if (endTime.equals(null)) {
+                errorMessages += "Please select an end time. \n";
+            }
+        }
+        catch (NullPointerException e){
+            errorMessages += "Please select an end time. \n";
+        }
+        try{
+            if (startTime.isAfter(endTime) || startTime.equals(endTime)){
+                errorMessages += "Start time needs to come before end time. \n";
+            }
+        }
+        catch (NullPointerException e){
+            System.out.println ("Need to select a start and end time. ");
+        }
+
+        if (errorMessages != "") {
+            Util.stringToAlert(errorMessages);
+        }
+        else {
+            int custID = selectedCust.getCustomerID();
+            int userID = selectedUser.getUserID();
+            int contactID = selectedContact.getContactID();
+            LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
+            LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
+
+            ApptDaoImpl.updateAppt(title, desc, loc, type, start, end, custID, userID, contactID);
+
+            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 700);
+            stage.setTitle("Main Menu");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     public void onUpdateApptCancelBtn(ActionEvent actionEvent) throws IOException {
