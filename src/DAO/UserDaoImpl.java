@@ -2,6 +2,7 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Customers;
 import model.Users;
 
 import java.sql.PreparedStatement;
@@ -48,7 +49,7 @@ public class UserDaoImpl {
         return null;
     }
     public static ObservableList<Users> getAllUsers() throws SQLException, Exception{
-        ObservableList<Users> allUsers = FXCollections.observableArrayList();
+        ObservableList<Users> loadUsers = FXCollections.observableArrayList();
 
         ResultSet result = Query.getRS("select * from users");
         while(result.next()){
@@ -56,8 +57,9 @@ public class UserDaoImpl {
             String userNameG = result.getString("User_Name");
             String password = result.getString("Password");
             Users userResult = new Users(userid, userNameG, password);
-            allUsers.add(userResult);
+            loadUsers.add(userResult);
         }
-        return allUsers;
+        Users.setAllUsers(loadUsers);
+        return loadUsers;
     }
 }

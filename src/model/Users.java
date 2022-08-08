@@ -1,9 +1,13 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Users {
     private int userID;
     private String username;
     private String password;
+    private static ObservableList<Users> allUsers = FXCollections.observableArrayList();
 
     public Users(int userID, String username, String password){
         this.userID = userID;
@@ -32,6 +36,10 @@ public class Users {
         return password;
     }
 
+    public static ObservableList<Users> getAllUsers() {
+        return allUsers;
+    }
+
     /**
      * @param id the ID set for the user
      */
@@ -51,6 +59,10 @@ public class Users {
      */
     public void setPassword (String pw) {
         password = pw;
+    }
+
+    public static void setAllUsers(ObservableList<Users> toSet){
+        allUsers = toSet;
     }
 
     @Override
