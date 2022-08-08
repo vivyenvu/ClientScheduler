@@ -69,14 +69,13 @@ public class CustomerDaoImpl {
 
     public static void updateCustomer(int customerID, String customerName, String address, String postalCode, String phone, int divisionIDFK){
         try{
-            PreparedStatement ps = Query.getPS("UPDATE customers set Customer_ID = ?, Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?");
-            ps.setInt(1,customerID);
-            ps.setString(2, customerName);
-            ps.setString(3, address);
-            ps.setString(4, postalCode);
-            ps.setString(5, phone);
-            ps.setInt(6, divisionIDFK);
-            ps.setInt(7, customerID);
+            PreparedStatement ps = Query.getPS("UPDATE customers set Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?");
+            ps.setString(1, customerName);
+            ps.setString(2, address);
+            ps.setString(3, postalCode);
+            ps.setString(4, phone);
+            ps.setInt(5, divisionIDFK);
+            ps.setInt(6, customerID);
             ps.execute();
         }
         catch (SQLException e){
