@@ -119,7 +119,7 @@ public class addApptController implements Initializable {
 
                 System.out.println("Current start =" +currentStart +" and Current end = " +currentEnd);
                 System.out.println("Check start =" +checkStart +" and Check end = " +checkEnd);
-                if ((checkEnd.isBefore(currentStart) || checkEnd.equals(currentStart)) && (currentEnd.isBefore(checkStart) || currentEnd.equals(checkStart))) {
+                if ((checkEnd.isBefore(currentStart) || checkEnd.equals(currentStart)) || (currentEnd.isBefore(checkStart) || currentEnd.equals(checkStart))) {
                     System.out.println("There is no appointment overlap");
                 }
                 else{

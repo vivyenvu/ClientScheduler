@@ -109,21 +109,41 @@ public class updateApptController implements Initializable{
         if (errorMessages != "") {
             Util.stringToAlert(errorMessages);
         }
+
         else {
-            int custID = selectedCust.getCustomerID();
-            int userID = selectedUser.getUserID();
-            int contactID = selectedContact.getContactID();
-            LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
-            LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
+            //validates no time overlap
+            ObservableList<Appointments> allAppts = Appointments.getAllAppts();
+            for (Appointments appt : allAppts){
+                if (appt.getCustomerIDFK() == selectedCust.getCustomerID()){
+                    LocalDateTime currentStart = appt.getStart();
+                    LocalDateTime currentEnd = appt.getEnd();
+                    LocalDateTime checkStart = LocalDateTime.of(date, startTime);
+                    LocalDateTime checkEnd = LocalDateTime.of(date, endTime);
 
-            ApptDaoImpl.updateAppt(apptID, title, desc, loc, type, start, end, custID, userID, contactID);
+                    System.out.println("Current start =" +currentStart +" and Current end = " +currentEnd);
+                    System.out.println("Check start =" +checkStart +" and Check end = " +checkEnd);
+                    if ((checkEnd.isBefore(currentStart) || checkEnd.equals(currentStart)) || (currentEnd.isBefore(checkStart) || currentEnd.equals(checkStart))) {
+                        System.out.println("There is no appointment overlap");
+                        int custID = selectedCust.getCustomerID();
+                        int userID = selectedUser.getUserID();
+                        int contactID = selectedContact.getContactID();
+                        LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
+                        LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
 
-            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 1000, 700);
-            stage.setTitle("Main Menu");
-            stage.setScene(scene);
-            stage.show();
+                        ApptDaoImpl.updateAppt(apptID, title, desc, loc, type, start, end, custID, userID, contactID);
+
+                        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+                        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root, 1000, 700);
+                        stage.setTitle("Main Menu");
+                        stage.setScene(scene);
+                        stage.show();
+                    }
+                    else{
+                        Util.stringToAlert("Cannot create appointment because there is a time overlap with another one of this customer's appointments. \n");
+                    }
+                }
+            }
         }
     }
 
