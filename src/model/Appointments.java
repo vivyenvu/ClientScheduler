@@ -9,7 +9,6 @@ import java.time.LocalTime;
 
 public class Appointments {
     private static ObservableList<Appointments> allAppointments;
-    //private static ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
     private int apptID;
     private String title;
     private String desc;

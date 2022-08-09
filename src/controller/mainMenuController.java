@@ -209,7 +209,8 @@ public class mainMenuController implements Initializable {
         apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));*/
     }
 
-    public void onMonthViewBtn(ActionEvent actionEvent) {
+    public void onMonthViewBtn(ActionEvent actionEvent) throws SQLException {
+        allApptTable.setItems(ApptDaoImpl.getMonthAppts());
     }
 
     public void onClickReports(ActionEvent actionEvent) throws IOException {

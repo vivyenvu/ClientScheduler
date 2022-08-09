@@ -100,9 +100,33 @@ public class addApptController implements Initializable {
             }
         }
         catch (NullPointerException e){
-            System.out.println ("Need to select a start and end time. ");
+            System.out.println ("Need to select a start and end time. \n");
         }
 
+        //validates all fields are filled
+        if (errorMessages != "") {
+            Util.stringToAlert(errorMessages);
+        }
+
+        //validates no time overlap
+        ObservableList<Appointments> allAppts = Appointments.getAllAppts();
+        for (Appointments appt : allAppts){
+            if (appt.getCustomerIDFK() == selectedCust.getCustomerID()){
+                LocalDateTime currentStart = appt.getStart();
+                LocalDateTime currentEnd = appt.getEnd();
+                LocalDateTime checkStart = LocalDateTime.of(date, startTime);
+                LocalDateTime checkEnd = LocalDateTime.of(date, endTime);
+
+                System.out.println("Current start =" +currentStart +" and Current end = " +currentEnd);
+                System.out.println("Check start =" +checkStart +" and Check end = " +checkEnd);
+                if ((checkEnd.isBefore(currentStart) || checkEnd.equals(currentStart)) && (currentEnd.isBefore(checkStart) || currentEnd.equals(checkStart))) {
+                    System.out.println("There is no appointment overlap");
+                }
+                else{
+                    errorMessages += "Cannot create appointment because there is a time overlap with another one of this customer's appointments. \n";
+                }
+            }
+        }
         if (errorMessages != "") {
             Util.stringToAlert(errorMessages);
         }

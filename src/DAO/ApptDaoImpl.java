@@ -123,4 +123,37 @@ public class ApptDaoImpl {
         }
         return weekAppts;
     }
+    public static ObservableList<Appointments> getMonthAppts() throws SQLException {
+        ObservableList<Appointments> monthAppts = FXCollections.observableArrayList();
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime monthEnd = today.plusMonths(1);
+
+        PreparedStatement ps = Query.getPS("SELECT * FROM appointments " +
+                "INNER JOIN contacts " +
+                "ON appointments.Contact_ID = contacts.Contact_ID WHERE " +
+                "Start > ? AND Start < ?");
+        ps.setDate(1, Date.valueOf(today.toLocalDate()));
+        ps.setDate(2, Date.valueOf(monthEnd.toLocalDate()));
+        ps.execute();
+
+        ResultSet result = ps.executeQuery();
+        while(result.next()){
+            int apptID = result.getInt("Appointment_ID");
+            String apptTitle = result.getString("Title");
+            String apptDesc = result.getString("Description");
+            String apptLoc = result.getString("Location");
+            String apptType = result.getString("Type");
+            LocalDateTime apptStart = result.getTimestamp("Start").toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime();
+            apptStart = Util.UTCToSystem(apptStart);
+            LocalDateTime apptEnd = result.getTimestamp("End").toInstant().atZone(ZoneId.of("UTC")).toLocalDateTime(); //better than .toLocalDateTime()
+            apptEnd = Util.UTCToSystem(apptEnd);
+            int custID = result.getInt("Customer_ID");
+            int userID = result.getInt("User_ID");
+            int contactID = result.getInt("Contact_ID");
+            String contactName = result.getString("Contact_Name");
+            Appointments apptResult = new Appointments(apptID, apptTitle, apptDesc, apptLoc, apptType, apptStart, apptEnd, custID, userID, contactID, contactName);
+            monthAppts.add(apptResult);
+        }
+        return monthAppts;
+}
 }
