@@ -43,6 +43,8 @@ public class updateApptController implements Initializable{
 
     public void onUpdateApptSaveBtn(ActionEvent actionEvent) throws IOException {
         String errorMessages = "";
+        int overlap = 0;
+        int count = 0;
         int apptID = Integer.parseInt(updateApptID.getText());
         String title = updateApptTitle.getText();
         String desc = updateApptDescription.getText();
@@ -110,40 +112,45 @@ public class updateApptController implements Initializable{
             Util.stringToAlert(errorMessages);
         }
 
-        else {
+        else{
             //validates no time overlap
             ObservableList<Appointments> allAppts = Appointments.getAllAppts();
             for (Appointments appt : allAppts){
                 if (appt.getCustomerIDFK() == selectedCust.getCustomerID()){
-                    LocalDateTime currentStart = appt.getStart();
-                    LocalDateTime currentEnd = appt.getEnd();
-                    LocalDateTime checkStart = LocalDateTime.of(date, startTime);
-                    LocalDateTime checkEnd = LocalDateTime.of(date, endTime);
+                    LocalDateTime oldStart = appt.getStart();
+                    LocalDateTime oldEnd = appt.getEnd();
+                    LocalDateTime newStart = LocalDateTime.of(date, startTime);
+                    LocalDateTime newEnd = LocalDateTime.of(date, endTime);
 
-                    System.out.println("Current start =" +currentStart +" and Current end = " +currentEnd);
-                    System.out.println("Check start =" +checkStart +" and Check end = " +checkEnd);
-                    if ((checkEnd.isBefore(currentStart) || checkEnd.equals(currentStart)) || (currentEnd.isBefore(checkStart) || currentEnd.equals(checkStart))) {
-                        System.out.println("There is no appointment overlap");
-                        int custID = selectedCust.getCustomerID();
-                        int userID = selectedUser.getUserID();
-                        int contactID = selectedContact.getContactID();
-                        LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
-                        LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
-
-                        ApptDaoImpl.updateAppt(apptID, title, desc, loc, type, start, end, custID, userID, contactID);
-
-                        Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
-                        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                        Scene scene = new Scene(root, 1000, 700);
-                        stage.setTitle("Main Menu");
-                        stage.setScene(scene);
-                        stage.show();
+                    if ((newEnd.isBefore(oldStart) ||newEnd.equals(oldStart)) || (oldEnd.isBefore(newStart) || oldEnd.equals(newStart))) {
+                        count++;
                     }
                     else{
-                        Util.stringToAlert("Cannot create appointment because there is a time overlap with another one of this customer's appointments. \n");
+                        overlap++;
                     }
                 }
             }
+        }
+
+        if (overlap != 0) {
+            Util.stringToAlert("Cannot create appointment because there is a time overlap with another one of this customer's appointments. \n");
+            overlap = 0;
+        }
+        else {
+            int custID = selectedCust.getCustomerID();
+            int userID = selectedUser.getUserID();
+            int contactID = selectedContact.getContactID();
+            LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
+            LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
+
+            ApptDaoImpl.updateAppt(apptID, title, desc, loc, type, start, end, custID, userID, contactID);
+
+            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 1000, 700);
+            stage.setTitle("Main Menu");
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
