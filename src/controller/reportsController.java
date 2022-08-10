@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import model.Contacts;
 import model.Customers;
 
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class reportsController {
     }
 
     public void onContactScheduleBtn(ActionEvent actionEvent) {
+        ObservableList<Contacts> allContacts = Contacts.getAllContacts();
+        String [] contactInfo = new String[allContacts.size()];
     }
 
     public void onCustomerPerCountryBtn(ActionEvent actionEvent) {
