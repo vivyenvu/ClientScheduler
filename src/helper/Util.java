@@ -1,14 +1,16 @@
 package helper;
 
 import DAO.Query;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import model.Appointments;
+import model.Users;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class Util {
     public static void stringToAlert(String message) {
@@ -125,6 +127,31 @@ public class Util {
         return eastern;
     }
 
+    public String upcomingMessage (Users user){
+        int userID = user.getUserID();
+        ObservableList<Appointments> allAppts = Appointments.getAllAppts();
+        String upcomingAppts = "";
+        for (Appointments appt : allAppts){
+            if (userID == appt.getUserIDFK()){
+                LocalTime startTime = appt.getStart().toLocalTime();
+                LocalTime loginTime = LocalTime.now();
+
+                long timeDifference = ChronoUnit.MINUTES.between(loginTime, startTime);
+                int id = appt.getApptID();
+                LocalDateTime dateTime = appt.getStart();
+                LocalDate date = dateTime.toLocalDate();
+                LocalTime time = dateTime.toLocalTime();
+
+                if (timeDifference >= 0 && timeDifference <= 15) {
+                    upcomingAppts += "Upcoming appointment with ID " +id+" on " +date+ " at " +time+ ". \n";
+                }
+            }
+        }
+        if (upcomingAppts == ""){
+            return "No upcoming appointments.";
+        }
+        return upcomingAppts;
+    }
     /*public LocalDateTime easternToUTC(LocalDateTime eastern){
         ZonedDateTime zonedEastern = eastern.atZone(ZoneId.of("US/Eastern"));
         ZonedDateTime zonedUtc = zonedEastern.withZoneSameInstant(ZoneId.of("UTC"));
