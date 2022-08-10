@@ -3,6 +3,7 @@ package controller;
 import DAO.ApptDaoImpl;
 import DAO.CustomerDaoImpl;
 import helper.Util;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +22,8 @@ import model.Customers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -78,6 +81,22 @@ public class mainMenuController implements Initializable {
         apptTableEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
         apptTableCustID.setCellValueFactory(new PropertyValueFactory<>("customerIDFK"));
         apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));
+
+        //notify user if they have appointment coming up in 15 minutes
+        ObservableList<Appointments> allAppts = Appointments.getAllAppts();
+        for (Appointments appt : allAppts){
+            LocalTime startTime = appt.getStart().toLocalTime();
+            LocalTime loginTime = LocalTime.now();
+            long timeDifference = ChronoUnit.MINUTES.between(startTime, loginTime);
+
+            if (timeDifference > 0 && timeDifference <= 15) {
+                Util.stringToAlert("Upcoming appointment with ID " +appt.getApptID()+" on " +appt.getStart().toLocalDate()+ " at " + appt.getStart().toLocalTime()+ ".");
+            }
+            else{
+                Util.stringToAlert("No upcoming appointments.");
+            }
+        }
+
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
