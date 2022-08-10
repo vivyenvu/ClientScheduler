@@ -18,4 +18,13 @@ public class reportsController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void onApptTypeBtn(ActionEvent actionEvent) {
+    }
+
+    public void onContactScheduleBtn(ActionEvent actionEvent) {
+    }
+
+    public void onCustomerPerCountryBtn(ActionEvent actionEvent) {
+    }
 }
