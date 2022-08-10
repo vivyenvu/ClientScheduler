@@ -43,7 +43,7 @@ public class updateApptController implements Initializable{
 
     public void onUpdateApptSaveBtn(ActionEvent actionEvent) throws IOException {
         String errorMessages = "";
-        int overlap = 0;
+        int clear = 0;
         int count = 0;
         int apptID = Integer.parseInt(updateApptID.getText());
         String title = updateApptTitle.getText();
@@ -116,26 +116,22 @@ public class updateApptController implements Initializable{
             //validates no time overlap
             ObservableList<Appointments> allAppts = Appointments.getAllAppts();
             for (Appointments appt : allAppts){
-                if (appt.getCustomerIDFK() == selectedCust.getCustomerID()){
+                if ((appt.getCustomerIDFK() == selectedCust.getCustomerID() && (appt.getApptID() != apptID))){
                     LocalDateTime oldStart = appt.getStart();
                     LocalDateTime oldEnd = appt.getEnd();
                     LocalDateTime newStart = LocalDateTime.of(date, startTime);
                     LocalDateTime newEnd = LocalDateTime.of(date, endTime);
-
+                    count++;
                     if ((newEnd.isBefore(oldStart) ||newEnd.equals(oldStart)) || (oldEnd.isBefore(newStart) || oldEnd.equals(newStart))) {
-                        count++;
-                    }
-                    else{
-                        overlap++;
+                        clear++;
                     }
                 }
             }
         }
 
-        if (overlap != 0) {
-            Util.stringToAlert("Cannot create appointment because there is a time overlap with another one of this customer's appointments. \n");
-            overlap = 0;
-        }
+        if (count != clear) {
+            Util.stringToAlert("Cannot create appointment because there are overlapping appointments. \n");
+            }
         else {
             int custID = selectedCust.getCustomerID();
             int userID = selectedUser.getUserID();
