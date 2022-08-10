@@ -9,5 +9,6 @@
       <Button layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onAction="#onApptTypeBtn" prefWidth="160.0" text="Appts by Type and Month" />
       <Button ellipsisString="" layoutX="190.0" layoutY="360.0" mnemonicParsing="false" onAction="#onContactScheduleBtn" prefWidth="150.0" text="Contact Schedules" />
       <Button layoutX="350.0" layoutY="360.0" mnemonicParsing="false" onAction="#onCustomerPerCountryBtn" prefWidth="150.0" text="Customers per Country" />
+      <TextArea fx:id="displayArea" layoutX="17.0" layoutY="16.0" prefHeight="327.0" prefWidth="565.0" />
    </children>
 </AnchorPane>
