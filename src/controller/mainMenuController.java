@@ -92,33 +92,46 @@ public class mainMenuController implements Initializable {
         //IS THIS ALL APPOINTMENTS OR ONLY APPOINTMENTS ASSOCIATED WITH THE USER
         //maybe i need to collect that information from the previous screen when they input their username and connect that to a userID
         //currentUser = UserDaoImpl.getUser(inputUsername);
+        String upcomingAppts = "";
         for (Appointments appt : allAppts){
             LocalTime startTime = appt.getStart().toLocalTime();
             LocalTime loginTime = LocalTime.now();
 
             //convert loginTime to UTC
             //calculate time offset between system timezone and utc in hours
-            ZoneId currentZone = ZoneId.systemDefault();
+            /*ZoneId currentZone = ZoneId.systemDefault();
             long now = System.currentTimeMillis();
             long diff = TimeZone.getTimeZone("UTC").getOffset(now) - TimeZone.getTimeZone(currentZone).getOffset(now);
             diff = diff/3600000; // turns milliseconds into hours
             LocalTime UTCLoginTime = loginTime.minusHours(diff);
+            */
 
-            long timeDifference = ChronoUnit.MINUTES.between(startTime, UTCLoginTime);
+
+            long timeDifference = ChronoUnit.MINUTES.between(loginTime, startTime);
             int id = appt.getApptID();
-            LocalDateTime UTCDateTime = appt.getStart();
-            LocalDateTime systemDateTime = Util.UTCToSystem(UTCDateTime);
-            LocalDate date = systemDateTime.toLocalDate();
-            LocalTime time = systemDateTime.toLocalTime();
+            LocalDateTime dateTime = appt.getStart();
+            //LocalDateTime systemDateTime = Util.UTCToSystem(UTCDateTime);
+            LocalDate date = dateTime.toLocalDate();
+            LocalTime time = dateTime.toLocalTime();
 
-            if (timeDifference > 0 && timeDifference <= 15) {
-                Util.stringToAlert("Upcoming appointment with ID " +id+" on " +date+ " at " +time+ ".");
-            }
-            else{
-                Util.stringToAlert("No upcoming appointments.");
+            if (timeDifference >= 0 && timeDifference <= 15) {
+                upcomingAppts += "Upcoming appointment with ID " +id+" on " +date+ " at " +time+ ". \n";
             }
         }
+        if (upcomingAppts != ""){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(upcomingAppts);
+            alert.show();
 
+            //Util.stringToAlert(upcomingAppts);
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("No upcoming appointments.");
+            alert.show();
+
+            //Util.stringToAlert("No upcoming appointments.");
+        }
     }
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
