@@ -41,6 +41,8 @@ public class addApptController implements Initializable {
 
     public void onAddApptSaveBtn(ActionEvent actionEvent) throws IOException, SQLException {
         String errorMessages = "";
+        int count = 0;
+        int clear = 0;
         String title = addApptTitle.getText();
         String desc = addApptDescription.getText();
         String loc = addApptLocation.getText();
@@ -108,27 +110,25 @@ public class addApptController implements Initializable {
             Util.stringToAlert(errorMessages);
         }
 
-        //validates no time overlap
-        ObservableList<Appointments> allAppts = Appointments.getAllAppts();
-        for (Appointments appt : allAppts){
-            if (appt.getCustomerIDFK() == selectedCust.getCustomerID()){
-                LocalDateTime currentStart = appt.getStart();
-                LocalDateTime currentEnd = appt.getEnd();
-                LocalDateTime checkStart = LocalDateTime.of(date, startTime);
-                LocalDateTime checkEnd = LocalDateTime.of(date, endTime);
-
-                System.out.println("Current start =" +currentStart +" and Current end = " +currentEnd);
-                System.out.println("Check start =" +checkStart +" and Check end = " +checkEnd);
-                if ((checkEnd.isBefore(currentStart) || checkEnd.equals(currentStart)) || (currentEnd.isBefore(checkStart) || currentEnd.equals(checkStart))) {
-                    System.out.println("There is no appointment overlap");
-                }
-                else{
-                    errorMessages += "Cannot create appointment because there is a time overlap with another one of this customer's appointments. \n";
+        else{
+            //validates no time overlap
+            ObservableList<Appointments> allAppts = Appointments.getAllAppts();
+            for (Appointments appt : allAppts){
+                if (appt.getCustomerIDFK() == selectedCust.getCustomerID()){
+                    LocalDateTime oldStart = appt.getStart();
+                    LocalDateTime oldEnd = appt.getEnd();
+                    LocalDateTime newStart = LocalDateTime.of(date, startTime);
+                    LocalDateTime newEnd = LocalDateTime.of(date, endTime);
+                    count++;
+                    if ((newEnd.isBefore(oldStart) ||newEnd.equals(oldStart)) || (oldEnd.isBefore(newStart) || oldEnd.equals(newStart))) {
+                        clear++;
+                    }
                 }
             }
         }
-        if (errorMessages != "") {
-            Util.stringToAlert(errorMessages);
+
+        if (count != clear) {
+            Util.stringToAlert("Cannot create appointment because there are overlapping appointments. \n");
         }
         else {
             int custID = selectedCust.getCustomerID();
