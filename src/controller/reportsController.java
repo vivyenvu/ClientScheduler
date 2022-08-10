@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Contacts;
 import model.Customers;
 
@@ -30,7 +31,17 @@ public class reportsController {
 
     public void onContactScheduleBtn(ActionEvent actionEvent) {
         ObservableList<Contacts> allContacts = Contacts.getAllContacts();
+        ObservableList<Appointments> allAppointments = Appointments.getAllAppts();
+
         String [] contactInfo = new String[allContacts.size()];
+        for (Appointments appt : allAppointments){
+            for (Contacts contact : allContacts) {
+                if (appt.getContactIDFK() == contact.getContactID()){
+
+                }
+            }
+        }
+
     }
 
     public void onCustomerPerCountryBtn(ActionEvent actionEvent) {
