@@ -3,6 +3,7 @@ package controller;
 import DAO.ApptDaoImpl;
 import DAO.CustomerDaoImpl;
 import helper.Util;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -22,10 +23,14 @@ import model.Customers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class mainMenuController implements Initializable {
     public TableView <Customers> customerTable;
@@ -84,13 +89,30 @@ public class mainMenuController implements Initializable {
 
         //notify user if they have appointment coming up in 15 minutes
         ObservableList<Appointments> allAppts = Appointments.getAllAppts();
+        //IS THIS ALL APPOINTMENTS OR ONLY APPOINTMENTS ASSOCIATED WITH THE USER
+        //maybe i need to collect that information from the previous screen when they input their username and connect that to a userID
+        //currentUser = UserDaoImpl.getUser(inputUsername);
         for (Appointments appt : allAppts){
             LocalTime startTime = appt.getStart().toLocalTime();
             LocalTime loginTime = LocalTime.now();
-            long timeDifference = ChronoUnit.MINUTES.between(startTime, loginTime);
+
+            //convert loginTime to UTC
+            //calculate time offset between system timezone and utc in hours
+            ZoneId currentZone = ZoneId.systemDefault();
+            long now = System.currentTimeMillis();
+            long diff = TimeZone.getTimeZone("UTC").getOffset(now) - TimeZone.getTimeZone(currentZone).getOffset(now);
+            diff = diff/3600000; // turns milliseconds into hours
+            LocalTime UTCLoginTime = loginTime.minusHours(diff);
+
+            long timeDifference = ChronoUnit.MINUTES.between(startTime, UTCLoginTime);
+            int id = appt.getApptID();
+            LocalDateTime UTCDateTime = appt.getStart();
+            LocalDateTime systemDateTime = Util.UTCToSystem(UTCDateTime);
+            LocalDate date = systemDateTime.toLocalDate();
+            LocalTime time = systemDateTime.toLocalTime();
 
             if (timeDifference > 0 && timeDifference <= 15) {
-                Util.stringToAlert("Upcoming appointment with ID " +appt.getApptID()+" on " +appt.getStart().toLocalDate()+ " at " + appt.getStart().toLocalTime()+ ".");
+                Util.stringToAlert("Upcoming appointment with ID " +id+" on " +date+ " at " +time+ ".");
             }
             else{
                 Util.stringToAlert("No upcoming appointments.");
