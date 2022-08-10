@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -79,6 +80,10 @@ public class loginScreenController implements Initializable {
                 stage.setTitle("Main Menu");
                 stage.setScene(scene);
                 stage.show();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText(Util.upcomingMessage(currentUser)); //MADE STATIC BUT CHECK IF THIS MESSES ANYTHING UP
+                alert.show();
             }
             if (!inputPassword.equals(associatedPassword)) {
                 if (isFrench) {

@@ -127,7 +127,7 @@ public class Util {
         return eastern;
     }
 
-    public String upcomingMessage (Users user){
+    public static String upcomingMessage(Users user){
         int userID = user.getUserID();
         ObservableList<Appointments> allAppts = Appointments.getAllAppts();
         String upcomingAppts = "";
@@ -135,6 +135,7 @@ public class Util {
             if (userID == appt.getUserIDFK()){
                 LocalTime startTime = appt.getStart().toLocalTime();
                 LocalTime loginTime = LocalTime.now();
+                LocalDate loginDate = LocalDate.now();
 
                 long timeDifference = ChronoUnit.MINUTES.between(loginTime, startTime);
                 int id = appt.getApptID();
@@ -142,7 +143,7 @@ public class Util {
                 LocalDate date = dateTime.toLocalDate();
                 LocalTime time = dateTime.toLocalTime();
 
-                if (timeDifference >= 0 && timeDifference <= 15) {
+                if (timeDifference >= 0 && timeDifference <= 15 && loginDate.equals(date)) {
                     upcomingAppts += "Upcoming appointment with ID " +id+" on " +date+ " at " +time+ ". \n";
                 }
             }
