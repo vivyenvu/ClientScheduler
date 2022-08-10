@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import model.Customers;
 
 import java.io.IOException;
 
@@ -29,5 +31,25 @@ public class reportsController {
     }
 
     public void onCustomerPerCountryBtn(ActionEvent actionEvent) {
+        ObservableList<Customers> allCustomers = Customers.getAllCustomers();
+        int US = 0;
+        int UK = 0;
+        int Canada = 0;
+
+        for (Customers cust : allCustomers)
+        {
+            if (cust.getDivisionIDFK() >=1 && cust.getDivisionIDFK() <=54){
+                US++;
+            }
+            else if (cust.getDivisionIDFK() >=101 && cust.getDivisionIDFK() <=104){
+                UK++;
+            }
+            else if (cust.getDivisionIDFK() >=60 && cust.getDivisionIDFK() <=72){
+                Canada++;
+            }
+        }
+
+        displayArea.setText("U.S                      UK                      Canada \n" +
+                            US+"                          "+UK+"                        "+Canada);
     }
 }
