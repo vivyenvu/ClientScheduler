@@ -37,13 +37,20 @@ public class reportsController {
         /*Button printTextBtn = new Button("Print Text");
         printTextBtn.setOnAction(e -> print(text));*/
         String allInfo = "Appt ID            Title            Type            Description            Start            End            Customer ID";
-            for (Contacts contact : allContacts) {
-                allInfo += ""
-                if (appt.getContactIDFK() == contact.getContactID()){
-
+        for (Contacts contact : allContacts) {
+            for (Appointments appt : allAppointments) {
+                if (appt.getContactIDFK() == contact.getContactID()) {
+                    String apptID = String.valueOf(appt.getApptID());
+                    String title = appt.getTitle();
+                    String type = appt.getType();
+                    String desc = appt.getDesc();
+                    String start = appt.getStart().toString();
+                    String end = appt.getEnd().toString();
+                    String custID = String.valueOf(appt.getCustomerIDFK());
+                    allInfo += apptID +"    "+title+"    "+type+"    "+desc+"    "+start+"    "+end+"    "+custID;
                 }
             }
-
+        }
         displayArea.setText(allInfo);
     }
 
