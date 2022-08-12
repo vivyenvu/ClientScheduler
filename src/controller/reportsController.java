@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import model.Appointments;
@@ -33,15 +34,17 @@ public class reportsController {
         ObservableList<Contacts> allContacts = Contacts.getAllContacts();
         ObservableList<Appointments> allAppointments = Appointments.getAllAppts();
 
-        String [] contactInfo = new String[allContacts.size()];
-        for (Appointments appt : allAppointments){
+        /*Button printTextBtn = new Button("Print Text");
+        printTextBtn.setOnAction(e -> print(text));*/
+        String allInfo = "Appt ID            Title            Type            Description            Start            End            Customer ID";
             for (Contacts contact : allContacts) {
+                allInfo += ""
                 if (appt.getContactIDFK() == contact.getContactID()){
 
                 }
             }
-        }
 
+        displayArea.setText(allInfo);
     }
 
     public void onCustomerPerCountryBtn(ActionEvent actionEvent) {
