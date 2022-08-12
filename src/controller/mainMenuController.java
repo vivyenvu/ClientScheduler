@@ -225,7 +225,7 @@ public class mainMenuController implements Initializable {
     public void onClickReports(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/reports.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 850, 400);
         stage.setTitle("Reports");
         stage.setScene(scene);
         stage.show();

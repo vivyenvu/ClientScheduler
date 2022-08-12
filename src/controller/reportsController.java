@@ -40,10 +40,10 @@ public class reportsController {
         /*Button printTextBtn = new Button("Print Text");
         printTextBtn.setOnAction(e -> print(text));*/
         //String test = "testing";
-        String allInfo = "Appt ID            Title            Type            Description            Start            End            Customer ID\n";
+        String allInfo = "Appt ID            Title                        Type                        Description                        Start                        End                        Customer ID\n";
         //allInfo += test+ "       " +test;
         for (Contacts contact : allContacts) {
-            allInfo += contact.getContactName();
+            allInfo += contact.getContactName()+"\n";
             for (Appointments appt : allAppointments) {
                 if (appt.getContactIDFK() == contact.getContactID()) {
                     String apptID = String.valueOf(appt.getApptID());
@@ -53,8 +53,7 @@ public class reportsController {
                     String start = appt.getStart().toString();
                     String end = appt.getEnd().toString();
                     String custID = String.valueOf(appt.getCustomerIDFK());
-                    allInfo += "added";
-                    allInfo += (apptID +"    "+title+"    "+type+"    "+desc+"    "+start+"    "+end+"    "+custID +"\n");
+                    allInfo += (apptID +"                       "+title+"                       "+type+"                       "+desc+"                       "+start+"                       "+end+"                       "+custID +"\n");
                 }
             }
         }
