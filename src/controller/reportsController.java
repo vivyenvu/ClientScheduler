@@ -1,5 +1,7 @@
 package controller;
 
+import DAO.ApptDaoImpl;
+import DAO.ContactDaoImpl;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import model.Contacts;
 import model.Customers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class reportsController {
     public TextArea displayArea;
@@ -30,14 +33,17 @@ public class reportsController {
     public void onApptTypeBtn(ActionEvent actionEvent) {
     }
 
-    public void onContactScheduleBtn(ActionEvent actionEvent) {
-        ObservableList<Contacts> allContacts = Contacts.getAllContacts();
-        ObservableList<Appointments> allAppointments = Appointments.getAllAppts();
+    public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException {
+        ObservableList<Contacts> allContacts = ContactDaoImpl.getAllContacts();
+        ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
 
         /*Button printTextBtn = new Button("Print Text");
         printTextBtn.setOnAction(e -> print(text));*/
-        String allInfo = "Appt ID            Title            Type            Description            Start            End            Customer ID";
+        //String test = "testing";
+        String allInfo = "Appt ID            Title            Type            Description            Start            End            Customer ID\n";
+        //allInfo += test+ "       " +test;
         for (Contacts contact : allContacts) {
+            allInfo += contact.getContactName();
             for (Appointments appt : allAppointments) {
                 if (appt.getContactIDFK() == contact.getContactID()) {
                     String apptID = String.valueOf(appt.getApptID());
@@ -47,7 +53,8 @@ public class reportsController {
                     String start = appt.getStart().toString();
                     String end = appt.getEnd().toString();
                     String custID = String.valueOf(appt.getCustomerIDFK());
-                    allInfo += apptID +"    "+title+"    "+type+"    "+desc+"    "+start+"    "+end+"    "+custID;
+                    allInfo += "added";
+                    allInfo += (apptID +"    "+title+"    "+type+"    "+desc+"    "+start+"    "+end+"    "+custID +"\n");
                 }
             }
         }
