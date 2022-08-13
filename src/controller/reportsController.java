@@ -33,23 +33,11 @@ public class reportsController {
     }
 
     public void onApptTypeBtn(ActionEvent actionEvent) {
-        ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
+        //ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
     }
 
     public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException {
-        try {
-            customerTable.setItems(CustomerDaoImpl.getAllCustomers());
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
 
-        customerTableID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        customerTableName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        customerTableAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        customerTablePostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        customerTableCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
-        customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
 
 
 
