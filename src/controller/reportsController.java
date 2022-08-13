@@ -36,16 +36,20 @@ public class reportsController {
         //ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
     }
 
-    public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException {
-
-
-
+    public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException, IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/reportsSchedule.fxml"));
+        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 850, 400);
+        stage.setTitle("Reports Schedule");
+        stage.setScene(scene);
+        stage.show();
+/*
 
         ObservableList<Contacts> allContacts = ContactDaoImpl.getAllContacts();
         ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
 
-        /*Button printTextBtn = new Button("Print Text");
-        printTextBtn.setOnAction(e -> print(text));*/
+        //Button printTextBtn = new Button("Print Text");
+        //printTextBtn.setOnAction(e -> print(text));
         //String test = "testing";
         String allInfo = "Appt ID            Title                        Type                        Description                        Start                        End                        Customer ID\n";
         //allInfo += test+ "       " +test;
@@ -64,7 +68,8 @@ public class reportsController {
                 }
             }
         }
-        displayArea.setText(allInfo);
+        displayArea.setText(allInfo);*/
+
     }
 
     public void onCustomerPerCountryBtn(ActionEvent actionEvent) {

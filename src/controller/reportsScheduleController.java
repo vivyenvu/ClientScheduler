@@ -33,9 +33,25 @@ public class reportsScheduleController {
     public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException {
         ObservableList<Contacts> allContacts = ContactDaoImpl.getAllContacts();
         ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
-        ObservableList<Object> allInfo = FXCollections.observableArrayList();
+        ObservableList<Appointments> allInfo = FXCollections.observableArrayList();
+    /*
+        for (Contacts contact : allContacts) {
+            //allInfo.add(contact);
+            for (Appointments appt : allAppointments) {
+                if (appt.getContactIDFK() == contact.getContactID()) {
+                    allInfo.add(appt);
+                    /*String apptID = String.valueOf(appt.getApptID());
+                    String title = appt.getTitle();
+                    String type = appt.getType();
+                    String desc = appt.getDesc();
+                    String start = appt.getStart().toString();
+                    String end = appt.getEnd().toString();
+                    String custID = String.valueOf(appt.getCustomerIDFK());
+                }
+            }
+        }*/
 
-
+        allInfo.add(allAppointments.get(1));
         displaySchedule.setItems(allInfo);
 
         tableApptID.setCellValueFactory(new PropertyValueFactory<>("apptID"));
