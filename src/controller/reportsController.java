@@ -2,6 +2,7 @@ package controller;
 
 import DAO.ApptDaoImpl;
 import DAO.ContactDaoImpl;
+import DAO.CustomerDaoImpl;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
@@ -31,9 +33,26 @@ public class reportsController {
     }
 
     public void onApptTypeBtn(ActionEvent actionEvent) {
+        ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
     }
 
     public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException {
+        try {
+            customerTable.setItems(CustomerDaoImpl.getAllCustomers());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        customerTableID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customerTableName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerTableAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        customerTablePostal.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        customerTablePhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        customerTableCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
+        customerTableFirst.setCellValueFactory(new PropertyValueFactory<>("divisionIDFK"));
+
+
+
         ObservableList<Contacts> allContacts = ContactDaoImpl.getAllContacts();
         ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
 
