@@ -76,7 +76,7 @@ public class Appointments {
     public static void setAllAppts(ObservableList<Appointments> toSet){
         allAppointments = toSet;
     }
-    public static void add (Appointments appt) (appointments.add(appt)); // MAKE THIS ADD ONE APPT TO THE INSTANTIATED OBSERVABLE LIST
+    //public static void add (Appointments appt){appointments.add(appt)}; // MAKE THIS ADD ONE APPT TO THE INSTANTIATED OBSERVABLE LIST
     public void setApptID(int id) {
         apptID = id;
     }
