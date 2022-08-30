@@ -3,6 +3,7 @@ package controller;
 import DAO.ApptDaoImpl;
 import DAO.ContactDaoImpl;
 import DAO.CustomerDaoImpl;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -32,8 +33,29 @@ public class reportsController {
         stage.show();
     }
 
-    public void onApptTypeBtn(ActionEvent actionEvent) {
-        //ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
+    public void onApptTypeBtn(ActionEvent actionEvent) throws SQLException {
+        ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
+        ObservableList<String> allTypes = FXCollections.observableArrayList();
+
+        String allInfo = "Month                        Type                        Count\n";
+        //populate allTypes by iterating through allAppointments and looking for unique types
+        for (String type : allTypes) {
+            int count = 0;
+            String month = "make lamda function";
+            for (Appointments appt : allAppointments) {
+                if (appt.getContactIDFK() == contact.getContactID()) {
+                    String apptID = String.valueOf(appt.getApptID());
+                    String title = appt.getTitle();
+                    String type = appt.getType();
+                    String desc = appt.getDesc();
+                    String start = appt.getStart().toString();
+                    String end = appt.getEnd().toString();
+                    String custID = String.valueOf(appt.getCustomerIDFK());
+                    allInfo += (month +"                       "+type+"                  "+count+"\n");
+                }
+            }
+        }
+        displayArea.setText(allInfo);
     }
 
     public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException, IOException {
