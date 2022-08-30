@@ -37,14 +37,12 @@ public class reportsController {
     }
 
     public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException, IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/reportsSchedule.fxml"));
+        /*Parent root = FXMLLoader.load(getClass().getResource("/view/reportsSchedule.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 850, 400);
         stage.setTitle("Reports Schedule");
         stage.setScene(scene);
-        stage.show();
-/*
-
+        stage.show();*/
         ObservableList<Contacts> allContacts = ContactDaoImpl.getAllContacts();
         ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
 
@@ -64,11 +62,11 @@ public class reportsController {
                     String start = appt.getStart().toString();
                     String end = appt.getEnd().toString();
                     String custID = String.valueOf(appt.getCustomerIDFK());
-                    allInfo += (apptID +"                       "+title+"                       "+type+"                       "+desc+"                       "+start+"                       "+end+"                       "+custID +"\n");
+                    allInfo += (apptID +"                       "+title+"                  "+type+"                  "+desc+"                  "+start+"                  "+end+"                  "+custID +"\n");
                 }
             }
         }
-        displayArea.setText(allInfo);*/
+        displayArea.setText(allInfo);
 
     }
 
