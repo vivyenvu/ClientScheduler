@@ -43,16 +43,10 @@ public class reportsController {
             int count = 0;
             String month = "make lamda function";
             for (Appointments appt : allAppointments) {
-                if (appt.getContactIDFK() == contact.getContactID()) {
-                    String apptID = String.valueOf(appt.getApptID());
-                    String title = appt.getTitle();
-                    String type = appt.getType();
-                    String desc = appt.getDesc();
-                    String start = appt.getStart().toString();
-                    String end = appt.getEnd().toString();
-                    String custID = String.valueOf(appt.getCustomerIDFK());
-                    allInfo += (month +"                       "+type+"                  "+count+"\n");
+                if (appt.getType() == type && appt.getStart().getMonth().equals(month)) { //there might be an issue here if .getMonth doesn't return a string
+                    count++;
                 }
+                allInfo += (month +"                       "+type+"                  "+count+"\n");
             }
         }
         displayArea.setText(allInfo);
