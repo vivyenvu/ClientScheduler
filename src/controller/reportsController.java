@@ -35,11 +35,11 @@ public class reportsController {
 
     public void onApptTypeBtn(ActionEvent actionEvent) throws SQLException {
         ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
-        ObservableList<String> allTypes = FXCollections.observableArrayList();
+        ObservableList<String> allTypes = ApptDaoImpl.getAllTypes();
 
-        String allInfo = "Month                        Type                        Count\n";
+        String allInfo = "Month                                                Type                                                Count\n";
         //populate allTypes by iterating through allAppointments and looking for unique types
-        allTypes.add(allAppointments.get(0).getType());
+        /*allTypes.add(allAppointments.get(0).getType());
 
         for (int i=0; i < allTypes.size(); i++){
             for (Appointments appt : allAppointments){
@@ -48,7 +48,7 @@ public class reportsController {
                     i=0;
                 }
             }
-        }
+        }*/
         for (String type : allTypes){
             System.out.println(type+"\n");
         }

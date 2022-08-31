@@ -158,5 +158,14 @@ public class ApptDaoImpl {
             monthAppts.add(apptResult);
         }
         return monthAppts;
-}
+    }
+    public static ObservableList<String> getAllTypes() throws SQLException {
+        ObservableList<String> allTypes = FXCollections.observableArrayList();
+        ResultSet result = Query.getRS("select distinct Type from appointments");
+        while(result.next()){
+            String addType = result.getString("Type");
+            allTypes.add(addType);
+        }
+        return allTypes;
+    }
 }
