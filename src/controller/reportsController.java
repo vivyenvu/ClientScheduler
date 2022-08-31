@@ -38,7 +38,7 @@ public class reportsController {
         ObservableList<String> allTypes = ApptDaoImpl.getAllTypes();
 
         String allInfo = "Month                                                Type                                                Count\n";
-        for (int i=1; i <=12; i++){
+        for (int i=0; i<12; i++){
 
         }
         for (String type : allTypes) {
