@@ -38,31 +38,9 @@ public class reportsController {
         ObservableList<String> allTypes = ApptDaoImpl.getAllTypes();
 
         String allInfo = "Month                                                Type                                                Count\n";
-        //populate allTypes by iterating through allAppointments and looking for unique types
-        /*allTypes.add(allAppointments.get(0).getType());
+        for (int i=1; i <=12; i++){
 
-        for (int i=0; i < allTypes.size(); i++){
-            for (Appointments appt : allAppointments){
-                if (!appt.getType().equals(allTypes.get(i))){
-                    allTypes.add(appt.getType());
-                    i=0;
-                }
-            }
-        }*/
-        for (String type : allTypes){
-            System.out.println(type+"\n");
         }
-
-        /*for (int i=0; i < allAppointments.size(); i++){
-            for (String type : allTypes){ //for (int i=0; i < allTypes.size())
-                if (!allAppointments.get(i).getType().equals(type)){
-                    allTypes.add(allAppointments.get(i).getType());
-                    i=0;
-                }
-            }
-        }*/
-
-
         for (String type : allTypes) {
             int count = 0;
             String month = "make lamda function";
