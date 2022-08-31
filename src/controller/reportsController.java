@@ -39,6 +39,14 @@ public class reportsController {
 
         String allInfo = "Month                        Type                        Count\n";
         //populate allTypes by iterating through allAppointments and looking for unique types
+        for (Appointments appt : allAppointments){
+            for (String type : allTypes){
+                if (appt.getType() != type){
+                    allTypes.add(appt.getType());
+                }
+            }
+        }
+
         for (String type : allTypes) {
             int count = 0;
             String month = "make lamda function";
