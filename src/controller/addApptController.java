@@ -96,6 +96,7 @@ public class addApptController implements Initializable {
         catch (NullPointerException e){
             errorMessages += "Please select an end time. \n";
         }
+
         try{
             if (startTime.isAfter(endTime) || startTime.equals(endTime)){
                 errorMessages += "Start time needs to come before end time. \n";
@@ -124,26 +125,25 @@ public class addApptController implements Initializable {
                     }
                 }
             }
-        }
+            if (count != clear) {
+                Util.stringToAlert("Cannot create appointment because there are overlapping appointments. \n");
+            }
+            else {
+                int custID = selectedCust.getCustomerID();
+                int userID = selectedUser.getUserID();
+                int contactID = selectedContact.getContactID();
+                LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
+                LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
 
-        if (count != clear) {
-            Util.stringToAlert("Cannot create appointment because there are overlapping appointments. \n");
-        }
-        else {
-            int custID = selectedCust.getCustomerID();
-            int userID = selectedUser.getUserID();
-            int contactID = selectedContact.getContactID();
-            LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
-            LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
+                ApptDaoImpl.addAppt(title, desc, loc, type, start, end, custID, userID, contactID);
 
-            ApptDaoImpl.addAppt(title, desc, loc, type, start, end, custID, userID, contactID);
-
-            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 1000, 700);
-            stage.setTitle("Main Menu");
-            stage.setScene(scene);
-            stage.show();
+                Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 1000, 700);
+                stage.setTitle("Main Menu");
+                stage.setScene(scene);
+                stage.show();
+            }
         }
     }
 

@@ -127,26 +127,25 @@ public class updateApptController implements Initializable{
                     }
                 }
             }
-        }
-
-        if (count != clear) {
-            Util.stringToAlert("Cannot create appointment because there are overlapping appointments. \n");
+            if (count != clear) {
+                Util.stringToAlert("Cannot create appointment because there are overlapping appointments. \n");
             }
-        else {
-            int custID = selectedCust.getCustomerID();
-            int userID = selectedUser.getUserID();
-            int contactID = selectedContact.getContactID();
-            LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
-            LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
+            else {
+                int custID = selectedCust.getCustomerID();
+                int userID = selectedUser.getUserID();
+                int contactID = selectedContact.getContactID();
+                LocalDateTime start = Util.systemToUTC(LocalDateTime.of(date, startTime));
+                LocalDateTime end = Util.systemToUTC(LocalDateTime.of(date, endTime));
 
-            ApptDaoImpl.updateAppt(apptID, title, desc, loc, type, start, end, custID, userID, contactID);
+                ApptDaoImpl.updateAppt(apptID, title, desc, loc, type, start, end, custID, userID, contactID);
 
-            Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 1000, 700);
-            stage.setTitle("Main Menu");
-            stage.setScene(scene);
-            stage.show();
+                Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 1000, 700);
+                stage.setTitle("Main Menu");
+                stage.setScene(scene);
+                stage.show();
+            }
         }
     }
 
