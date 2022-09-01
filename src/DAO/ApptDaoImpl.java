@@ -168,4 +168,9 @@ public class ApptDaoImpl {
         }
         return allTypes;
     }
+    public int getCount (String type, String month){
+        int count = 0;
+
+        return count;
+    }
 }
