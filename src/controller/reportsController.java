@@ -38,7 +38,7 @@ public class reportsController {
         ObservableList<String> allTypes = ApptDaoImpl.getAllTypes();
 
         String allInfo = "Month                                                Type                                                Count\n";
-        for (int i=0; i<12; i++){
+        for (int i=1; i<=12; i++){
         int count = 0;
             for (String type : allTypes) {
                 int month = i;
@@ -47,9 +47,10 @@ public class reportsController {
                     System.out.println(type);
                     System.out.println(appt.getStart().getMonth());
                     System.out.println(month);*/
-                    if (appt.getType().equals(type) && appt.getStart().getMonth().equals("MAY")) {
+                    /*if (appt.getType().equals(type) && appt.getStart().getMonth().equals("MAY")) {
                         count++;
-                    }
+                    }*/
+                    count = ApptDaoImpl.getCount(type, month);
                 }
                 allInfo += (month +"                       "+type+"                  "+count+"\n");
             }

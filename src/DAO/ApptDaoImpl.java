@@ -168,14 +168,16 @@ public class ApptDaoImpl {
         }
         return allTypes;
     }
-    public int getCount (String type, int month) throws SQLException {
+    public static int getCount(String type, int month) throws SQLException {
         int count = 0;
-        PreparedStatement ps = Query.getPS("SELECT COUNT * FROM appointments WHERE Type = ? AND MONTH(Start) = ?");
+        PreparedStatement ps = Query.getPS("SELECT COUNT(*) FROM appointments WHERE Type = ? AND MONTH(Start) = ?");
         ps.setString(1, type);
         ps.setInt(2, month);
 
         ResultSet result = ps.executeQuery();
-        count = result.getInt(0);
+        while(result.next()) {
+            count = result.getInt(1);
+        }
         return count;
     }
 }
