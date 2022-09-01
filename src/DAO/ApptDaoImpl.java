@@ -161,16 +161,21 @@ public class ApptDaoImpl {
     }
     public static ObservableList<String> getAllTypes() throws SQLException {
         ObservableList<String> allTypes = FXCollections.observableArrayList();
-        ResultSet result = Query.getRS("select distinct Type from appointments");
+        ResultSet result = Query.getRS("SELECT DISTINCT Type FROM appointments");
         while(result.next()){
             String addType = result.getString("Type");
             allTypes.add(addType);
         }
         return allTypes;
     }
-    public int getCount (String type, String month){
+    public int getCount (String type, String month) throws SQLException {
         int count = 0;
+        PreparedStatement ps = Query.getPS("SELECT COUNT * FROM appointments WHERE Type = ? AND MONTH(Start) = ?");
+        ps.setString(1, type);
+        ps.setString(2, month);
 
+        ResultSet result = ps.executeQuery();
+        count = result.getInt(0);
         return count;
     }
 }
