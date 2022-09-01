@@ -109,7 +109,6 @@ public class addApptController implements Initializable {
         if (errorMessages != "") {
             Util.stringToAlert(errorMessages);
         }
-
         else{
             //validates no time overlap
             ObservableList<Appointments> allAppts = Appointments.getAllAppts();

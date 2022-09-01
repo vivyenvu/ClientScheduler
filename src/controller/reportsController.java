@@ -45,7 +45,9 @@ public class reportsController {
                 for (Appointments appt : allAppointments) {
                     count = ApptDaoImpl.getCount(type, month);
                 }
-                allInfo += (month +"                       "+type+"                  "+count+"\n");
+                if (count != 0){
+                    allInfo += (month +"                                                "+type+"                                                "+count+"\n");
+                }
             }
         }
         displayArea.setText(allInfo);
