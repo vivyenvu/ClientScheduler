@@ -43,31 +43,11 @@ public class reportsController {
             for (String type : allTypes) {
                 int month = i;
                 for (Appointments appt : allAppointments) {
-                    /*System.out.println(appt.getType());
-                    System.out.println(type);
-                    System.out.println(appt.getStart().getMonth());
-                    System.out.println(month);*/
-                    /*if (appt.getType().equals(type) && appt.getStart().getMonth().equals("MAY")) {
-                        count++;
-                    }*/
                     count = ApptDaoImpl.getCount(type, month);
                 }
                 allInfo += (month +"                       "+type+"                  "+count+"\n");
             }
-
         }
-
-        /*
-        for (String type : allTypes) {
-            int count = 0;
-            String month = "make lamda function";
-            for (Appointments appt : allAppointments) {
-                if (appt.getType() == type && appt.getStart().getMonth().equals(month)) { //there might be an issue here if .getMonth doesn't return a string
-                    count++;
-                }
-                allInfo += (month +"                       "+type+"                  "+count+"\n");
-            }
-        }*/
         displayArea.setText(allInfo);
     }
 
