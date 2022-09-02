@@ -3,6 +3,7 @@ package controller;
 import DAO.ApptDaoImpl;
 import DAO.ContactDaoImpl;
 import DAO.CustomerDaoImpl;
+import LEXMain.GeneralInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -105,8 +106,11 @@ public class reportsController {
                 Canada++;
             }
         }
+        GeneralInterface space = (s, t) -> s+"                      "+t;
+        displayArea.setText(space.addSpace(space.addSpace("U.S","UK"),"Canada")+ "\n"+
+                US+"                          "+UK+"                        "+Canada);
 
-        displayArea.setText("U.S                      UK                      Canada \n" +
-                            US+"                          "+UK+"                        "+Canada);
+        /*displayArea.setText("U.S                      UK                      Canada \n" +
+                            US+"                          "+UK+"                        "+Canada);*/
     }
 }

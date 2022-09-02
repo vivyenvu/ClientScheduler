@@ -153,11 +153,4 @@ public class Util {
         }
         return upcomingAppts;
     }
-    /*public LocalDateTime easternToUTC(LocalDateTime eastern){
-        ZonedDateTime zonedEastern = eastern.atZone(ZoneId.of("US/Eastern"));
-        ZonedDateTime zonedUtc = zonedEastern.withZoneSameInstant(ZoneId.of("UTC"));
-        LocalDateTime utc = zonedUtc.toLocalDateTime();
-
-        return utc;
-    }*/
 }
