@@ -109,8 +109,5 @@ public class reportsController {
         GeneralInterface space = (s, t) -> s+"                      "+t;
         displayArea.setText(space.addSpace(space.addSpace("U.S","UK"),"Canada")+ "\n"+
                 US+"                          "+UK+"                        "+Canada);
-
-        /*displayArea.setText("U.S                      UK                      Canada \n" +
-                            US+"                          "+UK+"                        "+Canada);*/
     }
 }
