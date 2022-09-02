@@ -4,6 +4,7 @@ import DAO.ApptDaoImpl;
 import DAO.ContactDaoImpl;
 import DAO.CustomerDaoImpl;
 import LEXMain.GeneralInterface;
+import LEXMain.MonthInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import model.Customers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Month;
 
 public class reportsController {
     public TextArea displayArea;
@@ -46,8 +48,11 @@ public class reportsController {
                 for (Appointments appt : allAppointments) {
                     count = ApptDaoImpl.getCount(type, month);
                 }
+                String monthName = "";
+                MonthInterface name = m -> String.valueOf(Month.of(m));
+                monthName = name.getMonthName(month);
                 if (count != 0){
-                    allInfo += (month +"                                                "+type+"                                                "+count+"\n");
+                    allInfo += (monthName +"                                "+type+"                                                "+count+"\n");
                 }
             }
         }
