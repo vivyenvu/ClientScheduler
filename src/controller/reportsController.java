@@ -48,9 +48,10 @@ public class reportsController {
                 for (Appointments appt : allAppointments) {
                     count = ApptDaoImpl.getCount(type, month);
                 }
-                String monthName = "";
+
                 MonthInterface name = m -> String.valueOf(Month.of(m));
-                monthName = name.getMonthName(month);
+                String monthName = name.getMonthName(month);
+
                 if (count != 0){
                     allInfo += (monthName +"                                "+type+"                                                "+count+"\n");
                 }
