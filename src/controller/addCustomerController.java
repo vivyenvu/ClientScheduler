@@ -25,6 +25,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Allows user to add a new customer. Includes fields id, name, address, postal code, phone number, and first division id.
+ */
 public class addCustomerController implements Initializable {
     public TextField addCustomerID;
     public TextField addCustomerName;
@@ -35,6 +38,11 @@ public class addCustomerController implements Initializable {
     public ComboBox <Countries> addCustomerCountry;
     private ObservableList<Appointments> associatedAppts = FXCollections.observableArrayList();
 
+    /**
+     * Populates countries combo box.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -47,6 +55,14 @@ public class addCustomerController implements Initializable {
         }
     }
 
+    /**
+     * When save button is clicked, this method will validate that all fields are not blank and valid.
+     * If there is invalid data, an error will pop up. Otherwise, a new customer is created and
+     * added to the appointments table of the database.
+     * @param actionEvent when Save button is clicked
+     * @throws SQLException
+     * @throws IOException
+     */
     public void onAddCustomerSaveBtn(ActionEvent actionEvent) throws SQLException, IOException {
         String errorMessages = "";
         String custName = addCustomerName.getText();
@@ -87,6 +103,11 @@ public class addCustomerController implements Initializable {
         }
     }
 
+    /**
+     * Cancel button changes scene back to Main Menu
+     * @param actionEvent when Cancel button is clicked
+     * @throws IOException
+     */
     public void onAddCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -96,16 +117,20 @@ public class addCustomerController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Populates First Division combo box with that country's first level divisions
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void onAddCustomerCountry(ActionEvent actionEvent) throws SQLException {
         ObservableList<String> allDivs= FXCollections.observableArrayList();
-        Countries selectedCountry = addCustomerCountry.getSelectionModel().getSelectedItem(); //eg Canada
+        Countries selectedCountry = addCustomerCountry.getSelectionModel().getSelectedItem(); //eg. Canada
 
-        int countryID = Util.countryToCountryID(selectedCountry.getCountry()); //DOES THE HELPER NEED TO BE STATIC
+        int countryID = Util.countryToCountryID(selectedCountry.getCountry());
         ResultSet rs = Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
         while (rs.next()){
             String firstDiv = rs.getString("Division");
-            allDivs.add(firstDiv); //note: this is just adding a list of strings, not FirstDivision objects.
-            //to solve this, should I make addCustomerFirstDiv combobox only hold FirstClassDivision objects?
+            allDivs.add(firstDiv);
         }
         addCustomerFirstDiv.setItems(allDivs);
     }

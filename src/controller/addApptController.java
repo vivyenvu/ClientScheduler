@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 /**
- * Allows user to add a new apointment. Includes fields id, title, description, location, contact, date, start time, end time, customer id, user id, and type.
+ * Allows user to add a new appointment. Includes fields id, title, description, location, contact, date, start time, end time, customer id, user id, and type.
  */
 public class addApptController implements Initializable {
     public TextField addApptID;
