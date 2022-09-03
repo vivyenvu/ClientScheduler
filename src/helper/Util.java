@@ -12,52 +12,29 @@ import java.sql.SQLException;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Helper class for repetitive tasks like converting between time zones.
+ */
 public class Util {
+
+    /**
+     * Creates an alert with a given String message.
+     * @param message text to be displayed in the alert
+     */
     public static void stringToAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(message);
         alert.show();
     }
 
-    public int contactNameToID (String name) throws SQLException {
-        int contactID = Integer.parseInt(null);
-        ResultSet rs = Query.getRS("SELECT Contact_ID FROM contacts WHERE Contact_Name = '" +name +"'");
-        while (rs.next()){
-            contactID = rs.getInt("Contact_ID");
-        }
-        stringToAlert("ContactID is " +contactID); //remove after testing
-        return contactID;
-    }
-
-    public String contactIDToName(int id) throws SQLException {
-        String name =""; //remove initialization later?
-        ResultSet rs = Query.getRS("SELECT Contact_Name FROM contacts WHERE Contact_ID = '" + id +"'");
-        while (rs.next()){
-            name = rs.getString("Contact_Name");
-        }
-        return name;
-    }
-
-    public int usernameToID (String name) throws SQLException {
-        int id = 0;// remove later
-        ResultSet rs = Query.getRS("SELECT User_ID FROM users WHERE User_Name = '" +name +"'");
-        while (rs.next()){
-            id = rs.getInt("User_ID");
-        }
-        return id;
-    }
-
-    public String userIDToName (int id) throws SQLException {
-        String name = ""; //remove later
-        ResultSet rs = Query.getRS("SELECT User_Name FROM users WHERE User_ID = '" + id +"'");
-        while (rs.next()){
-            name = rs.getString("User_Name");
-        }
-        return name;
-    }
-
+    /**
+     * Provides country id associated with given country name.
+     * @param name country name
+     * @return country id
+     * @throws SQLException
+     */
     public static int countryToCountryID(String name) throws SQLException {
-        int id = 0;// remove later
+        int id = 0;
         ResultSet rs = Query.getRS("SELECT Country_ID FROM countries WHERE Country = '" +name +"'");
         while (rs.next()){
             id = rs.getInt("Country_ID");
@@ -65,8 +42,14 @@ public class Util {
         return id;
     }
 
+    /**
+     * Provides first level division id for a given name of a first level division
+     * @param name first level division name
+     * @return first level division id
+     * @throws SQLException
+     */
     public static int firstDivToID (String name) throws SQLException {
-        int id = 0;// remove later
+        int id = 0;
         ResultSet rs = Query.getRS("SELECT Division_ID FROM first_level_divisions WHERE Division = '" +name +"'");
         while (rs.next()){
             id = rs.getInt("Division_ID");
@@ -74,8 +57,14 @@ public class Util {
         return id;
     }
 
+    /**
+     * Provides the name associated with a first level division id
+     * @param id first level division id
+     * @return first level division name
+     * @throws SQLException
+     */
     public static String firstIDtoDiv(int id) throws SQLException {
-        String name = ""; //remove later
+        String name = "";
         ResultSet rs = Query.getRS("SELECT Division FROM first_level_divisions WHERE Division_ID = '" + id +"'");
         while (rs.next()){
             name = rs.getString("Division");
@@ -83,6 +72,12 @@ public class Util {
         return name;
     }
 
+    /**
+     * Provides name of country associated with a first level division id
+     * @param id first level division id
+     * @return name of country
+     * @throws SQLException
+     */
     public static String divIDToCountry(int id) throws SQLException {
         String countryName = "";
         int countryID =0;
@@ -97,12 +92,17 @@ public class Util {
         while (rsc.next()) {
             for (int i = 1; i <= columnsNumber; i++) {
                 countryName = rsc.getString(i);
-                //System.out.println(countryName);
             }
         }
 
         return countryName;
     }
+
+    /**
+     * Converts system DateTime to UTC
+     * @param origin LocalDateTime in system's time zone
+     * @return LocalDateTime converted to UTC
+     */
     public static LocalDateTime systemToUTC(LocalDateTime origin){
         ZonedDateTime zonedOrigin = origin.atZone(ZoneId.systemDefault());
         ZonedDateTime zonedTarget = zonedOrigin.withZoneSameInstant(ZoneId.of("UTC"));
@@ -111,6 +111,11 @@ public class Util {
         return target;
     }
 
+    /**
+     * Converts UTC DateTime to system time zone
+     * @param utc LocalDateTime UTC
+     * @return LocalDateTime converted to system's time zone
+     */
     public static LocalDateTime UTCToSystem(LocalDateTime utc){
         ZonedDateTime zonedUtc = utc.atZone(ZoneId.of("UTC"));
         ZonedDateTime zonedTarget = zonedUtc.withZoneSameInstant(ZoneId.systemDefault());
@@ -119,14 +124,12 @@ public class Util {
         return target;
     }
 
-    public LocalDateTime UTCToEastern(LocalDateTime utc){
-        ZonedDateTime zonedUtc = utc.atZone(ZoneId.of("UTC"));
-        ZonedDateTime zonedEastern = zonedUtc.withZoneSameInstant(ZoneId.of("US/Eastern"));
-        LocalDateTime eastern = zonedEastern.toLocalDateTime();
-
-        return eastern;
-    }
-
+    /**
+     * Alert if there is an appointment starting in the next 15 minutes for this user.
+     * If not, an alert notifies the user that there are no upcoming appointments.
+     * @param user
+     * @return
+     */
     public static String upcomingMessage(Users user){
         int userID = user.getUserID();
         ObservableList<Appointments> allAppts = Appointments.getAllAppts();
