@@ -27,6 +27,12 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+/**
+ * First scene where user inputs username and password. Validates if that combination is found
+ * in the database. If time zone is in a french region, scene will be translation to french.
+ * Error message if invalid username or password is entered. Every attempt will be logged into
+ * login_activity.txt
+ */
 public class loginScreenController implements Initializable {
 
     public TextField usernameText;
@@ -42,6 +48,12 @@ public class loginScreenController implements Initializable {
     public Label countryDisplay;
     public String inputUsername;
 
+    /**
+     * Detects the current Locale and sets the page to French if in a French region.
+     * Otherwise, the page is set to English.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
@@ -62,6 +74,11 @@ public class loginScreenController implements Initializable {
         }
     }
 
+    /**
+     * If username and password are correct and found in the database, page is redirected to Main Menu.
+     * Otherwise, an error message will appear. Language is also set according to the region/locale detected.
+     * @param actionEvent user clicks Submit button
+     */
     public void onClickSubmit(ActionEvent actionEvent){
         //Locale.setDefault(new Locale("fr"));
 
@@ -88,7 +105,7 @@ public class loginScreenController implements Initializable {
                 stage.show();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText(Util.upcomingMessage(currentUser)); //MADE STATIC BUT CHECK IF THIS MESSES ANYTHING UP
+                alert.setContentText(Util.upcomingMessage(currentUser));
                 alert.show();
             }
             if (!inputPassword.equals(associatedPassword)) {
@@ -113,6 +130,9 @@ public class loginScreenController implements Initializable {
         }
     }
 
+    /**
+     * Writes a new log into login_activity.txt when a user enters valid login credentials.
+     */
     private void validLogin() {
         try {
             FileWriter fwriter = new FileWriter("src/login_activity.txt", true);
@@ -124,6 +144,10 @@ public class loginScreenController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Writes a new log into login_activity.txt when a user enters invalid login credentials.
+     */
     private void invalidLogin() {
         try {
             FileWriter fwriter = new FileWriter("src/login_activity.txt", true);
