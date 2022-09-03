@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/** This class creates an app that allows users to schedule customer appointments. */
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
@@ -21,7 +22,8 @@ public class Main extends Application {
         stage.show();
     }
 
-
+    /** This starts the application by connecting to the database.
+     */
     public static void main(String[] args) {
         DBConnection.openConnection();
         launch(args);
