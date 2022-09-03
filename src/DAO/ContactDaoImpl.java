@@ -15,7 +15,7 @@ public class ContactDaoImpl {
 
     /**
      * Populates a list of all contacts and their information from the database.
-     * @return list of all contactsg
+     * @return list of all contacts
      * @throws SQLException
      */
     public static ObservableList<Contacts> getAllContacts() throws SQLException {
