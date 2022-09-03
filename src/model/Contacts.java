@@ -13,7 +13,7 @@ public class Contacts {
     private static ObservableList<Contacts> allContacts = FXCollections.observableArrayList();
 
     /**
-     * Constructor for Contacts object
+     * Constructor for Contacts object.
      * @param contactID contact id
      * @param contactName contact name
      * @param email contact email

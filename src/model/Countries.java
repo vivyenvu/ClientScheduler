@@ -8,7 +8,7 @@ public class Countries {
     private int countryID;
 
     /**
-     * Constructor for Countries object
+     * Constructor for Countries object.
      * @param countryID country id
      * @param country name of country
      */
