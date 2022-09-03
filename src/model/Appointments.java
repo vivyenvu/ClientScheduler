@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
- * Class for object type Appointment.
+ * Class for object type Appointments.
  */
 public class Appointments {
     private static ObservableList<Appointments> allAppointments;
