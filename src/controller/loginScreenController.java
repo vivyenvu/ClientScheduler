@@ -17,8 +17,12 @@ import javafx.stage.Stage;
 import model.Appointments;
 import model.Users;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -36,6 +40,7 @@ public class loginScreenController implements Initializable {
     public boolean isFrench = false;
     public String associatedPassword;
     public Label countryDisplay;
+    public String inputUsername;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,7 +70,7 @@ public class loginScreenController implements Initializable {
             isFrench = true;
         }
 
-        String inputUsername = usernameText.getText();
+        inputUsername = usernameText.getText();
         String inputPassword = passwordText.getText();
 
         try {
@@ -74,6 +79,7 @@ public class loginScreenController implements Initializable {
             //System.out.println("InputPassword is " + inputPassword + " while AssociatedPassword is " + associatedPassword);
 
             if (inputPassword.equals(associatedPassword)) {
+                validLogin();
                 Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root, 1000, 700);
@@ -86,6 +92,7 @@ public class loginScreenController implements Initializable {
                 alert.show();
             }
             if (!inputPassword.equals(associatedPassword)) {
+                invalidLogin();
                 if (isFrench) {
                     errorMessageDisplay.setText(rb.getString("InvalidPassword"));
                 } else {
@@ -94,6 +101,7 @@ public class loginScreenController implements Initializable {
             }
         }
         catch (NullPointerException e) {
+            invalidLogin();
             if (isFrench) {
                 errorMessageDisplay.setText(rb.getString("InvalidUsername"));
             } else {
@@ -101,6 +109,29 @@ public class loginScreenController implements Initializable {
             }
         }
         catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void validLogin() {
+        try {
+            FileWriter fwriter = new FileWriter("src/login_activity.txt", true);
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String time = LocalDateTime.now().format(format);
+            fwriter.write("User "+inputUsername+ " successfully logged in at "+time+"\n");
+            fwriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void invalidLogin() {
+        try {
+            FileWriter fwriter = new FileWriter("src/login_activity.txt", true);
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String time = LocalDateTime.now().format(format);
+            fwriter.write("User "+inputUsername+ " gave invalid login at "+time+"\n");
+            fwriter.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
