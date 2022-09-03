@@ -42,6 +42,10 @@ public class reportsController {
 
     /**
      * Displays report for total number of appointments by type and month.
+     * <p><b>
+     * This lambda expression takes an integer and returns the name of the associated month.
+     * This makes the output schedule more human-readable.
+     * </b></p>
      * @param actionEvent Appt by Type and Month button is clicked
      * @throws SQLException
      */
@@ -79,8 +83,6 @@ public class reportsController {
     public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException, IOException {
         ObservableList<Contacts> allContacts = ContactDaoImpl.getAllContacts();
         ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
-
-
         String allInfo = "Appt ID            Title                        Type                        Description                        Start                        End                        Customer ID\n";
 
         for (Contacts contact : allContacts) {
@@ -104,6 +106,10 @@ public class reportsController {
 
     /**
      * Displays report of how many customers are from each country.
+     * <p><b>
+     * This lambda expression creates a set amount of spaces in between the columns to create
+     * a consistent, clean-looking display.
+     * </b></p>
      * @param actionEvent Customers per Country button is clicked
      */
     public void onCustomerPerCountryBtn(ActionEvent actionEvent) {

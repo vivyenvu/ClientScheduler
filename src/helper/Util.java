@@ -43,7 +43,7 @@ public class Util {
     }
 
     /**
-     * Provides first level division id for a given name of a first level division
+     * Provides first level division id for a given name of a first level division.
      * @param name first level division name
      * @return first level division id
      * @throws SQLException
@@ -58,7 +58,7 @@ public class Util {
     }
 
     /**
-     * Provides the name associated with a first level division id
+     * Provides the name associated with a first level division id.
      * @param id first level division id
      * @return first level division name
      * @throws SQLException
@@ -73,7 +73,7 @@ public class Util {
     }
 
     /**
-     * Provides name of country associated with a first level division id
+     * Provides name of country associated with a first level division id.
      * @param id first level division id
      * @return name of country
      * @throws SQLException
@@ -99,7 +99,7 @@ public class Util {
     }
 
     /**
-     * Converts system DateTime to UTC
+     * Converts system DateTime to UTC.
      * @param origin LocalDateTime in system's time zone
      * @return LocalDateTime converted to UTC
      */
@@ -112,7 +112,7 @@ public class Util {
     }
 
     /**
-     * Converts UTC DateTime to system time zone
+     * Converts UTC DateTime to system time zone.
      * @param utc LocalDateTime UTC
      * @return LocalDateTime converted to system's time zone
      */
