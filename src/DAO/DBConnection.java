@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Class that helps establish Java DataBase Connection(JDBC) so our program can interact with MySQL database.
+ * Helper class that establishes Java DataBase Connection(JDBC) so our program can interact with MySQL database.
  */
 public class DBConnection {
     private static final String protocol = "jdbc";
