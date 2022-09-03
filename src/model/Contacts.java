@@ -89,7 +89,7 @@ public class Contacts {
     }
 
     /**
-     * Prints string name of contact
+     * Provides string name of contact
      * @return name of contact
      */
     @Override
