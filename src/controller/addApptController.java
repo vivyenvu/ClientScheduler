@@ -26,6 +26,9 @@ import java.time.ZoneId;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
+/**
+ * Allows user to add a new apointment. Includes fields id, title, description, location, contact, date, start time, end time, customer id, user id, and type.
+ */
 public class addApptController implements Initializable {
     public TextField addApptID;
     public TextField addApptTitle;
@@ -39,6 +42,14 @@ public class addApptController implements Initializable {
     public ComboBox <Users> addApptUserID;
     public TextField addApptType;
 
+    /**
+     * When save button is clicked, this method will validate that all fields are not blank and valid.
+     * If there is invalid data, an error will pop up. Otherwise, a new appointment is created and
+     * added to the appointments table of the database.
+     * @param actionEvent when Save button is clicked
+     * @throws IOException
+     * @throws SQLException
+     */
     public void onAddApptSaveBtn(ActionEvent actionEvent) throws IOException, SQLException {
         String errorMessages = "";
         int count = 0;
@@ -147,6 +158,11 @@ public class addApptController implements Initializable {
         }
     }
 
+    /**
+     * Cancel button changes scene back to Main Menu
+     * @param actionEvent when Cancel button is clicked
+     * @throws IOException
+     */
     public void onAddApptCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -156,6 +172,12 @@ public class addApptController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Populates combo boxes for appointments. These include Start/End comboboxes with business hours based off of user's timezone,
+     * Contacts, Customer ID, and Contacts ID.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //calculate time offset between system timezone and utc in hours
