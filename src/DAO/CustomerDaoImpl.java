@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Pulls Customers information from the database.
+ * Interacts with Customers information from the database.
  */
 public class CustomerDaoImpl {
 

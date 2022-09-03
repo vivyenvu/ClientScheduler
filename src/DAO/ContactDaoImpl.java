@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Pulls Contacts information from the database.
+ * Interacts with Contacts information from the database.
  */
 public class ContactDaoImpl {
 

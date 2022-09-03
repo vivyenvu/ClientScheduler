@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Pulls Countries information from the database.
+ * Interacts with Countries information from the database.
  */
 public class CountryDaoImpl {
 

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 /**
- * Pulls Appointments information from the database.
+ * Interacts with Appointments information from the database.
  */
 public class ApptDaoImpl {
 

@@ -9,27 +9,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Interacts with Users information from the database.
+ */
 public class UserDaoImpl {
-    public static String getPassword(String username) throws SQLException, Exception {
-        try{
-            //String sql = "SELECT * FROM users WHERE User_Name = '" + username + "'";
-            //PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
-            //ResultSet rs = ps.executeQuery();
-            String password;
-            ResultSet rs = Query.getRS("SELECT * FROM users WHERE User_Name = '" + username + "'");
-            if(rs.next()) {
-                password = rs.getString("Password");
-                return password;
-            }
-            else {
-                return null;
-            }
-        }
-        catch (SQLException ex){
-            ex.printStackTrace();
-        }
-        return null;
-    }
+
+    /**
+     * Gets User with associated username
+     * @param inputUsername associated username
+     * @return User with information pulled from database
+     * @throws SQLException
+     */
     public static Users getUser(String inputUsername) throws SQLException {
         try{
             ResultSet rs = Query.getRS("SELECT * FROM users WHERE User_Name = '" + inputUsername + "'");
@@ -48,6 +38,13 @@ public class UserDaoImpl {
         }
         return null;
     }
+
+    /**
+     * Gets a list of all users and their information from the database.
+     * @return list of all users
+     * @throws SQLException
+     * @throws Exception
+     */
     public static ObservableList<Users> getAllUsers() throws SQLException, Exception{
         ObservableList<Users> loadUsers = FXCollections.observableArrayList();
 
