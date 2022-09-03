@@ -14,6 +14,7 @@ import java.time.ZoneId;
  * Pulls Appointments information from the database.
  */
 public class ApptDaoImpl {
+
     /**
      * Populates a list of all appointments and their information from the database.
      * @return list of all appointments

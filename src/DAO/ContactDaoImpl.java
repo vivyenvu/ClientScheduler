@@ -8,7 +8,16 @@ import model.Countries;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Pulls Contacts information from the database.
+ */
 public class ContactDaoImpl {
+
+    /**
+     * Populates a list of all contacts and their information from the database.
+     * @return list of all contactsg
+     * @throws SQLException
+     */
     public static ObservableList<Contacts> getAllContacts() throws SQLException {
         ObservableList<Contacts> allContacts = FXCollections.observableArrayList();
         ResultSet result = Query.getRS("select * from contacts");
