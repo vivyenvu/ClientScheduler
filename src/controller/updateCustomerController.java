@@ -25,6 +25,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * User can update existing customer and associated information.
+ */
 public class updateCustomerController implements Initializable {
     public TextField updateCustomerID;
     public TextField updateCustomerName;
@@ -34,6 +37,13 @@ public class updateCustomerController implements Initializable {
     public ComboBox updateCustomerFirstDiv;
     public ComboBox <Countries> updateCustomerCountry;
 
+    /**
+     * When save button is clicked, this method will validate that all fields are not blank and valid.
+     * If there is invalid data, an error will pop up. Otherwise, a customer is updated in the database.
+     * @param actionEvent when Save button is clicked
+     * @throws IOException
+     * @throws SQLException
+     */
     public void onClickUpdateCustomerSaveBtn(ActionEvent actionEvent) throws IOException, SQLException {
         String errorMessages = "";
         int custID = Integer.parseInt(updateCustomerID.getText());
@@ -75,6 +85,11 @@ public class updateCustomerController implements Initializable {
         }
     }
 
+    /**
+     * Directs user back to the Main Menu.
+     * @param actionEvent Cancel button is clicked
+     * @throws IOException
+     */
     public void onUpdateCustomerCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -84,6 +99,11 @@ public class updateCustomerController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Auto-populates fields and combo boxes with information based on which Customer was selected on the Main Menu.
+     * @param customer selected customer
+     * @throws SQLException
+     */
     public void sendCustomer(Customers customer) throws SQLException {
         updateCustomerID.setText(String.valueOf(customer.getCustomerID()));
         updateCustomerName.setText(customer.getCustomerName());
@@ -112,9 +132,13 @@ public class updateCustomerController implements Initializable {
         updateCustomerFirstDiv.getSelectionModel().select(selectedDiv.getDivision());
     }
 
+    /**
+     * Populates Country combo box
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         try {
             ObservableList<Countries> allCountries = CountryDaoImpl.getAllCountries();
             updateCustomerCountry.setItems(allCountries);
@@ -125,17 +149,20 @@ public class updateCustomerController implements Initializable {
         }
     }
 
-    //might have to move body of this to initialize or sendCustomer
+    /**
+     * Populates first level division combo box based off country of selected customer
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void onUpdateCustomerCountry(ActionEvent actionEvent) throws SQLException {
         ObservableList<String> allDivs= FXCollections.observableArrayList();
         Countries selectedCountry = updateCustomerCountry.getSelectionModel().getSelectedItem(); //eg Canada
 
-        int countryID = Util.countryToCountryID(selectedCountry.getCountry()); //DOES THE HELPER NEED TO BE STATIC
+        int countryID = Util.countryToCountryID(selectedCountry.getCountry());
         ResultSet rs = Query.getRS ("SELECT Division FROM first_level_divisions WHERE Country_ID = '" +countryID+ "'");
         while (rs.next()){
             String firstDiv = rs.getString("Division");
-            allDivs.add(firstDiv); //note: this is just adding a list of strings, not FirstDivision objects.
-            //to solve this, should I make addCustomerFirstDiv combobox only hold FirstClassDivision objects?
+            allDivs.add(firstDiv);
         }
         updateCustomerFirstDiv.setItems(allDivs);
     }

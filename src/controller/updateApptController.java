@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 /**
- * User can update an existing Appointment.
+ * User can update an existing Appointment and associated information.
  */
 public class updateApptController implements Initializable{
     public TextField updateApptTitle;
@@ -46,8 +46,7 @@ public class updateApptController implements Initializable{
 
     /**
      * When save button is clicked, this method will validate that all fields are not blank and valid.
-     * If there is invalid data, an error will pop up. Otherwise, a new appointment is created and
-     * added to the appointments table of the database.
+     * If there is invalid data, an error will pop up. Otherwise, an appointment is updated in the database.
      * @param actionEvent when Save button is clicked
      * @throws IOException
      */
@@ -174,7 +173,7 @@ public class updateApptController implements Initializable{
     }
 
     /**
-     * Auto-populates fields with information based on which Appointment was selected on the Main Menu.
+     * Auto-populates fields and combo boxes with information based on which Appointment was selected on the Main Menu.
      * @param appt selected appointment
      * @throws SQLException
      */
