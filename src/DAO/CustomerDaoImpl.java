@@ -10,7 +10,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Pulls Customers information from the database.
+ */
 public class CustomerDaoImpl {
+
+    /**
+     * Populates a list of all customers and their information from the database.
+     * @return list of all customers
+     * @throws SQLException
+     */
     public static ObservableList<Customers> getAllCustomers() throws SQLException {
         ObservableList<Customers> loadCustomers = FXCollections.observableArrayList();
         ResultSet result = Query.getRS("select * from customers " +
@@ -33,6 +42,15 @@ public class CustomerDaoImpl {
         return loadCustomers;
     }
 
+    /**
+     * Adds a new customer to the database table called customers.
+     * @param custName customer name
+     * @param custAddress customer address
+     * @param custPostal customer postal code
+     * @param custPhone customer phone number
+     * @param custDivID customer first level division id
+     * @throws SQLException
+     */
     public static void addCustomer(String custName, String custAddress, String custPostal, String custPhone, int custDivID) throws SQLException {
         int custID=0; //might not be a good initialization
         String sql = "INSERT INTO customers VALUES (?,?,?,?,?,NULL, NULL, NULL, NULL,?)";
@@ -51,6 +69,11 @@ public class CustomerDaoImpl {
         ps.execute();
     }
 
+    /**
+     * Deletes an existing extry from the customers table in the database.
+     * @param id customer id
+     * @throws SQLException
+     */
     public static void deleteCustomer(int id) throws SQLException {
     //delete from appointments THEN delete from customer table
         try{
@@ -67,6 +90,15 @@ public class CustomerDaoImpl {
         }
     }
 
+    /**
+     * Updates an existing entry in the customers table of the database.
+     * @param customerID customer id
+     * @param customerName customer name
+     * @param address customer address
+     * @param postalCode customer postal code
+     * @param phone customer phone number
+     * @param divisionIDFK customer first level division id
+     */
     public static void updateCustomer(int customerID, String customerName, String address, String postalCode, String phone, int divisionIDFK){
         try{
             PreparedStatement ps = Query.getPS("UPDATE customers set Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?");
