@@ -2,19 +2,15 @@ package controller;
 
 import DAO.ApptDaoImpl;
 import DAO.ContactDaoImpl;
-import DAO.CustomerDaoImpl;
 import LEXMain.GeneralInterface;
 import LEXMain.MonthInterface;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
@@ -24,9 +20,17 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.Month;
 
+/**
+ * Area to display three kinds of reports.
+ */
 public class reportsController {
     public TextArea displayArea;
 
+    /**
+     * Directs user back to Main Menu.
+     * @param actionEvent Cancel button is clicked.
+     * @throws IOException
+     */
     public void onCancelReportsBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -36,6 +40,11 @@ public class reportsController {
         stage.show();
     }
 
+    /**
+     * Displays report for total number of appointments by type and month.
+     * @param actionEvent Appt by Type and Month button is clicked
+     * @throws SQLException
+     */
     public void onApptTypeBtn(ActionEvent actionEvent) throws SQLException {
         ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
         ObservableList<String> allTypes = ApptDaoImpl.getAllTypes();
@@ -60,21 +69,20 @@ public class reportsController {
         displayArea.setText(allInfo);
     }
 
+    /**
+     * Displays report for schedule of each contact, including their appointment id, title, type, description,
+     * start time/date, end time/date, and customer id.
+     * @param actionEvent Contact Schedules button is clicked
+     * @throws SQLException
+     * @throws IOException
+     */
     public void onContactScheduleBtn(ActionEvent actionEvent) throws SQLException, IOException {
-        /*Parent root = FXMLLoader.load(getClass().getResource("/view/reportsSchedule.fxml"));
-        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 850, 400);
-        stage.setTitle("Reports Schedule");
-        stage.setScene(scene);
-        stage.show();*/
         ObservableList<Contacts> allContacts = ContactDaoImpl.getAllContacts();
         ObservableList<Appointments> allAppointments = ApptDaoImpl.getAllAppts();
 
-        //Button printTextBtn = new Button("Print Text");
-        //printTextBtn.setOnAction(e -> print(text));
-        //String test = "testing";
+
         String allInfo = "Appt ID            Title                        Type                        Description                        Start                        End                        Customer ID\n";
-        //allInfo += test+ "       " +test;
+
         for (Contacts contact : allContacts) {
             allInfo += contact.getContactName()+"\n";
             for (Appointments appt : allAppointments) {
@@ -94,6 +102,10 @@ public class reportsController {
 
     }
 
+    /**
+     * Displays report of how many customers are from each country.
+     * @param actionEvent Customers per Country button is clicked
+     */
     public void onCustomerPerCountryBtn(ActionEvent actionEvent) {
         ObservableList<Customers> allCustomers = Customers.getAllCustomers();
         int US = 0;
