@@ -7,6 +7,9 @@ import javafx.collections.ObservableList;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * Class for object type Appointment.
+ */
 public class Appointments {
     private static ObservableList<Appointments> allAppointments;
     private int apptID;
@@ -21,6 +24,20 @@ public class Appointments {
     private int contactIDFK;
     private String contactName;
 
+    /**
+     * Constructor for Appointment object.
+     * @param apptID appointment id
+     * @param title appointment title
+     * @param desc appointment description
+     * @param location appointment location
+     * @param type appointment type
+     * @param start appointment start time and date
+     * @param end appointment end time and date
+     * @param customerIDFK customer id associated with this appointment
+     * @param userIDFK user id associated with this appointment
+     * @param contactIDFK contact id associated with this appointment
+     * @param contactName name of contact associated with this appointment
+     */
     public Appointments (int apptID, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end,
                          int customerIDFK, int userIDFK, int contactIDFK, String contactName){
         this.apptID = apptID;
@@ -36,101 +53,203 @@ public class Appointments {
         this.contactName = contactName;
     }
 
+    /**
+     * Gets appointment ID
+     * @return appointment id
+     */
     public int getApptID() {
         return apptID;
     }
+
+    /**
+     * Gets appointment title
+     * @return title of appointment
+     */
     public String getTitle() {
         return title;
     }
+
+    /**
+     * Gets appointment description
+     * @return appointment description
+     */
     public String getDesc() {
         return desc;
     }
+
+    /**
+     * Gets appointment location
+     * @return location of appointment
+     */
     public String getLocation(){
         return location;
     }
+
+    /**
+     * Gets appointment type
+     * @return type of appointment
+     */
     public String getType(){
         return type;
     }
+
+    /**
+     * Gets appointment start date and time
+     * @return appointment start date and time
+     */
     public LocalDateTime getStart(){
         return start;
     }
+
+    /**
+     * Gets appointment end date and time
+     * @return appointment end date and time
+     */
     public LocalDateTime getEnd() {
         return end;
     }
+
+    /**
+     * Gets appointment's associated customer id
+     * @return customer id
+     */
     public int getCustomerIDFK(){
         return customerIDFK;
     }
+
+    /**
+     * Gets appointment's associated user id
+     * @return user id
+     */
     public int getUserIDFK(){
         return userIDFK;
     }
+
+    /**
+     * Gets appointment's associated contact id
+     * @return contact id
+     */
     public int getContactIDFK(){
         return contactIDFK;
     }
+
+    /**
+     * Gets contact name associated with appointment
+     * @return contact name associated with appointment
+     */
     public String getContactName(){
         return contactName;
     }
+
+    /**
+     * Gets list of all appointments
+     * @return list of all appointments
+     */
     public static ObservableList<Appointments> getAllAppts() {
         return allAppointments;
     }
 
+    /**
+     * Sets list of allAppointments to a particular list
+     * @param toSet new list to assign as allAppointments
+     */
     public static void setAllAppts(ObservableList<Appointments> toSet){
         allAppointments = toSet;
     }
-    //public static void add (Appointments appt){appointments.add(appt)}; // MAKE THIS ADD ONE APPT TO THE INSTANTIATED OBSERVABLE LIST
+
+    /**
+     * Sets appointment id
+     * @param id appointment id
+     */
     public void setApptID(int id) {
         apptID = id;
     }
+
+    /**
+     * Sets appointment title
+     * @param inputTitle appointment title
+     */
     public void setTitle(String inputTitle){
         title = inputTitle;
     }
+
+    /**
+     * Sets appointment description
+     * @param inputDesc appointment description
+     */
     public void setDesc(String inputDesc){
         desc = inputDesc;
     }
+
+    /**
+     * Sets appointment location
+     * @param inputLoc appointment location
+     *
+     */
     public void setLocation(String inputLoc){
         location = inputLoc;
     }
+
+    /**
+     * Sets appointment type
+     * @param inputType appointment type
+     */
     public void setType(String inputType){
         type = inputType;
     }
+
+    /**
+     * Sets appointment start date and time
+     * @param inputStart start date and time
+     */
     public void setStart(LocalDateTime inputStart) {
         start = inputStart;
     }
+
+    /**
+     * Sets appointment end date and time
+     * @param inputEnd end date and time
+     */
     public void setEnd(LocalDateTime inputEnd){
         end = inputEnd;
     }
+
+    /**
+     * Sets appointment customer id
+     * @param id customer id
+     */
     public void setCustomerIDFK(int id){
         customerIDFK = id;
     }
+
+    /**
+     * Sets appointment user id
+     * @param id user id
+     */
     public void setUserIDFK(int id){
         userIDFK = id;
     }
+
+    /**
+     * Sets appointment contact id
+     * @param id contact id
+     */
     public void setContactIDFK(int id){
         contactIDFK = id;
     }
+
+    /**
+     * Sets appointment contact name
+     * @param name contact name
+     */
     public void setContactName (String name){
         contactName = name;
     }
-    /*public static ObservableList<LocalTime> getBizHours(){
-        ObservableList<LocalTime> bizHours = FXCollections.observableArrayList();
-        //bizHours.add(LocalTime.of(13,00));
-        LocalTime end = LocalTime.of(23, 30);//Includes 10pm, so make sure to remove 30 min for start time, or validate that start<end
-        LocalTime toAdd = LocalTime.of(12, 00);
 
-        while (toAdd.isBefore(end)){
-            bizHours.add(toAdd);
-            toAdd = toAdd.plusMinutes(30);
-        }
-        end = LocalTime.of(2,00);
-        toAdd = LocalTime.of(0,00);
-        while (toAdd.isBefore(end)){
-            bizHours.add(toAdd);
-            toAdd = toAdd.plusMinutes(30);
-        }
-
-        return bizHours;
-    //NEED TO CONVERT TO UTC and then to local time before letting users choose
-        //Did this manually 8 est -> 12 utc. 22 est -> 2 est
-    }*/
+    /**
+     * Creates and returns a list of start times, 30 minutes apart, that fall in the business's working hours
+     * @return list of valid start time that are within business hours
+     */
     public static ObservableList<LocalTime> getStartBizHours(){
         ObservableList<LocalTime> start = FXCollections.observableArrayList();
         start.add(LocalTime.of(12,00));
@@ -164,6 +283,10 @@ public class Appointments {
         return start;
     }
 
+    /**
+     * Creates and returns a list of end times, 30 minutes apart, that fall in the business's working hours
+     * @return list of valid end time that are within business hours
+     */
     public static ObservableList<LocalTime> getEndBizHours(){
         ObservableList<LocalTime> end = FXCollections.observableArrayList();
         end.add(LocalTime.of(12,30));
