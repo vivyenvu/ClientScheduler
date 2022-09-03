@@ -3,12 +3,21 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Class for object type Users.
+ */
 public class Users {
     private int userID;
     private String username;
     private String password;
     private static ObservableList<Users> allUsers = FXCollections.observableArrayList();
 
+    /**
+     * Constructor for Users.
+     * @param userID user id
+     * @param username user name
+     * @param password user password
+     */
     public Users(int userID, String username, String password){
         this.userID = userID;
         this.username = username;
@@ -61,10 +70,18 @@ public class Users {
         password = pw;
     }
 
+    /**
+     * Sets a list of users to be allUsers
+     * @param toSet list of Users to be set to allUsers
+     */
     public static void setAllUsers(ObservableList<Users> toSet){
         allUsers = toSet;
     }
 
+    /**
+     * Provides user id
+     * @return user id
+     */
     @Override
     public String toString(){
         return Integer.toString(getUserID());
