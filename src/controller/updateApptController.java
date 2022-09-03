@@ -28,6 +28,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
+/**
+ * User can update an existing Appointment.
+ */
 public class updateApptController implements Initializable{
     public TextField updateApptTitle;
     public TextField updateApptDescription;
@@ -41,6 +44,13 @@ public class updateApptController implements Initializable{
     public TextField updateApptType;
     public TextField updateApptID;
 
+    /**
+     * When save button is clicked, this method will validate that all fields are not blank and valid.
+     * If there is invalid data, an error will pop up. Otherwise, a new appointment is created and
+     * added to the appointments table of the database.
+     * @param actionEvent when Save button is clicked
+     * @throws IOException
+     */
     public void onUpdateApptSaveBtn(ActionEvent actionEvent) throws IOException {
         String errorMessages = "";
         int clear = 0;
@@ -149,6 +159,11 @@ public class updateApptController implements Initializable{
         }
     }
 
+    /**
+     * Directs user back to Main Menu.
+     * @param actionEvent Cancel button is clicked
+     * @throws IOException
+     */
     public void onUpdateApptCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/mainMenu.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -157,6 +172,12 @@ public class updateApptController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Auto-populates fields with information based on which Appointment was selected on the Main Menu.
+     * @param appt selected appointment
+     * @throws SQLException
+     */
     public void sendAppointment(Appointments appt) throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
         Contacts selectedContact = null;
@@ -197,6 +218,11 @@ public class updateApptController implements Initializable{
         updateApptUserID.getSelectionModel().select(selectedUser);
     }
 
+    /**
+     * Populates Start, End, Contacts, Customer id, Contacts id combo boxes.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //calculate time offset between system timezone and utc in hours
