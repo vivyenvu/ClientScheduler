@@ -32,6 +32,11 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
+/**
+ * Main Menu allows users to view all Customers and Appointments. User can add, update, or delete
+ * any customer or appointment. Appointment view can be altered to include all appointments,
+ * week view, or month view.
+ */
 public class mainMenuController implements Initializable {
     public TableView <Customers> customerTable;
     public TableColumn customerTableID;
@@ -53,6 +58,11 @@ public class mainMenuController implements Initializable {
     public TableColumn apptTableUserID;
     public TableColumn apptTableContact;
 
+    /**
+     * Populates Customers and Appointments TableViews.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -88,6 +98,12 @@ public class mainMenuController implements Initializable {
         apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));
 
     }
+
+    /**
+     * Directs user to Add Customer scene.
+     * @param actionEvent user clicks Add customer button
+     * @throws IOException
+     */
     public void onCustomerAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomer.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -97,6 +113,12 @@ public class mainMenuController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Directs user to Update Customer scene.
+     * @param actionEvent user clicks Update customer button
+     * @throws IOException
+     * @throws SQLException
+     */
     public void onCustomerUpdateBtn(ActionEvent actionEvent) throws IOException, SQLException {
         try{
             FXMLLoader loader = new FXMLLoader();
@@ -119,6 +141,13 @@ public class mainMenuController implements Initializable {
         }
     }
 
+    /**
+     * Deletes selected customer from database and TableView. If no customer is selected,
+     * then an error pops up. If the customer still has associated appointments,
+     * an error pops up. Otherwise, a pop up details which customer was successfully deleted.
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void onCustomerDeleteBtn(ActionEvent actionEvent) throws SQLException {
         try{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -147,6 +176,11 @@ public class mainMenuController implements Initializable {
         }
     }
 
+    /**
+     * Directs user to Add Appointment Scene.
+     * @param actionEvent user clicks Add appointment button
+     * @throws IOException
+     */
     public void onApptAddBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addAppt.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -156,6 +190,11 @@ public class mainMenuController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Directs user to Update Appointment scene. Error pops up if user has not selected an appointment.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void onApptUpdateBtn(ActionEvent actionEvent) throws IOException {
         try{
             FXMLLoader loader = new FXMLLoader();
@@ -178,6 +217,12 @@ public class mainMenuController implements Initializable {
         }
     }
 
+    /**
+     * Asks user to confirm that they way to delete this appointment.
+     * If so, deletes selected appointment. Error pops up if user had not selected an appointment.
+     * Confirmation message pops up after successful apointment deletion.
+     * @param actionEvent
+     */
     public void onApptDeleteBtn(ActionEvent actionEvent) {
         try{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -188,7 +233,6 @@ public class mainMenuController implements Initializable {
 
             Appointments forDeletion = allApptTable.getSelectionModel().getSelectedItem();
             int idForDeletion = forDeletion.getApptID();
-                    ///Integer.parseInt(forDeletion.toString());
             String apptType = forDeletion.getType();
 
             if (result.isPresent() && result.get() == ButtonType.OK){
@@ -203,25 +247,29 @@ public class mainMenuController implements Initializable {
         }
     }
 
+    /**
+     * Appointments TableView only shows appointments occurring this week.
+     * @param actionEvent Week View radio button is selected
+     * @throws SQLException
+     */
     public void onWeekViewBtn(ActionEvent actionEvent) throws SQLException {
         allApptTable.setItems(ApptDaoImpl.getWeekAppts());
-
-        /*apptTableID.setCellValueFactory(new PropertyValueFactory<>("apptID"));
-        apptTableTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        apptTableDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
-        apptTableLoc.setCellValueFactory(new PropertyValueFactory<>("location"));
-        apptTableContact.setCellValueFactory(new PropertyValueFactory<>("contactName"));
-        apptTableType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        apptTableStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        apptTableEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
-        apptTableCustID.setCellValueFactory(new PropertyValueFactory<>("customerIDFK"));
-        apptTableUserID.setCellValueFactory(new PropertyValueFactory<>("userIDFK"));*/
     }
 
+    /**
+     * Appointments TableView only shows appointments occuring this month.
+     * @param actionEvent Month View radio button is selected
+     * @throws SQLException
+     */
     public void onMonthViewBtn(ActionEvent actionEvent) throws SQLException {
         allApptTable.setItems(ApptDaoImpl.getMonthAppts());
     }
 
+    /**
+     * Directs user to Reports scene.
+     * @param actionEvent Reports button is clicked
+     * @throws IOException
+     */
     public void onClickReports(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/reports.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -231,6 +279,11 @@ public class mainMenuController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Appointments TableView displays all appointments.
+     * @param actionEvent All radio button is selected.
+     * @throws SQLException
+     */
     public void onAllViewBtn(ActionEvent actionEvent) throws SQLException {
         allApptTable.setItems(ApptDaoImpl.getAllAppts());
     }
