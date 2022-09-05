@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -59,7 +60,7 @@ public class loginScreenController implements Initializable {
         try{
             //Locale.setDefault(new Locale("fr", "FR"));
             ResourceBundle rb = ResourceBundle.getBundle("sample/Nat", Locale.getDefault());
-            countryDisplay.setText(Locale.getDefault().getDisplayCountry());
+            countryDisplay.setText(String.valueOf(ZoneId.systemDefault()));
 
             if(Locale.getDefault().getLanguage().equals("fr")){
                 locationLabel.setText(rb.getString("Location"));
